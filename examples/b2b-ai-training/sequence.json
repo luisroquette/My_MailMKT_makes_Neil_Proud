@@ -1,0 +1,130 @@
+{
+  "campaign": {
+    "name": "The Invisible Queue",
+    "segment": "operations-leader",
+    "bigIdea": "The Invisible Queue",
+    "offer": "A no-cost workflow review with a human specialist"
+  },
+  "steps": [
+    {
+      "id": "drip_0",
+      "day": 0,
+      "format": "lesson",
+      "subject": "Where work quietly stalls",
+      "preheader": "A simple way to spot repeated handoff delays.",
+      "body": "Start with the work that waits for a person to copy, classify or approve it. That queue is usually easier to improve than the loudest problem on the board.",
+      "ctaLabel": "Open the handoff checklist",
+      "ctaUrl": "https://example.com/resources/handoff-checklist",
+      "postscript": "",
+      "factIds": []
+    },
+    {
+      "id": "drip_1",
+      "day": 1,
+      "format": "letter",
+      "subject": "The invisible queue",
+      "preheader": "The delay is often hiding between tools and owners.",
+      "body": "You can see a broken machine. You can hear an overloaded support line. The harder delay to notice is work sitting between two people, waiting for context. We call it the Invisible Queue. It grows quietly because every individual step still looks reasonable.",
+      "ctaLabel": "Map one invisible queue",
+      "ctaUrl": "https://example.com/resources/handoff-checklist",
+      "postscript": "The next lesson shows how to map the handoff without buying software.",
+      "factIds": []
+    },
+    {
+      "id": "drip_3",
+      "day": 3,
+      "format": "lesson",
+      "subject": "Map the handoff",
+      "preheader": "Follow the work, the owner and the missing context.",
+      "body": "Write down where the request begins, who touches it next and which context must be rebuilt. Repeated reconstruction is a useful signal because it points to a process problem rather than an individual performance problem.",
+      "ctaLabel": "Use the mapping checklist",
+      "ctaUrl": "https://example.com/resources/handoff-checklist",
+      "postscript": "",
+      "factIds": []
+    },
+    {
+      "id": "drip_5",
+      "day": 5,
+      "format": "echo",
+      "subject": "Audit the queue, not the tool",
+      "preheader": "A new app cannot repair an undefined handoff.",
+      "body": "Teams often compare tools before describing the queue. Reverse the order. A clear handoff map makes vendor claims easier to test and keeps the decision tied to actual work.",
+      "ctaLabel": "Review the handoff map",
+      "ctaUrl": "https://example.com/resources/handoff-checklist",
+      "postscript": "Next, you will turn the map into a small readiness score.",
+      "factIds": []
+    },
+    {
+      "id": "drip_7",
+      "day": 7,
+      "format": "lesson",
+      "subject": "A useful readiness score",
+      "preheader": "Score repetition, data access and decision clarity.",
+      "body": "A workflow is a stronger candidate when it repeats, uses available information and follows a decision that the team can explain. A low score is useful too. It tells you where process work must come first.",
+      "ctaLabel": "Score one workflow",
+      "ctaUrl": "https://example.com/resources/readiness-score",
+      "postscript": "",
+      "factIds": []
+    },
+    {
+      "id": "drip_9",
+      "day": 9,
+      "format": "letter",
+      "subject": "Review the workflow with us",
+      "preheader": "Bring one real queue and leave with a clear next test.",
+      "body": "If the map is still messy, a second pair of eyes can help. Our workflow review looks at one real queue, the information it uses and the decision it supports. You keep the map whether or not we work together afterward.",
+      "ctaLabel": "Request a workflow review",
+      "ctaUrl": "https://example.com/workflow-review",
+      "postscript": "The next note covers the most reasonable objection to doing this now.",
+      "factIds": []
+    },
+    {
+      "id": "drip_12",
+      "day": 12,
+      "format": "echo",
+      "subject": "When the process is still changing",
+      "preheader": "A moving process can still reveal a stable bottleneck.",
+      "body": "You may think the workflow is too unsettled to review. That can be true. The honest test is whether the same missing context keeps appearing despite the changes. If it does, the queue is stable enough to map.",
+      "ctaLabel": "Check the recurring handoff",
+      "ctaUrl": "https://example.com/resources/handoff-checklist",
+      "postscript": "The next lesson gives you the questions we would ask any provider.",
+      "factIds": []
+    },
+    {
+      "id": "drip_14",
+      "day": 14,
+      "format": "lesson",
+      "subject": "Questions for any provider",
+      "preheader": "Ask what happens when the model, data or process fails.",
+      "body": "A serious provider should explain the source data, the human checkpoint, the failure path and the record left behind. Ask those questions of every vendor, including us.",
+      "ctaLabel": "Open the provider checklist",
+      "ctaUrl": "https://example.com/resources/provider-checklist",
+      "postscript": "",
+      "factIds": []
+    },
+    {
+      "id": "drip_18",
+      "day": 18,
+      "format": "letter",
+      "subject": "A final note on the review",
+      "preheader": "Use the review if one real queue is worth clarifying.",
+      "body": "This is the final invitation in this sequence. If one repeated handoff is consuming attention, bring it to the workflow review. If the process is not ready, keep the checklists and use them when the queue becomes clear.",
+      "ctaLabel": "Request the workflow review",
+      "ctaUrl": "https://example.com/workflow-review",
+      "postscript": "The last message simply asks whether this topic still belongs in your inbox.",
+      "factIds": []
+    },
+    {
+      "id": "drip_25",
+      "day": 25,
+      "format": "echo",
+      "subject": "Still worth discussing?",
+      "preheader": "A short reply is enough.",
+      "body": "Is the Invisible Queue still relevant to your team? Reply with yes, later or no. A human will read it, and we will stop pushing a topic that no longer helps.",
+      "ctaLabel": "Reply to the team",
+      "ctaUrl": "https://example.com/reply",
+      "postscript": "No pitch here. Your answer keeps the next message useful.",
+      "factIds": []
+    }
+  ]
+}

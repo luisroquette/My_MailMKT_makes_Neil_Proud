@@ -1,0 +1,14 @@
+{
+  "facts": [
+    {
+      "id": "FACT-001",
+      "claim": "<exact allowed claim>",
+      "qualifiers": "<country, population, tariff, period or study conditions>",
+      "sourceUrl": "https://example.com/authoritative-source",
+      "accessedAt": "YYYY-MM-DD",
+      "allowedWording": [
+        "<approved wording>"
+      ]
+    }
+  ]
+}

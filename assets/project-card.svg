@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" role="img" aria-label="Motor Empiricus direct-response email engine">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#11101A"/><stop offset="1" stop-color="#24172B"/></linearGradient>
+    <linearGradient id="gold" x2="1"><stop stop-color="#D5A62E"/><stop offset="1" stop-color="#F0C65C"/></linearGradient>
+  </defs>
+  <rect width="600" height="300" rx="22" fill="url(#bg)"/>
+  <text x="34" y="48" fill="#9A8EA4" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">DIRECT RESPONSE ENGINE</text>
+  <text x="34" y="87" fill="#FBF7F0" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="800">Motor Empiricus</text>
+  <text x="34" y="112" fill="#C0B2C6" font-family="Inter,Arial,sans-serif" font-size="13">lead → lesson → letter → reply</text>
+  <g transform="translate(53 150)">
+    <path d="M62 45h76m-10-9 10 9-10 9M189 45h76m-10-9 10 9-10 9M316 45h76m-10-9 10 9-10 9" fill="none" stroke="#61486D" stroke-width="2"/>
+    <g>
+      <rect width="80" height="90" rx="12" fill="#211A2B" stroke="#7B2FBE"/>
+      <text x="40" y="37" fill="#C69AE6" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">01</text>
+      <text x="40" y="64" fill="#A999B1" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="700">LESSON</text>
+    </g>
+    <g transform="translate(127)">
+      <rect width="80" height="90" rx="12" fill="#2A221E" stroke="#D5A62E"/>
+      <text x="40" y="37" fill="#F0C65C" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">02</text>
+      <text x="40" y="64" fill="#C3B59E" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="700">LETTER</text>
+    </g>
+    <g transform="translate(254)">
+      <rect width="80" height="90" rx="12" fill="#211A2B" stroke="#9B5FD0"/>
+      <text x="40" y="37" fill="#D1A8EC" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="18" font-weight="800">03</text>
+      <text x="40" y="64" fill="#A999B1" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="700">ECHO</text>
+    </g>
+    <g transform="translate(381)">
+      <rect width="80" height="90" rx="12" fill="#2A221E" stroke="url(#gold)"/>
+      <path d="m28 45 9 9 17-22" fill="none" stroke="#F0C65C" stroke-width="3"/>
+      <text x="40" y="72" fill="#C3B59E" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="9" font-weight="700">REPLY</text>
+    </g>
+  </g>
+  <g transform="translate(455 28)">
+    <rect width="112" height="30" rx="15" fill="#193A31"/>
+    <circle cx="18" cy="15" r="4" fill="#46D6B3"/>
+    <text x="30" y="19" fill="#94E5D2" font-family="Inter,Arial,sans-serif" font-size="10" font-weight="800">OPEN SOURCE</text>
+  </g>
+</svg>

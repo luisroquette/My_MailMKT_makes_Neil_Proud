@@ -1,0 +1,16 @@
+{
+  "name": "motor-empiricus",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portable direct-response email system with templates and deterministic campaign validation.",
+  "type": "module",
+  "scripts": {
+    "init": "node scripts/init.mjs",
+    "validate": "node scripts/validate.mjs",
+    "test": "node scripts/validate.mjs examples/b2b-ai-training"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

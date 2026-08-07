@@ -1,0 +1,20 @@
+{
+  "campaign": {
+    "name": "<campaign name>",
+    "segment": "<segment>",
+    "bigIdea": "<named, defensible thesis>",
+    "offer": "<low-friction conversion offer>"
+  },
+  "steps": [
+    { "id": "drip_0", "day": 0, "format": "lesson", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "", "factIds": [] },
+    { "id": "drip_1", "day": 1, "format": "letter", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "<next-message hook>", "factIds": [] },
+    { "id": "drip_3", "day": 3, "format": "lesson", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "", "factIds": [] },
+    { "id": "drip_5", "day": 5, "format": "echo", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "<next-message hook>", "factIds": [] },
+    { "id": "drip_7", "day": 7, "format": "lesson", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "", "factIds": [] },
+    { "id": "drip_9", "day": 9, "format": "letter", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/offer", "postscript": "<next-message hook>", "factIds": [] },
+    { "id": "drip_12", "day": 12, "format": "echo", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "<next-message hook>", "factIds": [] },
+    { "id": "drip_14", "day": 14, "format": "lesson", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "", "factIds": [] },
+    { "id": "drip_18", "day": 18, "format": "letter", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/offer", "postscript": "<next-message hook>", "factIds": [] },
+    { "id": "drip_25", "day": 25, "format": "echo", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/reply", "postscript": "<human reply prompt>", "factIds": [] }
+  ]
+}

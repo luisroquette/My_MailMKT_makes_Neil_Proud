@@ -1,0 +1,19 @@
+{
+  "subjectMaxCharacters": 41,
+  "bannedPhrases": [
+    "guaranteed return",
+    "risk-free",
+    "guaranteed income",
+    "certain result",
+    "retorno garantido",
+    "sem risco",
+    "renda garantida",
+    "resultado certo"
+  ],
+  "requireHttpsCta": true,
+  "requireFactIdForNumbers": true,
+  "requirePostscriptFor": [
+    "letter",
+    "echo"
+  ]
+}

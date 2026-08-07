@@ -1,0 +1,125 @@
+#!/usr/bin/env node
+
+import { readFile } from "node:fs/promises";
+import path from "node:path";
+
+const requested = process.argv[2];
+
+if (!requested) {
+  console.error("Usage: node scripts/validate.mjs <campaign-directory>");
+  process.exit(1);
+}
+
+const campaignDir = path.resolve(process.cwd(), requested);
+const errors = [];
+
+async function readJson(filename) {
+  const file = path.join(campaignDir, filename);
+  try {
+    return JSON.parse(await readFile(file, "utf8"));
+  } catch (error) {
+    errors.push(`${filename}: ${error.message}`);
+    return null;
+  }
+}
+
+const [sequence, rules, factPack] = await Promise.all([
+  readJson("sequence.json"),
+  readJson("compliance-rules.json"),
+  readJson("fact-pack.json"),
+]);
+
+try {
+  const intake = await readFile(path.join(campaignDir, "intake.md"), "utf8");
+  if (/<[^>]+>/.test(intake)) errors.push("intake.md: unresolved placeholders remain");
+} catch (error) {
+  errors.push(`intake.md: ${error.message}`);
+}
+
+if (!sequence || !rules || !factPack) finish();
+
+const expected = [
+  ["drip_0", 0, "lesson"],
+  ["drip_1", 1, "letter"],
+  ["drip_3", 3, "lesson"],
+  ["drip_5", 5, "echo"],
+  ["drip_7", 7, "lesson"],
+  ["drip_9", 9, "letter"],
+  ["drip_12", 12, "echo"],
+  ["drip_14", 14, "lesson"],
+  ["drip_18", 18, "letter"],
+  ["drip_25", 25, "echo"],
+];
+
+const factIds = new Set((factPack.facts ?? []).map((fact) => fact.id));
+const banned = (rules.bannedPhrases ?? []).map((phrase) => phrase.toLocaleLowerCase());
+const requiredPostscripts = new Set(rules.requirePostscriptFor ?? []);
+const seen = new Set();
+
+for (const field of ["name", "segment", "bigIdea", "offer"]) {
+  const value = sequence.campaign?.[field];
+  if (!value || /<[^>]+>/.test(value)) errors.push(`campaign.${field}: missing or unresolved`);
+}
+
+if (!Array.isArray(sequence.steps) || sequence.steps.length !== expected.length) {
+  errors.push(`sequence.json: expected ${expected.length} steps`);
+} else {
+  for (let index = 0; index < expected.length; index += 1) {
+    const step = sequence.steps[index];
+    const [expectedId, expectedDay, expectedFormat] = expected[index];
+    const prefix = `steps[${index}]`;
+
+    if (step.id !== expectedId) errors.push(`${prefix}.id: expected ${expectedId}`);
+    if (step.day !== expectedDay) errors.push(`${prefix}.day: expected ${expectedDay}`);
+    if (step.format !== expectedFormat) errors.push(`${prefix}.format: expected ${expectedFormat}`);
+    if (seen.has(step.id)) errors.push(`${prefix}.id: duplicate ${step.id}`);
+    seen.add(step.id);
+
+    for (const field of ["subject", "preheader", "body", "ctaLabel", "ctaUrl"]) {
+      const value = step[field];
+      if (!value || /<[^>]+>/.test(value)) errors.push(`${prefix}.${field}: missing or unresolved`);
+    }
+
+    if (Array.from(step.subject ?? "").length > rules.subjectMaxCharacters) {
+      errors.push(`${prefix}.subject: exceeds ${rules.subjectMaxCharacters} characters`);
+    }
+
+    if (rules.requireHttpsCta && !/^https:\/\//i.test(step.ctaUrl ?? "")) {
+      errors.push(`${prefix}.ctaUrl: must use HTTPS`);
+    }
+
+    if (requiredPostscripts.has(step.format) && !step.postscript) {
+      errors.push(`${prefix}.postscript: required for ${step.format}`);
+    }
+
+    const copy = [step.subject, step.preheader, step.body, step.ctaLabel, step.postscript]
+      .filter(Boolean)
+      .join(" ")
+      .toLocaleLowerCase();
+
+    for (const phrase of banned) {
+      if (copy.includes(phrase)) errors.push(`${prefix}: contains banned phrase "${phrase}"`);
+    }
+
+    const referencedFacts = step.factIds ?? [];
+    for (const factId of referencedFacts) {
+      if (!factIds.has(factId)) errors.push(`${prefix}.factIds: unknown ${factId}`);
+    }
+
+    if (rules.requireFactIdForNumbers && /\d/.test(copy) && referencedFacts.length === 0) {
+      errors.push(`${prefix}.factIds: copy contains a number but references no fact`);
+    }
+  }
+}
+
+finish();
+
+function finish() {
+  if (errors.length > 0) {
+    console.error(`Campaign validation failed with ${errors.length} error(s):`);
+    for (const error of errors) console.error(`- ${error}`);
+    process.exit(1);
+  }
+
+  console.log(`Campaign validation passed: ${campaignDir}`);
+}
