@@ -13,11 +13,11 @@ source_file="${repo_dir}/SKILL.md"
 case "$1" in
   claude)
     config_dir="${CLAUDE_CONFIG_DIR:-${HOME}/.claude}"
-    destination="${config_dir}/skills/motor-empiricus"
+    destination="${config_dir}/skills/My_mailmarketing_makes_Neil_Patel_proud"
     ;;
   codex)
     config_dir="${CODEX_HOME:-${HOME}/.codex}"
-    destination="${config_dir}/skills/motor-empiricus"
+    destination="${config_dir}/skills/My_mailmarketing_makes_Neil_Patel_proud"
     ;;
   *)
     echo "Unknown target: $1. Use claude or codex." >&2
