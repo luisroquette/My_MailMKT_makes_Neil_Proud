@@ -10,10 +10,25 @@
     "renda garantida",
     "resultado certo"
   ],
+  "bannedSubjectWords": [
+    "free",
+    "urgent",
+    "click here",
+    "act now",
+    "grátis",
+    "urgente",
+    "clique aqui",
+    "até hoje",
+    "assine já"
+  ],
   "requireHttpsCta": true,
   "requireFactIdForNumbers": true,
   "requirePostscriptFor": [
     "letter",
     "echo"
+  ],
+  "requireNamePersonalizationFor": [
+    "drip_0",
+    "drip_25"
   ]
 }

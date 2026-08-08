@@ -10,7 +10,7 @@
       "id": "drip_0",
       "day": 0,
       "format": "lesson",
-      "subject": "Where work quietly stalls",
+      "subject": "{{lead.firstName}}, where work quietly stalls",
       "preheader": "A simple way to spot repeated handoff delays.",
       "body": "Start with the work that waits for a person to copy, classify or approve it. That queue is usually easier to improve than the loudest problem on the board.",
       "ctaLabel": "Open the handoff checklist",
@@ -118,13 +118,21 @@
       "id": "drip_25",
       "day": 25,
       "format": "echo",
-      "subject": "Still worth discussing?",
+      "subject": "{{lead.firstName}}, still worth discussing?",
       "preheader": "A short reply is enough.",
       "body": "Is the Invisible Queue still relevant to your team? Reply with yes, later or no. A human will read it, and we will stop pushing a topic that no longer helps.",
       "ctaLabel": "Reply to the team",
       "ctaUrl": "https://example.com/reply",
       "postscript": "No pitch here. Your answer keeps the next message useful.",
       "factIds": []
+    }
+  ],
+  "resends": [
+    {
+      "id": "drip_1_resend",
+      "resendOf": "drip_1",
+      "afterDays": 7,
+      "subject": "{{lead.firstName}}, did this get buried?"
     }
   ]
 }

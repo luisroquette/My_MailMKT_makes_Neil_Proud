@@ -53,7 +53,14 @@ const expected = [
 
 const factIds = new Set((factPack.facts ?? []).map((fact) => fact.id));
 const banned = (rules.bannedPhrases ?? []).map((phrase) => phrase.toLocaleLowerCase());
+const bannedSubjectWords = (rules.bannedSubjectWords ?? []).map((word) => word.toLocaleLowerCase());
 const requiredPostscripts = new Set(rules.requirePostscriptFor ?? []);
+const requireNamePersonalizationFor = new Set(rules.requireNamePersonalizationFor ?? []);
+const personalizationToken = "{{lead.firstName}}";
+// Representative first-name length for subject-length checks. The literal token is
+// longer than any real rendered name would be, so counting it verbatim would make
+// personalization mathematically impossible under a mobile subject limit.
+const personalizationPlaceholder = "Alex";
 const seen = new Set();
 
 for (const field of ["name", "segment", "bigIdea", "offer"]) {
@@ -80,8 +87,20 @@ if (!Array.isArray(sequence.steps) || sequence.steps.length !== expected.length)
       if (!value || /<[^>]+>/.test(value)) errors.push(`${prefix}.${field}: missing or unresolved`);
     }
 
-    if (Array.from(step.subject ?? "").length > rules.subjectMaxCharacters) {
-      errors.push(`${prefix}.subject: exceeds ${rules.subjectMaxCharacters} characters`);
+    const renderedSubject = (step.subject ?? "").replaceAll(personalizationToken, personalizationPlaceholder);
+    if (Array.from(renderedSubject).length > rules.subjectMaxCharacters) {
+      errors.push(`${prefix}.subject: exceeds ${rules.subjectMaxCharacters} characters (rendered with a sample name)`);
+    }
+
+    const subjectLower = (step.subject ?? "").toLocaleLowerCase();
+    const ctaLabelLower = (step.ctaLabel ?? "").toLocaleLowerCase();
+    for (const word of bannedSubjectWords) {
+      if (subjectLower.includes(word)) errors.push(`${prefix}.subject: contains spam-trigger word "${word}"`);
+      if (ctaLabelLower.includes(word)) errors.push(`${prefix}.ctaLabel: contains generic/spam-trigger word "${word}" — express the benefit instead`);
+    }
+
+    if (requireNamePersonalizationFor.has(step.id) && !(step.subject ?? "").includes(personalizationToken)) {
+      errors.push(`${prefix}.subject: must include ${personalizationToken} for this step`);
     }
 
     if (rules.requireHttpsCta && !/^https:\/\//i.test(step.ctaUrl ?? "")) {
@@ -112,7 +131,64 @@ if (!Array.isArray(sequence.steps) || sequence.steps.length !== expected.length)
   }
 }
 
+validateResends();
 finish();
+
+function validateResends() {
+  const resends = sequence?.resends;
+  if (resends === undefined) return;
+  if (!Array.isArray(resends)) {
+    errors.push("sequence.resends: must be an array when present");
+    return;
+  }
+
+  const stepIds = new Set((sequence.steps ?? []).map((step) => step.id));
+  const resendIds = new Set();
+
+  resends.forEach((resend, index) => {
+    const prefix = `resends[${index}]`;
+
+    if (!resend.id || resendIds.has(resend.id) || stepIds.has(resend.id)) {
+      errors.push(`${prefix}.id: missing, duplicate, or collides with a step id`);
+    }
+    resendIds.add(resend.id);
+
+    if (!stepIds.has(resend.resendOf)) {
+      errors.push(`${prefix}.resendOf: must reference an existing step id, got "${resend.resendOf}"`);
+    }
+
+    if (!Number.isInteger(resend.afterDays) || resend.afterDays <= 0) {
+      errors.push(`${prefix}.afterDays: must be a positive integer`);
+    }
+
+    const subject = resend.subject;
+    if (!subject || /<[^>]+>/.test(subject)) {
+      errors.push(`${prefix}.subject: missing or unresolved`);
+      return;
+    }
+
+    const originalStep = (sequence.steps ?? []).find((step) => step.id === resend.resendOf);
+    if (originalStep && subject.toLocaleLowerCase() === (originalStep.subject ?? "").toLocaleLowerCase()) {
+      errors.push(`${prefix}.subject: must be reformulated, not identical to the original step's subject`);
+    }
+
+    const rendered = subject.replaceAll(personalizationToken, personalizationPlaceholder);
+    if (Array.from(rendered).length > rules.subjectMaxCharacters) {
+      errors.push(`${prefix}.subject: exceeds ${rules.subjectMaxCharacters} characters (rendered with a sample name)`);
+    }
+
+    const subjectLower = subject.toLocaleLowerCase();
+    for (const word of bannedSubjectWords) {
+      if (subjectLower.includes(word)) errors.push(`${prefix}.subject: contains spam-trigger word "${word}"`);
+    }
+    for (const phrase of banned) {
+      if (subjectLower.includes(phrase)) errors.push(`${prefix}.subject: contains banned phrase "${phrase}"`);
+    }
+    if (requireNamePersonalizationFor.has(resend.id) && !subject.includes(personalizationToken)) {
+      errors.push(`${prefix}.subject: must include ${personalizationToken} for this step`);
+    }
+  });
+}
 
 function finish() {
   if (errors.length > 0) {
