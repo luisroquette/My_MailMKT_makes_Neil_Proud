@@ -55,12 +55,13 @@ Run the evergreen sequence once per day:
 2. Load a bounded batch of non-suppressed leads.
 3. Resolve the segment from stored evidence, never from a fresh guess.
 4. Calculate the oldest due unsent message.
-5. Run deterministic compliance checks.
-6. Insert the unique send claim.
-7. Render the HTML and plain-text versions.
-8. Send through the configured provider.
-9. Store the provider ID and send timestamp.
-10. Alert when every attempted send fails.
+5. Check the fatigue gate — skip a lead whose last few sends all went unopened, log the skip, and move on (see `docs/ARCHITECTURE.md`).
+6. Run deterministic compliance checks.
+7. Insert the unique send claim.
+8. Render the HTML and plain-text versions.
+9. Send through the configured provider.
+10. Store the provider ID and send timestamp.
+11. Alert when every attempted send fails.
 
 Keep the weekly digest in a separate job. Digest recipients and sequence recipients may overlap, but each stream needs its own idempotency key.
 

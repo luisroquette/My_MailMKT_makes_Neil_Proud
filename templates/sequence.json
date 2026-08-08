@@ -16,5 +16,8 @@
     { "id": "drip_14", "day": 14, "format": "lesson", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/resource", "postscript": "", "factIds": [] },
     { "id": "drip_18", "day": 18, "format": "letter", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/offer", "postscript": "<next-message hook>", "factIds": [] },
     { "id": "drip_25", "day": 25, "format": "echo", "subject": "<subject>", "preheader": "<preheader>", "body": "<body>", "ctaLabel": "<cta>", "ctaUrl": "https://example.com/reply", "postscript": "<human reply prompt>", "factIds": [] }
+  ],
+  "resends": [
+    { "id": "drip_1_resend", "resendOf": "drip_1", "afterDays": 7, "subject": "<reformulated subject, different from drip_1's>" }
   ]
 }

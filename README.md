@@ -137,6 +137,7 @@ Start with the intake. Do not write copy until the offer, segments, sources and 
 ```text
 .
 ├── SKILL.md                         portable method for Claude Code and Codex
+├── CHANGELOG.md                     version history
 ├── templates/                       campaign intake, fact pack and sequence scaffold
 ├── examples/b2b-ai-training/        complete validator-safe example
 ├── scripts/init.mjs                 creates a campaign workspace
@@ -153,6 +154,12 @@ Start with the intake. Do not write copy until the offer, segments, sources and 
 - **One claim ledger.** Numbers must resolve to a fact ID with a source and access date.
 - **Truthful pressure.** No fake scarcity, fabricated testimonials, guaranteed outcomes or invented counters.
 - **A real opt-out path.** Consent, one-click unsubscribe, suppression and a monitored reply-to belong in the production implementation.
+- **A tested subject-line angle, never a generic one.** Direct benefit, scarcity, social proof or curiosity — picked on purpose, personalized on the steps that earn it, checked against a spam-trigger word list.
+- **One reformulated resend for the step that matters most**, only to non-openers, never a second argument.
+- **A living segment, not a label.** A tagged click can move a lead mid-sequence without resetting the clock.
+- **A fatigue gate.** A lead who stops opening gets skipped, not burned.
+
+See [CHANGELOG.md](CHANGELOG.md) for the full version history.
 
 ## What this repository does not do
 
