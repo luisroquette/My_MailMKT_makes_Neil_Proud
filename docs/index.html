@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f3ede2">
+  <meta name="description" content="An open-source direct-response email system for lead nurture, editorial sequences and compliant conversion campaigns.">
+  <meta property="og:title" content="Motor Empiricus — Give every lead a reason to stay">
+  <meta property="og:description" content="A portable email campaign method, templates and deterministic validator for leads that should not go cold.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://luisroquette.github.io/motor-empiricus/">
+  <meta property="og:image" content="https://raw.githubusercontent.com/luisroquette/motor-empiricus/main/assets/hero.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Motor Empiricus — Give every lead a reason to stay</title>
+  <link rel="canonical" href="https://luisroquette.github.io/motor-empiricus/">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <script defer src="site.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header>
+    <nav aria-label="Main navigation">
+      <a class="brand" href="#top"><span class="seal">ME</span><span>Motor Empiricus</span></a>
+      <div class="nav-links">
+        <a href="#sequence">The sequence</a><a href="#proof">Real outputs</a><a href="#safety">Guardrails</a>
+        <a class="nav-button" href="https://github.com/luisroquette/motor-empiricus">Open source ↗</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top">
+      <p class="eyebrow">A PORTABLE DIRECT-RESPONSE EMAIL SYSTEM</p>
+      <div class="hero-grid">
+        <div>
+          <h1>Give every lead<br>a reason <em>to stay.</em></h1>
+          <p class="lede">Turn a captured lead into a useful, sourced and compliant editorial sequence—before your follow-up becomes another forgotten welcome email.</p>
+          <div class="actions">
+            <a class="button" href="https://github.com/luisroquette/motor-empiricus#quick-start">Build your first sequence <span>↗</span></a>
+            <button type="button" data-copy="git clone https://github.com/luisroquette/motor-empiricus.git">Copy clone command</button>
+          </div>
+          <p class="fine-print">MIT licensed · 0 runtime dependencies · No email is sent by this repository</p>
+        </div>
+        <div class="letter-stage" aria-label="Conceptual campaign letter preview">
+          <div class="stamp">D+01<br><strong>LETTER</strong></div>
+          <article class="letter">
+            <div class="letter-head"><span>THE EDITORIAL LETTER</span><span>02 / 10</span></div>
+            <p class="subject">Your lead did not ask for ten sales emails.</p>
+            <div class="rule"></div>
+            <p>They asked for help making a decision. Teach the mechanism. Name the honest objection. Earn the next click.</p>
+            <div class="signature">Motor Empiricus</div>
+          </article>
+          <div class="red-mark">SOURCED<br>CLAIMS</div>
+        </div>
+      </div>
+      <div class="hero-strip"><span>10 EMAILS</span><i></i><span>25 DAYS</span><i></i><span>3 FORMATS</span><i></i><span>1 CLAIM LEDGER</span></div>
+    </section>
+
+    <section class="problem">
+      <div class="section-number">01 / THE GAP</div>
+      <div>
+        <h2>A form submission is not a relationship.</h2>
+        <p>Most leads land in a spreadsheet, a CRM stage or one generic automation. Motor Empiricus gives follow-up a deliberate structure: teach first, argue one sourced thesis and ask for the right action at the right moment.</p>
+      </div>
+    </section>
+
+    <section class="sequence" id="sequence">
+      <div class="section-head"><div class="section-number">02 / THE 25-DAY SEQUENCE</div><h2>Three formats.<br>Ten different jobs.</h2></div>
+      <div class="timeline" role="list" aria-label="Email sequence timeline">
+        <article role="listitem"><span>D+0</span><b>LESSON</b><p>Teach something useful immediately.</p></article>
+        <article role="listitem"><span>D+1</span><b>LETTER</b><p>Name and argue the Big Idea.</p></article>
+        <article role="listitem"><span>D+3</span><b>LESSON</b><p>Deepen the problem mechanism.</p></article>
+        <article role="listitem"><span>D+5</span><b>ECHO</b><p>Return through evidence.</p></article>
+        <article role="listitem"><span>D+7</span><b>LESSON</b><p>Give a tool or scorecard.</p></article>
+        <article role="listitem"><span>D+9</span><b>LETTER</b><p>Present the low-friction offer.</p></article>
+        <article role="listitem"><span>D+12</span><b>ECHO</b><p>Answer the honest objection.</p></article>
+        <article role="listitem"><span>D+14</span><b>LESSON</b><p>Teach provider evaluation.</p></article>
+        <article role="listitem"><span>D+18</span><b>LETTER</b><p>Make the final truthful call.</p></article>
+        <article role="listitem"><span>D+25</span><b>ECHO</b><p>Open a human reply path.</p></article>
+      </div>
+    </section>
+
+    <section class="proof" id="proof">
+      <div class="section-head light"><div class="section-number">03 / REAL REFERENCE OUTPUTS</div><h2>Useful before<br>persuasive.</h2></div>
+      <p class="proof-intro">Real inbox captures from a CF Gauss reference implementation, shared with permission.</p>
+      <div class="inboxes">
+        <figure><div><img src="https://raw.githubusercontent.com/luisroquette/motor-empiricus/main/assets/output-weekly-digest.png" alt="Weekly editorial digest from the reference implementation"></div><figcaption><span>01</span><strong>Weekly digest</strong><p>Keeps the relationship active between campaigns.</p></figcaption></figure>
+        <figure><div><img src="https://raw.githubusercontent.com/luisroquette/motor-empiricus/main/assets/output-editorial-lesson.png" alt="Educational email lesson from the reference implementation"></div><figcaption><span>02</span><strong>Editorial lesson</strong><p>Earns trust with a practical idea or tool.</p></figcaption></figure>
+        <figure><div><img src="https://raw.githubusercontent.com/luisroquette/motor-empiricus/main/assets/output-campaign-letter.png" alt="Long-form campaign letter from the reference implementation"></div><figcaption><span>03</span><strong>Campaign letter</strong><p>Argues one thesis with sourced facts and one CTA.</p></figcaption></figure>
+      </div>
+    </section>
+
+    <section class="system">
+      <div class="section-head"><div class="section-number">04 / WHAT SHIPS</div><h2>A method you can run.<br>Contracts you can inspect.</h2></div>
+      <div class="system-grid">
+        <article><span>01</span><h3>Campaign intake</h3><p>Product, segments, offer, channel and legal floor before any copy is written.</p></article>
+        <article><span>02</span><h3>Fact pack</h3><p>Every material number or external claim mapped to a source and access date.</p></article>
+        <article><span>03</span><h3>Sequence contract</h3><p>Ten messages, CTAs, fact references, cadence and P.S. chain in structured JSON.</p></article>
+        <article><span>04</span><h3>Deterministic validator</h3><p>Checks fields, cadence, HTTPS links, sources, banned claims and placeholders.</p></article>
+      </div>
+    </section>
+
+    <section class="safety" id="safety">
+      <div>
+        <p class="section-number">05 / COMPLIANCE FLOOR</p>
+        <h2>Pressure should be truthful—or absent.</h2>
+        <p>The toolkit bans fake scarcity, fabricated testimonials, unsupported numbers and guaranteed outcomes. Production still requires your legal review, consent system, suppression list and monitored reply path.</p>
+        <a href="https://github.com/luisroquette/motor-empiricus/blob/main/docs/IMPLEMENTATION.md">Read the implementation guide →</a>
+      </div>
+      <div class="checklist">
+        <div><span>✓</span><p><strong>Claim ledger</strong>Unknown fact IDs and unsupported numbers fail validation.</p></div>
+        <div><span>✓</span><p><strong>Real opt-out</strong>The production contract requires unsubscribe and suppression.</p></div>
+        <div><span>✓</span><p><strong>Fatigue gate</strong>Disengaged leads can be skipped instead of burned.</p></div>
+        <div><span>✓</span><p><strong>Human boundary</strong>The validator does not replace consent or legal review.</p></div>
+      </div>
+    </section>
+
+    <section class="honest">
+      <p class="section-number">06 / HONEST SCOPE</p>
+      <div class="scope-grid">
+        <div><h2>Included</h2><ul><li>Portable agent skill</li><li>Campaign templates</li><li>Working validator</li><li>Implementation contracts</li></ul></div>
+        <div><h2>Not included</h2><ul><li>Email delivery service</li><li>Hosted database</li><li>Private production code</li><li>Legal advice</li></ul></div>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <p>LEADS SHOULD NOT GO COLD BY DEFAULT.</p>
+      <h2>Build the follow-up<br>worth opening.</h2>
+      <div class="actions"><a class="button button-gold" href="https://github.com/luisroquette/motor-empiricus">Get Motor Empiricus <span>↗</span></a><a href="https://github.com/luisroquette/motor-empiricus/blob/main/examples/b2b-ai-training/sequence.json">Inspect the example</a></div>
+      <p class="disclaimer"><strong>Independent project.</strong> Not affiliated with, endorsed by or sponsored by Empiricus Research. It uses established direct-response patterns, never third-party copy, trademarks or claims.</p>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#top"><span class="seal">ME</span><span>Motor Empiricus</span></a><p>Open source by <a href="https://github.com/luisroquette">Luis Roquette</a> · MIT License · 2026</p></footer>
+</body>
+</html>
