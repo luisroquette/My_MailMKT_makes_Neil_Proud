@@ -58,7 +58,7 @@
       },
       {
         "id": "motor_empiricus_public_identity",
-        "label": "Motor Empiricus Public Identity",
+        "label": "My_MailMKT_makes_Neil_Proud Public Identity",
         "nodes": [
           "readme_motor_empiricus",
           "docs_index_product_site",
@@ -734,7 +734,7 @@
       "community_name": "Product Site and CI"
     },
     {
-      "label": "Motor Empiricus GitHub Repository",
+      "label": "My_MailMKT_makes_Neil_Proud GitHub Repository",
       "file_type": "concept",
       "source_file": "docs/index.html",
       "source_location": "lines 28-46",
@@ -743,7 +743,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "norm_label": "motor empiricus github repository",
+      "norm_label": "my_mailmkt_makes_neil_proud github repository",
       "_origin": "semantic",
       "id": "docs_index_open_source_repository",
       "community_name": "Product Site and CI"
@@ -764,7 +764,7 @@
       "community_name": "Product Site and CI"
     },
     {
-      "label": "Motor Empiricus Product Sitemap",
+      "label": "My_MailMKT_makes_Neil_Proud Product Sitemap",
       "file_type": "concept",
       "source_file": "docs/robots.txt",
       "source_location": "line 4",
@@ -773,7 +773,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "norm_label": "motor empiricus product sitemap",
+      "norm_label": "my_mailmkt_makes_neil_proud product sitemap",
       "_origin": "semantic",
       "id": "docs_robots_product_sitemap",
       "community_name": "Product Site and CI"
@@ -824,7 +824,7 @@
       "community_name": "Product Site and CI"
     },
     {
-      "label": "Motor Empiricus Product Site",
+      "label": "My_MailMKT_makes_Neil_Proud Product Site",
       "file_type": "document",
       "source_file": "docs/index.html",
       "source_location": "lines 1-182",
@@ -833,7 +833,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "norm_label": "motor empiricus product site",
+      "norm_label": "my_mailmkt_makes_neil_proud product site",
       "_origin": "semantic",
       "id": "docs_index_product_site",
       "community_name": "Product Site and CI"
@@ -854,7 +854,7 @@
       "community_name": "Product Site and CI"
     },
     {
-      "label": "Motor Empiricus",
+      "label": "My_MailMKT_makes_Neil_Proud",
       "file_type": "document",
       "source_file": "README.md",
       "source_location": "lines 1-22",
@@ -863,13 +863,13 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "norm_label": "motor empiricus",
+      "norm_label": "my_mailmkt_makes_neil_proud",
       "_origin": "semantic",
       "id": "readme_motor_empiricus",
       "community_name": "Product Site and CI"
     },
     {
-      "label": "Motor Empiricus ME Seal",
+      "label": "My_MailMKT_makes_Neil_Proud MM Seal",
       "file_type": "image",
       "source_file": "docs/favicon.svg",
       "source_location": "lines 1-5",
@@ -878,7 +878,7 @@
       "author": null,
       "contributor": null,
       "community": 0,
-      "norm_label": "motor empiricus me seal",
+      "norm_label": "my_mailmkt_makes_neil_proud mm seal",
       "_origin": "semantic",
       "id": "docs_favicon_motor_empiricus_seal",
       "community_name": "Product Site and CI"
@@ -974,7 +974,7 @@
       "community_name": "Release and Repository Map"
     },
     {
-      "label": "Version 1.1.1 (2026-08-08) \u2014 skill identifier renamed to My_mailmarketing_makes_Neil_Patel_proud; project/repo name unchanged",
+      "label": "Version 1.1.1 (2026-08-08) \u2014 skill identifier renamed to my-mailmkt-makes-neil-proud; project/repo name unchanged",
       "file_type": "concept",
       "source_file": "CHANGELOG.md",
       "source_location": "lines 7-13",
@@ -1064,7 +1064,7 @@
       "community_name": "Release and Repository Map"
     },
     {
-      "label": "My_mailmarketing_makes_Neil_Patel_proud (technical skill identifier)",
+      "label": "my-mailmkt-makes-neil-proud (technical skill identifier)",
       "file_type": "concept",
       "source_file": "SKILL.md",
       "source_location": "frontmatter name field",
@@ -1199,7 +1199,7 @@
       "community_name": "Release and Repository Map"
     },
     {
-      "label": "CHANGELOG.md (Motor Empiricus)",
+      "label": "CHANGELOG.md (My_MailMKT_makes_Neil_Proud)",
       "file_type": "document",
       "source_file": "CHANGELOG.md",
       "source_location": null,
@@ -1208,7 +1208,7 @@
       "author": null,
       "contributor": null,
       "community": 1,
-      "norm_label": "changelog.md (motor empiricus)",
+      "norm_label": "changelog.md (my_mailmkt_makes_neil_proud)",
       "_origin": "semantic",
       "id": "changelog_md",
       "community_name": "Release and Repository Map"
@@ -1229,7 +1229,7 @@
       "community_name": "Release and Repository Map"
     },
     {
-      "label": "Motor Empiricus (SKILL.md)",
+      "label": "My_MailMKT_makes_Neil_Proud (SKILL.md)",
       "file_type": "document",
       "source_file": "SKILL.md",
       "source_location": null,
@@ -1238,7 +1238,7 @@
       "author": null,
       "contributor": null,
       "community": 1,
-      "norm_label": "motor empiricus (skill.md)",
+      "norm_label": "my_mailmkt_makes_neil_proud (skill.md)",
       "_origin": "semantic",
       "id": "skill_md",
       "community_name": "Release and Repository Map"
@@ -4415,7 +4415,7 @@
     },
     {
       "id": "motor_empiricus_public_identity",
-      "label": "Motor Empiricus Public Identity",
+      "label": "My_MailMKT_makes_Neil_Proud Public Identity",
       "nodes": [
         "readme_motor_empiricus",
         "docs_index_product_site",

@@ -1,4 +1,4 @@
-# Motor Empiricus
+# My_MailMKT_makes_Neil_Proud
 
 <p align="center">
   <strong>A portable direct-response email system for leads that should not go cold.</strong>
@@ -11,15 +11,15 @@
   <a href="https://luisroquette.github.io/motor-empiricus/"><img alt="Product site" src="https://img.shields.io/badge/product%20site-live-681D2A.svg"></a>
 </p>
 
-![Motor Empiricus turns editorial lessons, persuasive letters and follow-ups into one automated sequence](assets/hero.png)
+![My_MailMKT_makes_Neil_Proud turns editorial lessons, persuasive letters and follow-ups into one automated sequence](assets/hero.png)
 
 Most lead forms end in a spreadsheet, a CRM stage, or one forgettable welcome email.
 
-Motor Empiricus gives the follow-up a structure. It turns a captured lead into a 25-day sequence of useful lessons, persuasive letters, fresh follow-up angles, gated resources and a low-friction offer. The system is designed to earn attention before asking for action.
+My_MailMKT_makes_Neil_Proud gives the follow-up a structure. It turns a captured lead into a 25-day sequence of useful lessons, persuasive letters, fresh follow-up angles, gated resources and a low-friction offer. The system is designed to earn attention before asking for action.
 
 This repository contains the portable skill, campaign templates, compliance guards, a working validator and the implementation guide used to adapt the method to a real product.
 
-> **Independent project:** Motor Empiricus is not affiliated with, endorsed by, or sponsored by Empiricus Research. It borrows established direct-response publishing patterns, never third-party copy, trademarks or claims.
+> **Independent project:** My_MailMKT_makes_Neil_Proud is not affiliated with, endorsed by, or sponsored by Neil Patel, NP Digital, or their companies. It uses established direct-response publishing patterns, never third-party copy, trademarks, or claims.
 
 ## What it produces
 
@@ -129,7 +129,7 @@ The installer copies only `SKILL.md` into the selected local skill directory. It
 Then ask your agent:
 
 ```text
-Use Motor Empiricus to design a compliant 10-email sequence for this product.
+Use My_MailMKT_makes_Neil_Proud to design a compliant 10-email sequence for this product.
 Start with the intake. Do not write copy until the offer, segments, sources and legal floor are explicit.
 ```
 

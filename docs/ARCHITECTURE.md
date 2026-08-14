@@ -1,6 +1,6 @@
 # Architecture
 
-Motor Empiricus separates writing decisions from delivery infrastructure. This keeps the method portable and lets each implementation choose its own framework, database and email provider.
+My_MailMKT_makes_Neil_Proud separates writing decisions from delivery infrastructure. This keeps the method portable and lets each implementation choose its own framework, database and email provider.
 
 ## Components
 

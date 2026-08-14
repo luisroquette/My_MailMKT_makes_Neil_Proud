@@ -1,9 +1,9 @@
 ---
-name: My_mailmarketing_makes_Neil_Patel_proud
+name: my-mailmkt-makes-neil-proud
 description: Design and audit compliant direct-response email systems with a 10-message lesson, letter and echo sequence; named Big Ideas; sourced claims; gated resources; and low-friction conversion offers. Use when building lead nurture, lifecycle email, launch campaigns, lead magnets, gift pages or editorial sales sequences.
 ---
 
-# Motor Empiricus
+# My_MailMKT_makes_Neil_Proud
 
 Build a direct-response publishing system that earns attention before asking for action.
 

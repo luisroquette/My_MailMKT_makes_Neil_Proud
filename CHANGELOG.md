@@ -1,14 +1,20 @@
 # Changelog
 
-All notable changes to Motor Empiricus are recorded here.
+All notable changes to My_MailMKT_makes_Neil_Proud are recorded here.
 
 This project follows [Semantic Versioning](https://semver.org/).
+
+## Unreleased
+
+### Changed
+
+- Public identity renamed to `My_MailMKT_makes_Neil_Proud`; the agent-compatible skill identifier and installation directory are now `my-mailmkt-makes-neil-proud`.
 
 ## [1.1.1] - 2026-08-08
 
 ### Changed
 
-- Skill name changed from `motor-empiricus` to `My_mailmarketing_makes_Neil_Patel_proud` in `SKILL.md` frontmatter and in the install destination used by `scripts/install.sh` for both Claude Code and Codex. The project/repo name ("Motor Empiricus") is unchanged — only the technical skill identifier moved.
+- The technical skill identifier and installation destination were separated from the repository slug for Claude Code and Codex compatibility.
 
 [1.1.1]: https://github.com/luisroquette/motor-empiricus/releases/tag/v1.1.1
 

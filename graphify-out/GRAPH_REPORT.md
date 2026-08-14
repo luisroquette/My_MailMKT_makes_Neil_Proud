@@ -38,13 +38,13 @@
 1. `Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI` - 16 edges
 2. `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` - 15 edges
 3. `The 10-message cadence` - 13 edges
-4. `Motor Empiricus Product Site` - 12 edges
+4. `My_MailMKT_makes_Neil_Proud Product Site` - 12 edges
 5. `Architecture doc (data flow and storage contracts)` - 10 edges
 6. `Subject line section` - 8 edges
 7. `Portable Direct-Response Email System` - 8 edges
 8. `Production implementation guide` - 7 edges
 9. `Final audit checklist` - 6 edges
-10. `Motor Empiricus` - 6 edges
+10. `My_MailMKT_makes_Neil_Proud` - 6 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Weekly digest email screenshot ("O essencial da semana", CF Gauss blog)` --conceptually_related_to--> `Scheduled sequence job (daily run, 11-step pipeline)`  [INFERRED]
@@ -53,7 +53,7 @@
   assets/hero.png → README.md
 - `Deterministic Campaign Validator` --semantically_similar_to--> `Interactive Campaign Preflight`  [INFERRED] [semantically similar]
   README.md → docs/index.html
-- `Motor Empiricus` --semantically_similar_to--> `Motor Empiricus Product Site`  [INFERRED] [semantically similar]
+- `My_MailMKT_makes_Neil_Proud` --semantically_similar_to--> `My_MailMKT_makes_Neil_Proud Product Site`  [INFERRED] [semantically similar]
   README.md → docs/index.html
 - `Portable Toolkit Scope` --semantically_similar_to--> `Honest Product Scope`  [INFERRED] [semantically similar]
   README.md → docs/index.html
@@ -66,18 +66,18 @@
 - **Behavior-driven lead segment resolution pattern: intake checklist, capture-time resolution, and post-capture mutation** — skill_md_resegmentation_from_behavior, skill_md_gated_resource_loop, skill_md_required_order_checklist [INFERRED 0.70]
 - **Open-tracking dependent lead-gating mechanisms (resend + fatigue gate), introduced together in v1.1.0** — skill_md_resend_to_non_openers, skill_md_fatigue_gate, changelog_md_v1_1_0 [INFERRED 0.75]
 - **Campaign Integrity Validation** — _github_workflows_validate_campaign_toolkit, readme_deterministic_campaign_validator, docs_index_campaign_preflight, docs_index_compliance_floor [INFERRED 0.85]
-- **Motor Empiricus Public Identity** — readme_motor_empiricus, docs_index_product_site, docs_favicon_motor_empiricus_seal, docs_robots_product_sitemap [INFERRED 0.85]
+- **My_MailMKT_makes_Neil_Proud Public Identity** — readme_motor_empiricus, docs_index_product_site, docs_favicon_motor_empiricus_seal, docs_robots_product_sitemap [INFERRED 0.85]
 - **Portable Lead-Nurture System** — readme_direct_response_email_system, readme_25_day_sequence, readme_claim_ledger, docs_index_campaign_contracts, docs_index_25_day_timeline [INFERRED 0.95]
 
 ## Communities (18 total, 7 thin omitted)
 
 ### Community 0 - "Product Site and CI"
 Cohesion: 0.11
-Nodes (21): Campaign Toolkit Validation Job, GitHub Actions Validation Workflow, Node.js 22 Runtime, Product Site Validation, Repository Test Suite, Motor Empiricus ME Seal, Campaign Intake, Fact Pack and Sequence Contract, Interactive Campaign Preflight (+13 more)
+Nodes (21): Campaign Toolkit Validation Job, GitHub Actions Validation Workflow, Node.js 22 Runtime, Product Site Validation, Repository Test Suite, My_MailMKT_makes_Neil_Proud MM Seal, Campaign Intake, Fact Pack and Sequence Contract, Interactive Campaign Preflight (+13 more)
 
 ### Community 1 - "Release and Repository Map"
 Cohesion: 0.14
-Nodes (21): CHANGELOG.md (Motor Empiricus), scripts/install.sh (Claude Code + Codex install destination), templates/sequence.json, Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline, Version 1.1.1 (2026-08-08) — skill identifier renamed to My_mailmarketing_makes_Neil_Patel_proud; project/repo name unchanged, Motor Empiricus (SKILL.md), Banned spam-trigger words (bannedSubjectWords list), Benefit-over-command CTA rule (+13 more)
+Nodes (21): CHANGELOG.md (My_MailMKT_makes_Neil_Proud), scripts/install.sh (Claude Code + Codex install destination), templates/sequence.json, Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline, Version 1.1.1 (2026-08-08) — skill identifier renamed to my-mailmkt-makes-neil-proud; project/repo name unchanged, My_MailMKT_makes_Neil_Proud (SKILL.md), Banned spam-trigger words (bannedSubjectWords list), Benefit-over-command CTA rule (+13 more)
 
 ### Community 2 - "Sequence Rules and Lessons"
 Cohesion: 0.13
@@ -127,12 +127,12 @@ _Questions this graph is uniquely positioned to answer:_
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
 - **Why does `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` connect `Release and Repository Map` to `Sequence Rules and Lessons`?**
   _High betweenness centrality (0.030) - this node is a cross-community bridge._
-- **Why does `Motor Empiricus Product Site` connect `Product Site and CI` to `Campaign Narrative and Proof`?**
+- **Why does `My_MailMKT_makes_Neil_Proud Product Site` connect `Product Site and CI` to `Campaign Narrative and Proof`?**
   _High betweenness centrality (0.026) - this node is a cross-community bridge._
-- **Are the 2 inferred relationships involving `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` (e.g. with `Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI` and `Version 1.1.1 (2026-08-08) — skill identifier renamed to My_mailmarketing_makes_Neil_Patel_proud; project/repo name unchanged`) actually correct?**
+- **Are the 2 inferred relationships involving `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` (e.g. with `Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI` and `Version 1.1.1 (2026-08-08) — skill identifier renamed to my-mailmkt-makes-neil-proud; project/repo name unchanged`) actually correct?**
   _`Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` has 2 INFERRED edges - model-reasoned connections that need verification._
-- **Are the 3 inferred relationships involving `Motor Empiricus Product Site` (e.g. with `Product Site Validation` and `Motor Empiricus Product Sitemap`) actually correct?**
-  _`Motor Empiricus Product Site` has 3 INFERRED edges - model-reasoned connections that need verification._
+- **Are the 3 inferred relationships involving `My_MailMKT_makes_Neil_Proud Product Site` (e.g. with `Product Site Validation` and `My_MailMKT_makes_Neil_Proud Product Sitemap`) actually correct?**
+  _`My_MailMKT_makes_Neil_Proud Product Site` has 3 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `copyButton`, `validatorLab`, `validationStates` to the rest of the system?**
   _61 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Product Site and CI` be split into smaller, more focused modules?**

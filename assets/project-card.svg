@@ -1,11 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" role="img" aria-label="Motor Empiricus direct-response email engine">
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="300" viewBox="0 0 600 300" role="img" aria-label="My_MailMKT_makes_Neil_Proud direct-response email engine">
   <defs>
     <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#11101A"/><stop offset="1" stop-color="#24172B"/></linearGradient>
     <linearGradient id="gold" x2="1"><stop stop-color="#D5A62E"/><stop offset="1" stop-color="#F0C65C"/></linearGradient>
   </defs>
   <rect width="600" height="300" rx="22" fill="url(#bg)"/>
   <text x="34" y="48" fill="#9A8EA4" font-family="Inter,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">DIRECT RESPONSE ENGINE</text>
-  <text x="34" y="87" fill="#FBF7F0" font-family="Inter,Arial,sans-serif" font-size="25" font-weight="800">Motor Empiricus</text>
+  <text x="34" y="87" fill="#FBF7F0" font-family="Inter,Arial,sans-serif" font-size="22" font-weight="800">My_MailMKT_makes_Neil_Proud</text>
   <text x="34" y="112" fill="#C0B2C6" font-family="Inter,Arial,sans-serif" font-size="13">lead → lesson → letter → reply</text>
   <g transform="translate(53 150)">
     <path d="M62 45h76m-10-9 10 9-10 9M189 45h76m-10-9 10 9-10 9M316 45h76m-10-9 10 9-10 9" fill="none" stroke="#61486D" stroke-width="2"/>
