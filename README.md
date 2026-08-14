@@ -8,6 +8,7 @@
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-7B2FBE.svg"></a>
   <img alt="No runtime dependencies" src="https://img.shields.io/badge/runtime_dependencies-0-D5A62E.svg">
   <img alt="Claude Code and Codex" src="https://img.shields.io/badge/works_with-Claude_Code_%2B_Codex-17131F.svg">
+  <a href="https://luisroquette.github.io/motor-empiricus/"><img alt="Product site" src="https://img.shields.io/badge/product%20site-live-681D2A.svg"></a>
 </p>
 
 ![Motor Empiricus turns editorial lessons, persuasive letters and follow-ups into one automated sequence](assets/hero.png)
