@@ -97,6 +97,7 @@
       "_origin": "ast",
       "id": "docs_sota_validator_rendervalidation",
       "community": 10,
+      "community_name": "Interactive Preflight UI",
       "norm_label": "rendervalidation()"
     },
     {
@@ -106,9 +107,10 @@
       "source_location": "L193",
       "_callable": true,
       "_origin": "ast",
+      "id": "scripts_validate_finish",
       "community": 5,
-      "norm_label": "finish()",
-      "id": "scripts_validate_finish"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "finish()"
     },
     {
       "label": "readJson()",
@@ -117,9 +119,10 @@
       "source_location": "L16",
       "_callable": true,
       "_origin": "ast",
+      "id": "scripts_validate_readjson",
       "community": 5,
-      "norm_label": "readjson()",
-      "id": "scripts_validate_readjson"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "readjson()"
     },
     {
       "label": "validateResends()",
@@ -128,9 +131,10 @@
       "source_location": "L137",
       "_callable": true,
       "_origin": "ast",
+      "id": "scripts_validate_validateresends",
       "community": 5,
-      "norm_label": "validateresends()",
-      "id": "scripts_validate_validateresends"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "validateresends()"
     },
     {
       "label": "sota-validator.js",
@@ -140,6 +144,7 @@
       "_origin": "ast",
       "id": "docs_sota_validator",
       "community": 10,
+      "community_name": "Interactive Preflight UI",
       "norm_label": "sota-validator.js"
     },
     {
@@ -150,6 +155,7 @@
       "_origin": "ast",
       "id": "docs_sota_validator_validationstates",
       "community": 10,
+      "community_name": "Interactive Preflight UI",
       "norm_label": "validationstates"
     },
     {
@@ -160,6 +166,7 @@
       "_origin": "ast",
       "id": "docs_sota_validator_validatorlab",
       "community": 10,
+      "community_name": "Interactive Preflight UI",
       "norm_label": "validatorlab"
     },
     {
@@ -170,6 +177,7 @@
       "_origin": "ast",
       "id": "scripts_validate_product_site",
       "community": 11,
+      "community_name": "Product Site Integrity",
       "norm_label": "validate-product-site.mjs"
     },
     {
@@ -180,6 +188,7 @@
       "_origin": "ast",
       "id": "scripts_validate_product_site_assets",
       "community": 11,
+      "community_name": "Product Site Integrity",
       "norm_label": "assets"
     },
     {
@@ -190,6 +199,7 @@
       "_origin": "ast",
       "id": "scripts_validate_product_site_ids",
       "community": 11,
+      "community_name": "Product Site Integrity",
       "norm_label": "ids"
     },
     {
@@ -200,6 +210,7 @@
       "_origin": "ast",
       "id": "scripts_validate_product_site_root",
       "community": 11,
+      "community_name": "Product Site Integrity",
       "norm_label": "root"
     },
     {
@@ -210,6 +221,7 @@
       "_origin": "ast",
       "id": "docs_site",
       "community": 12,
+      "community_name": "Clipboard Interaction",
       "norm_label": "site.js"
     },
     {
@@ -220,6 +232,7 @@
       "_origin": "ast",
       "id": "docs_site_copybutton",
       "community": 12,
+      "community_name": "Clipboard Interaction",
       "norm_label": "copybutton"
     },
     {
@@ -232,9 +245,10 @@
         "kind": "file"
       },
       "_origin": "ast",
+      "id": "scripts_install",
       "community": 14,
-      "norm_label": "install.sh",
-      "id": "scripts_install"
+      "community_name": "Skill Installation",
+      "norm_label": "install.sh"
     },
     {
       "label": "install.sh script",
@@ -246,9 +260,10 @@
         "kind": "bash_entrypoint"
       },
       "_origin": "ast",
+      "id": "scripts_install_sh__entry",
       "community": 14,
-      "norm_label": "install.sh script",
-      "id": "scripts_install_sh__entry"
+      "community_name": "Skill Installation",
+      "norm_label": "install.sh script"
     },
     {
       "label": "package.json",
@@ -256,9 +271,10 @@
       "source_file": "package.json",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "package",
       "community": 4,
-      "norm_label": "package.json",
-      "id": "package"
+      "community_name": "Package Configuration",
+      "norm_label": "package.json"
     },
     {
       "label": "description",
@@ -266,9 +282,10 @@
       "source_file": "package.json",
       "source_location": "L5",
       "_origin": "ast",
+      "id": "package_description",
       "community": 4,
-      "norm_label": "description",
-      "id": "package_description"
+      "community_name": "Package Configuration",
+      "norm_label": "description"
     },
     {
       "label": "engines",
@@ -276,9 +293,10 @@
       "source_file": "package.json",
       "source_location": "L12",
       "_origin": "ast",
+      "id": "package_engines",
       "community": 4,
-      "norm_label": "engines",
-      "id": "package_engines"
+      "community_name": "Package Configuration",
+      "norm_label": "engines"
     },
     {
       "label": "node",
@@ -286,9 +304,10 @@
       "source_file": "package.json",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "package_engines_node",
       "community": 4,
-      "norm_label": "node",
-      "id": "package_engines_node"
+      "community_name": "Package Configuration",
+      "norm_label": "node"
     },
     {
       "label": "license",
@@ -296,9 +315,10 @@
       "source_file": "package.json",
       "source_location": "L15",
       "_origin": "ast",
+      "id": "package_license",
       "community": 4,
-      "norm_label": "license",
-      "id": "package_license"
+      "community_name": "Package Configuration",
+      "norm_label": "license"
     },
     {
       "label": "name",
@@ -306,9 +326,10 @@
       "source_file": "package.json",
       "source_location": "L2",
       "_origin": "ast",
+      "id": "package_name",
       "community": 4,
-      "norm_label": "name",
-      "id": "package_name"
+      "community_name": "Package Configuration",
+      "norm_label": "name"
     },
     {
       "label": "private",
@@ -316,9 +337,10 @@
       "source_file": "package.json",
       "source_location": "L4",
       "_origin": "ast",
+      "id": "package_private",
       "community": 4,
-      "norm_label": "private",
-      "id": "package_private"
+      "community_name": "Package Configuration",
+      "norm_label": "private"
     },
     {
       "label": "scripts",
@@ -326,9 +348,10 @@
       "source_file": "package.json",
       "source_location": "L7",
       "_origin": "ast",
+      "id": "package_scripts",
       "community": 4,
-      "norm_label": "scripts",
-      "id": "package_scripts"
+      "community_name": "Package Configuration",
+      "norm_label": "scripts"
     },
     {
       "label": "init",
@@ -336,9 +359,10 @@
       "source_file": "package.json",
       "source_location": "L8",
       "_origin": "ast",
+      "id": "package_scripts_init",
       "community": 4,
-      "norm_label": "init",
-      "id": "package_scripts_init"
+      "community_name": "Package Configuration",
+      "norm_label": "init"
     },
     {
       "label": "test",
@@ -346,9 +370,10 @@
       "source_file": "package.json",
       "source_location": "L10",
       "_origin": "ast",
+      "id": "package_scripts_test",
       "community": 4,
-      "norm_label": "test",
-      "id": "package_scripts_test"
+      "community_name": "Package Configuration",
+      "norm_label": "test"
     },
     {
       "label": "validate",
@@ -356,9 +381,10 @@
       "source_file": "package.json",
       "source_location": "L9",
       "_origin": "ast",
+      "id": "package_scripts_validate",
       "community": 4,
-      "norm_label": "validate",
-      "id": "package_scripts_validate"
+      "community_name": "Package Configuration",
+      "norm_label": "validate"
     },
     {
       "label": "type",
@@ -366,9 +392,10 @@
       "source_file": "package.json",
       "source_location": "L6",
       "_origin": "ast",
+      "id": "package_type",
       "community": 4,
-      "norm_label": "type",
-      "id": "package_type"
+      "community_name": "Package Configuration",
+      "norm_label": "type"
     },
     {
       "label": "version",
@@ -376,9 +403,10 @@
       "source_file": "package.json",
       "source_location": "L3",
       "_origin": "ast",
+      "id": "package_version",
       "community": 4,
-      "norm_label": "version",
-      "id": "package_version"
+      "community_name": "Package Configuration",
+      "norm_label": "version"
     },
     {
       "label": "validate.mjs",
@@ -386,9 +414,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "scripts_validate",
       "community": 5,
-      "norm_label": "validate.mjs",
-      "id": "scripts_validate"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "validate.mjs"
     },
     {
       "label": "banned",
@@ -396,9 +425,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L55",
       "_origin": "ast",
+      "id": "scripts_validate_banned",
       "community": 5,
-      "norm_label": "banned",
-      "id": "scripts_validate_banned"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "banned"
     },
     {
       "label": "bannedSubjectWords",
@@ -406,9 +436,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L56",
       "_origin": "ast",
+      "id": "scripts_validate_bannedsubjectwords",
       "community": 5,
-      "norm_label": "bannedsubjectwords",
-      "id": "scripts_validate_bannedsubjectwords"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "bannedsubjectwords"
     },
     {
       "label": "campaignDir",
@@ -416,9 +447,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L13",
       "_origin": "ast",
+      "id": "scripts_validate_campaigndir",
       "community": 5,
-      "norm_label": "campaigndir",
-      "id": "scripts_validate_campaigndir"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "campaigndir"
     },
     {
       "label": "errors",
@@ -426,9 +458,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L14",
       "_origin": "ast",
+      "id": "scripts_validate_errors",
       "community": 5,
-      "norm_label": "errors",
-      "id": "scripts_validate_errors"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "errors"
     },
     {
       "label": "expected",
@@ -436,9 +469,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L41",
       "_origin": "ast",
+      "id": "scripts_validate_expected",
       "community": 5,
-      "norm_label": "expected",
-      "id": "scripts_validate_expected"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "expected"
     },
     {
       "label": "factIds",
@@ -446,9 +480,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L54",
       "_origin": "ast",
+      "id": "scripts_validate_factids",
       "community": 5,
-      "norm_label": "factids",
-      "id": "scripts_validate_factids"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "factids"
     },
     {
       "label": "requiredPostscripts",
@@ -456,9 +491,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L57",
       "_origin": "ast",
+      "id": "scripts_validate_requiredpostscripts",
       "community": 5,
-      "norm_label": "requiredpostscripts",
-      "id": "scripts_validate_requiredpostscripts"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "requiredpostscripts"
     },
     {
       "label": "requireNamePersonalizationFor",
@@ -466,9 +502,10 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L58",
       "_origin": "ast",
+      "id": "scripts_validate_requirenamepersonalizationfor",
       "community": 5,
-      "norm_label": "requirenamepersonalizationfor",
-      "id": "scripts_validate_requirenamepersonalizationfor"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "requirenamepersonalizationfor"
     },
     {
       "label": "seen",
@@ -476,9 +513,65 @@
       "source_file": "scripts/validate.mjs",
       "source_location": "L64",
       "_origin": "ast",
+      "id": "scripts_validate_seen",
       "community": 5,
-      "norm_label": "seen",
-      "id": "scripts_validate_seen"
+      "community_name": "Campaign Validator Engine",
+      "norm_label": "seen"
+    },
+    {
+      "label": "query_20260814_211218_trace.md",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_211218_trace",
+      "community": 8,
+      "community_name": "Letters and Engagement Gates",
+      "norm_label": "query_20260814_211218_trace.md"
+    },
+    {
+      "label": "Answer",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L12",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_211218_trace_answer",
+      "community": 8,
+      "community_name": "Letters and Engagement Gates",
+      "norm_label": "answer"
+    },
+    {
+      "label": "Outcome",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L16",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_211218_trace_outcome",
+      "community": 8,
+      "community_name": "Letters and Engagement Gates",
+      "norm_label": "outcome"
+    },
+    {
+      "label": "Q: trace",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_211218_trace_q_trace",
+      "community": 8,
+      "community_name": "Letters and Engagement Gates",
+      "norm_label": "q: trace"
+    },
+    {
+      "label": "Source Nodes",
+      "file_type": "document",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L20",
+      "_origin": "ast",
+      "id": "graphify_out_memory_query_20260814_211218_trace_source_nodes",
+      "community": 8,
+      "community_name": "Letters and Engagement Gates",
+      "norm_label": "source nodes"
     },
     {
       "label": "init.mjs",
@@ -486,9 +579,10 @@
       "source_file": "scripts/init.mjs",
       "source_location": "L1",
       "_origin": "ast",
+      "id": "scripts_init",
       "community": 9,
-      "norm_label": "init.mjs",
-      "id": "scripts_init"
+      "community_name": "Campaign Workspace Initialization",
+      "norm_label": "init.mjs"
     },
     {
       "label": "destination",
@@ -496,9 +590,10 @@
       "source_file": "scripts/init.mjs",
       "source_location": "L17",
       "_origin": "ast",
+      "id": "scripts_init_destination",
       "community": 9,
-      "norm_label": "destination",
-      "id": "scripts_init_destination"
+      "community_name": "Campaign Workspace Initialization",
+      "norm_label": "destination"
     },
     {
       "label": "root",
@@ -506,9 +601,10 @@
       "source_file": "scripts/init.mjs",
       "source_location": "L8",
       "_origin": "ast",
+      "id": "scripts_init_root",
       "community": 9,
-      "norm_label": "root",
-      "id": "scripts_init_root"
+      "community_name": "Campaign Workspace Initialization",
+      "norm_label": "root"
     },
     {
       "label": "scriptDir",
@@ -516,9 +612,10 @@
       "source_file": "scripts/init.mjs",
       "source_location": "L7",
       "_origin": "ast",
+      "id": "scripts_init_scriptdir",
       "community": 9,
-      "norm_label": "scriptdir",
-      "id": "scripts_init_scriptdir"
+      "community_name": "Campaign Workspace Initialization",
+      "norm_label": "scriptdir"
     },
     {
       "label": "source",
@@ -526,23 +623,325 @@
       "source_file": "scripts/init.mjs",
       "source_location": "L9",
       "_origin": "ast",
+      "id": "scripts_init_source",
       "community": 9,
-      "norm_label": "source",
-      "id": "scripts_init_source"
+      "community_name": "Campaign Workspace Initialization",
+      "norm_label": "source"
     },
     {
-      "label": "scripts/init.mjs (campaign workspace scaffolder)",
+      "label": "Campaign Toolkit Validation Job",
       "file_type": "code",
-      "source_file": "CHANGELOG.md",
-      "source_location": null,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "lines 11-20",
       "source_url": null,
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 1,
-      "norm_label": "scripts/init.mjs (campaign workspace scaffolder)",
+      "community": 0,
+      "norm_label": "campaign toolkit validation job",
       "_origin": "semantic",
-      "id": "changelog_md_init_mjs"
+      "id": "_github_workflows_validate_campaign_toolkit",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "GitHub Actions Validation Workflow",
+      "file_type": "code",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "lines 1-20",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "github actions validation workflow",
+      "_origin": "semantic",
+      "id": "_github_workflows_validate_github_actions_validation",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Node.js 22 Runtime",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "lines 16-18",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "node.js 22 runtime",
+      "_origin": "semantic",
+      "id": "_github_workflows_validate_node_22",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Product Site Validation",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "line 20",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "product site validation",
+      "_origin": "semantic",
+      "id": "_github_workflows_validate_product_site_validation",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Repository Test Suite",
+      "file_type": "concept",
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "line 19",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "repository test suite",
+      "_origin": "semantic",
+      "id": "_github_workflows_validate_repository_tests",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Campaign Intake, Fact Pack and Sequence Contract",
+      "file_type": "concept",
+      "source_file": "docs/index.html",
+      "source_location": "lines 99-107",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "campaign intake, fact pack and sequence contract",
+      "_origin": "semantic",
+      "id": "docs_index_campaign_contracts",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Interactive Campaign Preflight",
+      "file_type": "concept",
+      "source_file": "docs/index.html",
+      "source_location": "lines 109-147",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "interactive campaign preflight",
+      "_origin": "semantic",
+      "id": "docs_index_campaign_preflight",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Motor Empiricus GitHub Repository",
+      "file_type": "concept",
+      "source_file": "docs/index.html",
+      "source_location": "lines 28-46",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "motor empiricus github repository",
+      "_origin": "semantic",
+      "id": "docs_index_open_source_repository",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Real Reference Outputs",
+      "file_type": "concept",
+      "source_file": "docs/index.html",
+      "source_location": "lines 89-97",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "real reference outputs",
+      "_origin": "semantic",
+      "id": "docs_index_real_reference_outputs",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Motor Empiricus Product Sitemap",
+      "file_type": "concept",
+      "source_file": "docs/robots.txt",
+      "source_location": "line 4",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "motor empiricus product sitemap",
+      "_origin": "semantic",
+      "id": "docs_robots_product_sitemap",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "CF Gauss Reference Implementation",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 24-40",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "cf gauss reference implementation",
+      "_origin": "semantic",
+      "id": "readme_cf_gauss_reference_implementation",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Deterministic Campaign Validator",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 105-111",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "deterministic campaign validator",
+      "_origin": "semantic",
+      "id": "readme_deterministic_campaign_validator",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Portable Agent Skill",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 113-134",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "portable agent skill",
+      "_origin": "semantic",
+      "id": "readme_portable_agent_skill",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Motor Empiricus Product Site",
+      "file_type": "document",
+      "source_file": "docs/index.html",
+      "source_location": "lines 1-182",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "motor empiricus product site",
+      "_origin": "semantic",
+      "id": "docs_index_product_site",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Search Crawler Policy",
+      "file_type": "document",
+      "source_file": "docs/robots.txt",
+      "source_location": "lines 1-4",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "search crawler policy",
+      "_origin": "semantic",
+      "id": "docs_robots_search_crawler_policy",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Motor Empiricus",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "lines 1-22",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "motor empiricus",
+      "_origin": "semantic",
+      "id": "readme_motor_empiricus",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Motor Empiricus ME Seal",
+      "file_type": "image",
+      "source_file": "docs/favicon.svg",
+      "source_location": "lines 1-5",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "motor empiricus me seal",
+      "_origin": "semantic",
+      "id": "docs_favicon_motor_empiricus_seal",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Honest Product Scope",
+      "file_type": "rationale",
+      "source_file": "docs/index.html",
+      "source_location": "lines 164-176",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "honest product scope",
+      "_origin": "semantic",
+      "id": "docs_index_honest_scope",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Useful, Sourced and Compliant Lead Nurture",
+      "file_type": "rationale",
+      "source_file": "docs/index.html",
+      "source_location": "lines 38-69",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "useful, sourced and compliant lead nurture",
+      "_origin": "semantic",
+      "id": "docs_index_lead_nurture_promise",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Portable Toolkit Scope",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": "lines 165-177",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "portable toolkit scope",
+      "_origin": "semantic",
+      "id": "readme_honest_scope",
+      "community_name": "Product Site and CI"
+    },
+    {
+      "label": "Independent Project Boundary",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": "line 22",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 0,
+      "norm_label": "independent project boundary",
+      "_origin": "semantic",
+      "id": "readme_independent_project_boundary",
+      "community_name": "Product Site and CI"
     },
     {
       "label": "scripts/install.sh (Claude Code + Codex install destination)",
@@ -556,49 +955,8 @@
       "community": 1,
       "norm_label": "scripts/install.sh (claude code + codex install destination)",
       "_origin": "semantic",
-      "id": "changelog_md_install_sh"
-    },
-    {
-      "label": "scripts/validate.mjs (deterministic campaign validator)",
-      "file_type": "code",
-      "source_file": "CHANGELOG.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "scripts/validate.mjs (deterministic campaign validator)",
-      "_origin": "semantic",
-      "id": "changelog_md_validate_mjs"
-    },
-    {
-      "label": "CI: npm test on every push and pull request",
-      "file_type": "concept",
-      "source_file": "CHANGELOG.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "ci: npm test on every push and pull request",
-      "_origin": "semantic",
-      "id": "changelog_md_ci_npm_test"
-    },
-    {
-      "label": "Version 1.0.0 (2026-08-07) \u2014 portable SKILL.md method, validator, scaffolder, docs, example, CI",
-      "file_type": "concept",
-      "source_file": "CHANGELOG.md",
-      "source_location": "lines 38-50",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "version 1.0.0 (2026-08-07) \u2014 portable skill.md method, validator, scaffolder, docs, example, ci",
-      "_origin": "semantic",
-      "id": "changelog_md_v1_0_0"
+      "id": "changelog_md_install_sh",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Version 1.1.0 (2026-08-08) \u2014 subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline",
@@ -612,7 +970,8 @@
       "community": 1,
       "norm_label": "version 1.1.0 (2026-08-08) \u2014 subject-line playbook, resend, re-segmentation, fatigue gate, cta discipline",
       "_origin": "semantic",
-      "id": "changelog_md_v1_1_0"
+      "id": "changelog_md_v1_1_0",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Version 1.1.1 (2026-08-08) \u2014 skill identifier renamed to My_mailmarketing_makes_Neil_Patel_proud; project/repo name unchanged",
@@ -626,7 +985,8 @@
       "community": 1,
       "norm_label": "version 1.1.1 (2026-08-08) \u2014 skill identifier renamed to my_mailmarketing_makes_neil_patel_proud; project/repo name unchanged",
       "_origin": "semantic",
-      "id": "changelog_md_v1_1_1"
+      "id": "changelog_md_v1_1_1",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Banned spam-trigger words (bannedSubjectWords list)",
@@ -640,7 +1000,8 @@
       "community": 1,
       "norm_label": "banned spam-trigger words (bannedsubjectwords list)",
       "_origin": "semantic",
-      "id": "skill_md_banned_subject_words"
+      "id": "skill_md_banned_subject_words",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "CTA copy section",
@@ -654,7 +1015,38 @@
       "community": 1,
       "norm_label": "cta copy section",
       "_origin": "semantic",
-      "id": "skill_md_cta_copy_section"
+      "id": "skill_md_cta_copy_section",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Fatigue gate (skip, never cancel, unopened-message check)",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "fatigue gate (skip, never cancel, unopened-message check)",
+      "_origin": "semantic",
+      "id": "skill_md_fatigue_gate",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Final audit checklist",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "final audit checklist",
+      "_origin": "semantic",
+      "id": "skill_md_final_audit_checklist",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Gated resource loop (token-gated resource + capture form)",
@@ -668,7 +1060,8 @@
       "community": 1,
       "norm_label": "gated resource loop (token-gated resource + capture form)",
       "_origin": "semantic",
-      "id": "skill_md_gated_resource_loop"
+      "id": "skill_md_gated_resource_loop",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "My_mailmarketing_makes_Neil_Patel_proud (technical skill identifier)",
@@ -682,7 +1075,23 @@
       "community": 1,
       "norm_label": "my_mailmarketing_makes_neil_patel_proud (technical skill identifier)",
       "_origin": "semantic",
-      "id": "skill_md_identifier_my_mailmarketing_makes_neil_patel_proud"
+      "id": "skill_md_identifier_my_mailmarketing_makes_neil_patel_proud",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Production requirements",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "production requirements",
+      "_origin": "semantic",
+      "id": "skill_md_production_requirements",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Required order intake checklist (8 items)",
@@ -696,7 +1105,8 @@
       "community": 1,
       "norm_label": "required order intake checklist (8 items)",
       "_origin": "semantic",
-      "id": "skill_md_required_order_checklist"
+      "id": "skill_md_required_order_checklist",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Re-segmentation from behavior (tagged-click only, clock unchanged)",
@@ -710,7 +1120,83 @@
       "community": 1,
       "norm_label": "re-segmentation from behavior (tagged-click only, clock unchanged)",
       "_origin": "semantic",
-      "id": "skill_md_resegmentation_from_behavior"
+      "id": "skill_md_resegmentation_from_behavior",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Subject angle: Curiosity",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "subject angle: curiosity",
+      "_origin": "semantic",
+      "id": "skill_md_subject_angle_curiosity",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Subject angle: Direct benefit",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "subject angle: direct benefit",
+      "_origin": "semantic",
+      "id": "skill_md_subject_angle_direct_benefit",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Subject angle: Scarcity or urgency",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "subject angle: scarcity or urgency",
+      "_origin": "semantic",
+      "id": "skill_md_subject_angle_scarcity_urgency",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Subject angle: Social proof or case",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "subject angle: social proof or case",
+      "_origin": "semantic",
+      "id": "skill_md_subject_angle_social_proof",
+      "community_name": "Release and Repository Map"
+    },
+    {
+      "label": "Subject line section",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 1,
+      "norm_label": "subject line section",
+      "_origin": "semantic",
+      "id": "skill_md_subject_line_section",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "CHANGELOG.md (Motor Empiricus)",
@@ -724,49 +1210,8 @@
       "community": 1,
       "norm_label": "changelog.md (motor empiricus)",
       "_origin": "semantic",
-      "id": "changelog_md"
-    },
-    {
-      "label": "docs/ARCHITECTURE.md",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "docs/architecture.md",
-      "_origin": "semantic",
-      "id": "changelog_md_architecture_md"
-    },
-    {
-      "label": "examples/b2b-ai-training (validator-safe reference campaign)",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "examples/b2b-ai-training (validator-safe reference campaign)",
-      "_origin": "semantic",
-      "id": "changelog_md_b2b_ai_training_example"
-    },
-    {
-      "label": "docs/IMPLEMENTATION.md",
-      "file_type": "document",
-      "source_file": "CHANGELOG.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 1,
-      "norm_label": "docs/implementation.md",
-      "_origin": "semantic",
-      "id": "changelog_md_implementation_md"
+      "id": "changelog_md",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "templates/sequence.json",
@@ -780,7 +1225,8 @@
       "community": 1,
       "norm_label": "templates/sequence.json",
       "_origin": "semantic",
-      "id": "changelog_md_templates_sequence_json"
+      "id": "changelog_md_templates_sequence_json",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Motor Empiricus (SKILL.md)",
@@ -794,7 +1240,8 @@
       "community": 1,
       "norm_label": "motor empiricus (skill.md)",
       "_origin": "semantic",
-      "id": "skill_md"
+      "id": "skill_md",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "Benefit-over-command CTA rule",
@@ -808,7 +1255,8 @@
       "community": 1,
       "norm_label": "benefit-over-command cta rule",
       "_origin": "semantic",
-      "id": "skill_md_benefit_over_command_rule"
+      "id": "skill_md_benefit_over_command_rule",
+      "community_name": "Release and Repository Map"
     },
     {
       "label": "B2B AI-training campaign intake (filled example)",
@@ -822,7 +1270,8 @@
       "community": 13,
       "norm_label": "b2b ai-training campaign intake (filled example)",
       "_origin": "semantic",
-      "id": "examples_b2b_ai_training_intake_campaign_intake_example"
+      "id": "examples_b2b_ai_training_intake_campaign_intake_example",
+      "community_name": "Campaign Intake Templates"
     },
     {
       "label": "Campaign intake template (blank)",
@@ -836,7 +1285,8 @@
       "community": 13,
       "norm_label": "campaign intake template (blank)",
       "_origin": "semantic",
-      "id": "templates_intake_campaign_intake_template"
+      "id": "templates_intake_campaign_intake_template",
+      "community_name": "Campaign Intake Templates"
     },
     {
       "label": "Campaign letter email screenshot (\"Anthropic tem novo l\u00edder de governan\u00e7a\", CF Gauss)",
@@ -850,7 +1300,8 @@
       "community": 15,
       "norm_label": "campaign letter email screenshot (\"anthropic tem novo lider de governanca\", cf gauss)",
       "_origin": "semantic",
-      "id": "assets_output_campaign_letter_email_screenshot"
+      "id": "assets_output_campaign_letter_email_screenshot",
+      "community_name": "Campaign Letter Output"
     },
     {
       "label": "Editorial lesson email screenshot (\"Um diagn\u00f3stico interno em 30 minutos\", Aula 3/4, CF Gauss)",
@@ -864,7 +1315,8 @@
       "community": 16,
       "norm_label": "editorial lesson email screenshot (\"um diagnostico interno em 30 minutos\", aula 3/4, cf gauss)",
       "_origin": "semantic",
-      "id": "assets_output_editorial_lesson_email_screenshot"
+      "id": "assets_output_editorial_lesson_email_screenshot",
+      "community_name": "Editorial Lesson Output"
     },
     {
       "label": "Project-card SVG diagram (Lesson \u2192 Letter \u2192 Echo \u2192 Reply, open source badge)",
@@ -878,7 +1330,83 @@
       "community": 17,
       "norm_label": "project-card svg diagram (lesson \u2192 letter \u2192 echo \u2192 reply, open source badge)",
       "_origin": "semantic",
-      "id": "assets_project_card_diagram"
+      "id": "assets_project_card_diagram",
+      "community_name": "Project Architecture Card"
+    },
+    {
+      "label": "scripts/init.mjs (campaign workspace scaffolder)",
+      "file_type": "code",
+      "source_file": "CHANGELOG.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "scripts/init.mjs (campaign workspace scaffolder)",
+      "_origin": "semantic",
+      "id": "changelog_md_init_mjs",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "scripts/validate.mjs (deterministic campaign validator)",
+      "file_type": "code",
+      "source_file": "CHANGELOG.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "scripts/validate.mjs (deterministic campaign validator)",
+      "_origin": "semantic",
+      "id": "changelog_md_validate_mjs",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "CI: npm test on every push and pull request",
+      "file_type": "concept",
+      "source_file": "CHANGELOG.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "ci: npm test on every push and pull request",
+      "_origin": "semantic",
+      "id": "changelog_md_ci_npm_test",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "Version 1.0.0 (2026-08-07) \u2014 portable SKILL.md method, validator, scaffolder, docs, example, CI",
+      "file_type": "concept",
+      "source_file": "CHANGELOG.md",
+      "source_location": "lines 38-50",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "version 1.0.0 (2026-08-07) \u2014 portable skill.md method, validator, scaffolder, docs, example, ci",
+      "_origin": "semantic",
+      "id": "changelog_md_v1_0_0",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "The Big Idea (real market tension + memorable name + overlooked consequence)",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "the big idea (real market tension + memorable name + overlooked consequence)",
+      "_origin": "semantic",
+      "id": "skill_md_big_idea",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "Claim discipline (fact IDs, source URL, access date, scope)",
@@ -892,7 +1420,8 @@
       "community": 2,
       "norm_label": "claim discipline (fact ids, source url, access date, scope)",
       "_origin": "semantic",
-      "id": "skill_md_claim_discipline"
+      "id": "skill_md_claim_discipline",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_0 \u2014 Day 0 welcome lesson, teases Big Idea",
@@ -906,7 +1435,23 @@
       "community": 2,
       "norm_label": "drip_0 \u2014 day 0 welcome lesson, teases big idea",
       "_origin": "semantic",
-      "id": "skill_md_drip_0"
+      "id": "skill_md_drip_0",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "drip_1 \u2014 Day 1 letter reveals and names the Big Idea",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "drip_1 \u2014 day 1 letter reveals and names the big idea",
+      "_origin": "semantic",
+      "id": "skill_md_drip_1",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_12 \u2014 Day 12 echo answers honest objection + cost of delay",
@@ -920,7 +1465,8 @@
       "community": 2,
       "norm_label": "drip_12 \u2014 day 12 echo answers honest objection + cost of delay",
       "_origin": "semantic",
-      "id": "skill_md_drip_12"
+      "id": "skill_md_drip_12",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_14 \u2014 Day 14 lesson teaches how to compare solutions",
@@ -934,7 +1480,23 @@
       "community": 2,
       "norm_label": "drip_14 \u2014 day 14 lesson teaches how to compare solutions",
       "_origin": "semantic",
-      "id": "skill_md_drip_14"
+      "id": "skill_md_drip_14",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "drip_18 \u2014 Day 18 letter makes final truthful call for offer",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "drip_18 \u2014 day 18 letter makes final truthful call for offer",
+      "_origin": "semantic",
+      "id": "skill_md_drip_18",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_25 \u2014 Day 25 echo re-engages with human response path",
@@ -948,7 +1510,8 @@
       "community": 2,
       "norm_label": "drip_25 \u2014 day 25 echo re-engages with human response path",
       "_origin": "semantic",
-      "id": "skill_md_drip_25"
+      "id": "skill_md_drip_25",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_3 \u2014 Day 3 lesson deepens understanding",
@@ -962,7 +1525,8 @@
       "community": 2,
       "norm_label": "drip_3 \u2014 day 3 lesson deepens understanding",
       "_origin": "semantic",
-      "id": "skill_md_drip_3"
+      "id": "skill_md_drip_3",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_5 \u2014 Day 5 echo returns via evidence/sourced data",
@@ -976,7 +1540,8 @@
       "community": 2,
       "norm_label": "drip_5 \u2014 day 5 echo returns via evidence/sourced data",
       "_origin": "semantic",
-      "id": "skill_md_drip_5"
+      "id": "skill_md_drip_5",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "drip_7 \u2014 Day 7 lesson gives tool/checklist/scorecard",
@@ -990,7 +1555,23 @@
       "community": 2,
       "norm_label": "drip_7 \u2014 day 7 lesson gives tool/checklist/scorecard",
       "_origin": "semantic",
-      "id": "skill_md_drip_7"
+      "id": "skill_md_drip_7",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "drip_9 \u2014 Day 9 letter presents low-friction offer",
+      "file_type": "concept",
+      "source_file": "SKILL.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "drip_9 \u2014 day 9 letter presents low-friction offer",
+      "_origin": "semantic",
+      "id": "skill_md_drip_9",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "Echo format",
@@ -1004,21 +1585,8 @@
       "community": 2,
       "norm_label": "echo format",
       "_origin": "semantic",
-      "id": "skill_md_echo_format"
-    },
-    {
-      "label": "Final audit checklist",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "norm_label": "final audit checklist",
-      "_origin": "semantic",
-      "id": "skill_md_final_audit_checklist"
+      "id": "skill_md_echo_format",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "Lesson format",
@@ -1032,10 +1600,11 @@
       "community": 2,
       "norm_label": "lesson format",
       "_origin": "semantic",
-      "id": "skill_md_lesson_format"
+      "id": "skill_md_lesson_format",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
-      "label": "Subject angle: Curiosity",
+      "label": "Letter format",
       "file_type": "concept",
       "source_file": "SKILL.md",
       "source_location": null,
@@ -1044,12 +1613,13 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "norm_label": "subject angle: curiosity",
+      "norm_label": "letter format",
       "_origin": "semantic",
-      "id": "skill_md_subject_angle_curiosity"
+      "id": "skill_md_letter_format",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
-      "label": "Subject angle: Direct benefit",
+      "label": "Resend to non-openers rule",
       "file_type": "concept",
       "source_file": "SKILL.md",
       "source_location": null,
@@ -1058,51 +1628,10 @@
       "author": null,
       "contributor": null,
       "community": 2,
-      "norm_label": "subject angle: direct benefit",
+      "norm_label": "resend to non-openers rule",
       "_origin": "semantic",
-      "id": "skill_md_subject_angle_direct_benefit"
-    },
-    {
-      "label": "Subject angle: Scarcity or urgency",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "norm_label": "subject angle: scarcity or urgency",
-      "_origin": "semantic",
-      "id": "skill_md_subject_angle_scarcity_urgency"
-    },
-    {
-      "label": "Subject angle: Social proof or case",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "norm_label": "subject angle: social proof or case",
-      "_origin": "semantic",
-      "id": "skill_md_subject_angle_social_proof"
-    },
-    {
-      "label": "Subject line section",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 2,
-      "norm_label": "subject line section",
-      "_origin": "semantic",
-      "id": "skill_md_subject_line_section"
+      "id": "skill_md_resend_to_non_openers",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "The 10-message cadence",
@@ -1116,7 +1645,53 @@
       "community": 2,
       "norm_label": "the 10-message cadence",
       "_origin": "semantic",
-      "id": "skill_md_ten_message_cadence"
+      "id": "skill_md_ten_message_cadence",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "docs/ARCHITECTURE.md",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "docs/architecture.md",
+      "_origin": "semantic",
+      "id": "changelog_md_architecture_md",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "examples/b2b-ai-training (validator-safe reference campaign)",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "examples/b2b-ai-training (validator-safe reference campaign)",
+      "_origin": "semantic",
+      "id": "changelog_md_b2b_ai_training_example",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "docs/IMPLEMENTATION.md",
+      "file_type": "document",
+      "source_file": "CHANGELOG.md",
+      "source_location": null,
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 2,
+      "norm_label": "docs/implementation.md",
+      "_origin": "semantic",
+      "id": "changelog_md_implementation_md",
+      "community_name": "Sequence Rules and Lessons"
     },
     {
       "label": "{{lead.firstName}} personalization rule (welcome + final re-engagement)",
@@ -1130,7 +1705,143 @@
       "community": 2,
       "norm_label": "{{lead.firstname}} personalization rule (welcome + final re-engagement)",
       "_origin": "semantic",
-      "id": "skill_md_personalization_rule"
+      "id": "skill_md_personalization_rule",
+      "community_name": "Sequence Rules and Lessons"
+    },
+    {
+      "label": "25-Day Email Timeline",
+      "file_type": "concept",
+      "source_file": "docs/index.html",
+      "source_location": "lines 73-87",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "25-day email timeline",
+      "_origin": "semantic",
+      "id": "docs_index_25_day_timeline",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Production Implementation Guide",
+      "file_type": "concept",
+      "source_file": "docs/index.html",
+      "source_location": "lines 149-155",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "production implementation guide",
+      "_origin": "semantic",
+      "id": "docs_index_implementation_guide",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "25-Day Ten-Email Sequence",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 47-62",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "25-day ten-email sequence",
+      "_origin": "semantic",
+      "id": "readme_25_day_sequence",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Campaign Intake",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 96-103",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "campaign intake",
+      "_origin": "semantic",
+      "id": "readme_campaign_intake",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Claim Ledger",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 100-103 and 151-156",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "claim ledger",
+      "_origin": "semantic",
+      "id": "readme_claim_ledger",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Portable Direct-Response Email System",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 3-20",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "portable direct-response email system",
+      "_origin": "semantic",
+      "id": "readme_direct_response_email_system",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Fatigue Gate",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "line 161",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "fatigue gate",
+      "_origin": "semantic",
+      "id": "readme_fatigue_gate",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Real Opt-Out Path",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "line 157",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "real opt-out path",
+      "_origin": "semantic",
+      "id": "readme_real_opt_out_path",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Lesson, Letter and Echo Formats",
+      "file_type": "concept",
+      "source_file": "README.md",
+      "source_location": "lines 47-62",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "lesson, letter and echo formats",
+      "_origin": "semantic",
+      "id": "readme_three_email_formats",
+      "community_name": "Campaign Narrative and Proof"
     },
     {
       "label": "Hero image \u2014 three stacked document cards on a connected path",
@@ -1144,7 +1855,68 @@
       "community": 3,
       "norm_label": "hero image \u2014 three stacked document cards on a connected path",
       "_origin": "semantic",
-      "id": "assets_hero_hero_image"
+      "id": "assets_hero_hero_image",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Compliance Floor",
+      "file_type": "rationale",
+      "source_file": "docs/index.html",
+      "source_location": "lines 149-162",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "compliance floor",
+      "_origin": "semantic",
+      "id": "docs_index_compliance_floor",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Attention Before Action",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": "lines 16-18",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "attention before action",
+      "_origin": "semantic",
+      "id": "readme_attention_before_action",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Closed-Loop Lead Architecture",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": "lines 64-82",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "closed-loop lead architecture",
+      "_origin": "semantic",
+      "id": "readme_closed_loop_architecture",
+      "community_name": "Campaign Narrative and Proof"
+    },
+    {
+      "label": "Truthful Pressure",
+      "file_type": "rationale",
+      "source_file": "README.md",
+      "source_location": "lines 151-161",
+      "source_url": null,
+      "captured_at": null,
+      "author": null,
+      "contributor": null,
+      "community": 3,
+      "norm_label": "truthful pressure",
+      "_origin": "semantic",
+      "id": "readme_truthful_pressure",
+      "community_name": "Campaign Narrative and Proof"
     },
     {
       "label": "Architecture doc (data flow and storage contracts)",
@@ -1158,7 +1930,8 @@
       "community": 6,
       "norm_label": "architecture doc (data flow and storage contracts)",
       "_origin": "semantic",
-      "id": "docs_architecture_overview"
+      "id": "docs_architecture_overview",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "SECURITY.md",
@@ -1172,7 +1945,8 @@
       "community": 6,
       "norm_label": "security.md",
       "_origin": "semantic",
-      "id": "security_overview"
+      "id": "security_overview",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Click contract (TS type; segmentTag only set on intentional link)",
@@ -1186,7 +1960,8 @@
       "community": 6,
       "norm_label": "click contract (ts type; segmenttag only set on intentional link)",
       "_origin": "semantic",
-      "id": "docs_architecture_click_contract"
+      "id": "docs_architecture_click_contract",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Eligibility clock (anchored to enrollment time, not job execution time)",
@@ -1200,7 +1975,8 @@
       "community": 6,
       "norm_label": "eligibility clock (anchored to enrollment time, not job execution time)",
       "_origin": "semantic",
-      "id": "docs_architecture_eligibility_clock"
+      "id": "docs_architecture_eligibility_clock",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Failure visibility (zero successful sends + attempted failures = failed run)",
@@ -1214,7 +1990,8 @@
       "community": 6,
       "norm_label": "failure visibility (zero successful sends + attempted failures = failed run)",
       "_origin": "semantic",
-      "id": "docs_architecture_failure_visibility"
+      "id": "docs_architecture_failure_visibility",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Fatigue gate (architecture contract; rolling open-rate check, own alert channel)",
@@ -1228,7 +2005,8 @@
       "community": 6,
       "norm_label": "fatigue gate (architecture contract; rolling open-rate check, own alert channel)",
       "_origin": "semantic",
-      "id": "docs_architecture_fatigue_gate"
+      "id": "docs_architecture_fatigue_gate",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Lead contract (TS type; segment mutable post-capture)",
@@ -1242,7 +2020,8 @@
       "community": 6,
       "norm_label": "lead contract (ts type; segment mutable post-capture)",
       "_origin": "semantic",
-      "id": "docs_architecture_lead_contract"
+      "id": "docs_architecture_lead_contract",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Message contract (TS type; server-side merge token rendering)",
@@ -1256,7 +2035,8 @@
       "community": 6,
       "norm_label": "message contract (ts type; server-side merge token rendering)",
       "_origin": "semantic",
-      "id": "docs_architecture_message_contract"
+      "id": "docs_architecture_message_contract",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Re-segmentation from clicks (architecture contract; audit trail, clock unaffected)",
@@ -1270,7 +2050,8 @@
       "community": 6,
       "norm_label": "re-segmentation from clicks (architecture contract; audit trail, clock unaffected)",
       "_origin": "semantic",
-      "id": "docs_architecture_resegmentation_from_clicks"
+      "id": "docs_architecture_resegmentation_from_clicks",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Resend-to-non-openers eligibility (architecture contract)",
@@ -1284,7 +2065,8 @@
       "community": 6,
       "norm_label": "resend-to-non-openers eligibility (architecture contract)",
       "_origin": "semantic",
-      "id": "docs_architecture_resend_to_non_openers"
+      "id": "docs_architecture_resend_to_non_openers",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Resource gate (HMAC-signed link; content never sent to unauthorized browser)",
@@ -1298,7 +2080,8 @@
       "community": 6,
       "norm_label": "resource gate (hmac-signed link; content never sent to unauthorized browser)",
       "_origin": "semantic",
-      "id": "docs_architecture_resource_gate"
+      "id": "docs_architecture_resource_gate",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "Idempotent send claim (unique key on recipient/message/campaign)",
@@ -1312,7 +2095,8 @@
       "community": 6,
       "norm_label": "idempotent send claim (unique key on recipient/message/campaign)",
       "_origin": "semantic",
-      "id": "docs_architecture_send_claim"
+      "id": "docs_architecture_send_claim",
+      "community_name": "Lead Workflow Architecture"
     },
     {
       "label": "CONTRIBUTING.md",
@@ -1326,7 +2110,8 @@
       "community": 7,
       "norm_label": "contributing.md",
       "_origin": "semantic",
-      "id": "contributing_overview"
+      "id": "contributing_overview",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Production implementation guide",
@@ -1340,7 +2125,8 @@
       "community": 7,
       "norm_label": "production implementation guide",
       "_origin": "semantic",
-      "id": "docs_implementation_overview"
+      "id": "docs_implementation_overview",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Weekly digest email screenshot (\"O essencial da semana\", CF Gauss blog)",
@@ -1354,7 +2140,8 @@
       "community": 7,
       "norm_label": "weekly digest email screenshot (\"o essencial da semana\", cf gauss blog)",
       "_origin": "semantic",
-      "id": "assets_output_weekly_digest_email_screenshot"
+      "id": "assets_output_weekly_digest_email_screenshot",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Activation checklist (DNS, test email, unsubscribe test, controlled failure test)",
@@ -1368,7 +2155,8 @@
       "community": 7,
       "norm_label": "activation checklist (dns, test email, unsubscribe test, controlled failure test)",
       "_origin": "semantic",
-      "id": "docs_implementation_activation_checklist"
+      "id": "docs_implementation_activation_checklist",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Compliance gate (deterministic checks; LLM cannot self-approve its draft)",
@@ -1382,7 +2170,8 @@
       "community": 7,
       "norm_label": "compliance gate (deterministic checks; llm cannot self-approve its draft)",
       "_origin": "semantic",
-      "id": "docs_implementation_compliance_gate"
+      "id": "docs_implementation_compliance_gate",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Data model (leads, email_suppressions, email_log, campaigns tables)",
@@ -1396,7 +2185,8 @@
       "community": 7,
       "norm_label": "data model (leads, email_suppressions, email_log, campaigns tables)",
       "_origin": "semantic",
-      "id": "docs_implementation_data_model"
+      "id": "docs_implementation_data_model",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Launch campaigns (one active campaign, one thesis, minimum rest period)",
@@ -1410,7 +2200,8 @@
       "community": 7,
       "norm_label": "launch campaigns (one active campaign, one thesis, minimum rest period)",
       "_origin": "semantic",
-      "id": "docs_implementation_launch_campaigns"
+      "id": "docs_implementation_launch_campaigns",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Required email headers (List-Unsubscribe, one-click unsubscribe)",
@@ -1424,7 +2215,8 @@
       "community": 7,
       "norm_label": "required email headers (list-unsubscribe, one-click unsubscribe)",
       "_origin": "semantic",
-      "id": "docs_implementation_required_email_headers"
+      "id": "docs_implementation_required_email_headers",
+      "community_name": "Production Implementation"
     },
     {
       "label": "Scheduled sequence job (daily run, 11-step pipeline)",
@@ -1438,561 +2230,8 @@
       "community": 7,
       "norm_label": "scheduled sequence job (daily run, 11-step pipeline)",
       "_origin": "semantic",
-      "id": "docs_implementation_scheduled_sequence_job"
-    },
-    {
-      "label": "The Big Idea (real market tension + memorable name + overlooked consequence)",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "the big idea (real market tension + memorable name + overlooked consequence)",
-      "_origin": "semantic",
-      "id": "skill_md_big_idea"
-    },
-    {
-      "label": "drip_1 \u2014 Day 1 letter reveals and names the Big Idea",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "drip_1 \u2014 day 1 letter reveals and names the big idea",
-      "_origin": "semantic",
-      "id": "skill_md_drip_1"
-    },
-    {
-      "label": "drip_18 \u2014 Day 18 letter makes final truthful call for offer",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "drip_18 \u2014 day 18 letter makes final truthful call for offer",
-      "_origin": "semantic",
-      "id": "skill_md_drip_18"
-    },
-    {
-      "label": "drip_9 \u2014 Day 9 letter presents low-friction offer",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "drip_9 \u2014 day 9 letter presents low-friction offer",
-      "_origin": "semantic",
-      "id": "skill_md_drip_9"
-    },
-    {
-      "label": "Fatigue gate (skip, never cancel, unopened-message check)",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "fatigue gate (skip, never cancel, unopened-message check)",
-      "_origin": "semantic",
-      "id": "skill_md_fatigue_gate"
-    },
-    {
-      "label": "Letter format",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "letter format",
-      "_origin": "semantic",
-      "id": "skill_md_letter_format"
-    },
-    {
-      "label": "Production requirements",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "production requirements",
-      "_origin": "semantic",
-      "id": "skill_md_production_requirements"
-    },
-    {
-      "label": "Resend to non-openers rule",
-      "file_type": "concept",
-      "source_file": "SKILL.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "community": 8,
-      "norm_label": "resend to non-openers rule",
-      "_origin": "semantic",
-      "id": "skill_md_resend_to_non_openers"
-    },
-    {
-      "label": "Campaign Toolkit Validation Job",
-      "file_type": "code",
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "lines 11-20",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "_github_workflows_validate_campaign_toolkit",
-      "community": 0,
-      "norm_label": "campaign toolkit validation job"
-    },
-    {
-      "label": "GitHub Actions Validation Workflow",
-      "file_type": "code",
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "lines 1-20",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "_github_workflows_validate_github_actions_validation",
-      "community": 0,
-      "norm_label": "github actions validation workflow"
-    },
-    {
-      "label": "Node.js 22 Runtime",
-      "file_type": "concept",
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "lines 16-18",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "_github_workflows_validate_node_22",
-      "community": 0,
-      "norm_label": "node.js 22 runtime"
-    },
-    {
-      "label": "Product Site Validation",
-      "file_type": "concept",
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "line 20",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "_github_workflows_validate_product_site_validation",
-      "community": 0,
-      "norm_label": "product site validation"
-    },
-    {
-      "label": "Repository Test Suite",
-      "file_type": "concept",
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "line 19",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "_github_workflows_validate_repository_tests",
-      "community": 0,
-      "norm_label": "repository test suite"
-    },
-    {
-      "label": "Campaign Intake, Fact Pack and Sequence Contract",
-      "file_type": "concept",
-      "source_file": "docs/index.html",
-      "source_location": "lines 99-107",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_campaign_contracts",
-      "community": 0,
-      "norm_label": "campaign intake, fact pack and sequence contract"
-    },
-    {
-      "label": "Interactive Campaign Preflight",
-      "file_type": "concept",
-      "source_file": "docs/index.html",
-      "source_location": "lines 109-147",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_campaign_preflight",
-      "community": 0,
-      "norm_label": "interactive campaign preflight"
-    },
-    {
-      "label": "Motor Empiricus GitHub Repository",
-      "file_type": "concept",
-      "source_file": "docs/index.html",
-      "source_location": "lines 28-46",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_open_source_repository",
-      "community": 0,
-      "norm_label": "motor empiricus github repository"
-    },
-    {
-      "label": "Real Reference Outputs",
-      "file_type": "concept",
-      "source_file": "docs/index.html",
-      "source_location": "lines 89-97",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_real_reference_outputs",
-      "community": 0,
-      "norm_label": "real reference outputs"
-    },
-    {
-      "label": "Motor Empiricus Product Sitemap",
-      "file_type": "concept",
-      "source_file": "docs/robots.txt",
-      "source_location": "line 4",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_robots_product_sitemap",
-      "community": 0,
-      "norm_label": "motor empiricus product sitemap"
-    },
-    {
-      "label": "CF Gauss Reference Implementation",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 24-40",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_cf_gauss_reference_implementation",
-      "community": 0,
-      "norm_label": "cf gauss reference implementation"
-    },
-    {
-      "label": "Deterministic Campaign Validator",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 105-111",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_deterministic_campaign_validator",
-      "community": 0,
-      "norm_label": "deterministic campaign validator"
-    },
-    {
-      "label": "Portable Agent Skill",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 113-134",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_portable_agent_skill",
-      "community": 0,
-      "norm_label": "portable agent skill"
-    },
-    {
-      "label": "Motor Empiricus Product Site",
-      "file_type": "document",
-      "source_file": "docs/index.html",
-      "source_location": "lines 1-182",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_product_site",
-      "community": 0,
-      "norm_label": "motor empiricus product site"
-    },
-    {
-      "label": "Search Crawler Policy",
-      "file_type": "document",
-      "source_file": "docs/robots.txt",
-      "source_location": "lines 1-4",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_robots_search_crawler_policy",
-      "community": 0,
-      "norm_label": "search crawler policy"
-    },
-    {
-      "label": "Motor Empiricus",
-      "file_type": "document",
-      "source_file": "README.md",
-      "source_location": "lines 1-22",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_motor_empiricus",
-      "community": 0,
-      "norm_label": "motor empiricus"
-    },
-    {
-      "label": "Motor Empiricus ME Seal",
-      "file_type": "image",
-      "source_file": "docs/favicon.svg",
-      "source_location": "lines 1-5",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_favicon_motor_empiricus_seal",
-      "community": 0,
-      "norm_label": "motor empiricus me seal"
-    },
-    {
-      "label": "Honest Product Scope",
-      "file_type": "rationale",
-      "source_file": "docs/index.html",
-      "source_location": "lines 164-176",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_honest_scope",
-      "community": 0,
-      "norm_label": "honest product scope"
-    },
-    {
-      "label": "Useful, Sourced and Compliant Lead Nurture",
-      "file_type": "rationale",
-      "source_file": "docs/index.html",
-      "source_location": "lines 38-69",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_lead_nurture_promise",
-      "community": 0,
-      "norm_label": "useful, sourced and compliant lead nurture"
-    },
-    {
-      "label": "Portable Toolkit Scope",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "lines 165-177",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_honest_scope",
-      "community": 0,
-      "norm_label": "portable toolkit scope"
-    },
-    {
-      "label": "Independent Project Boundary",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "line 22",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_independent_project_boundary",
-      "community": 0,
-      "norm_label": "independent project boundary"
-    },
-    {
-      "label": "25-Day Email Timeline",
-      "file_type": "concept",
-      "source_file": "docs/index.html",
-      "source_location": "lines 73-87",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_25_day_timeline",
-      "community": 3,
-      "norm_label": "25-day email timeline"
-    },
-    {
-      "label": "Production Implementation Guide",
-      "file_type": "concept",
-      "source_file": "docs/index.html",
-      "source_location": "lines 149-155",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_implementation_guide",
-      "community": 3,
-      "norm_label": "production implementation guide"
-    },
-    {
-      "label": "25-Day Ten-Email Sequence",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 47-62",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_25_day_sequence",
-      "community": 3,
-      "norm_label": "25-day ten-email sequence"
-    },
-    {
-      "label": "Campaign Intake",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 96-103",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_campaign_intake",
-      "community": 3,
-      "norm_label": "campaign intake"
-    },
-    {
-      "label": "Claim Ledger",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 100-103 and 151-156",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_claim_ledger",
-      "community": 3,
-      "norm_label": "claim ledger"
-    },
-    {
-      "label": "Portable Direct-Response Email System",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 3-20",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_direct_response_email_system",
-      "community": 3,
-      "norm_label": "portable direct-response email system"
-    },
-    {
-      "label": "Fatigue Gate",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "line 161",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_fatigue_gate",
-      "community": 3,
-      "norm_label": "fatigue gate"
-    },
-    {
-      "label": "Real Opt-Out Path",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "line 157",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_real_opt_out_path",
-      "community": 3,
-      "norm_label": "real opt-out path"
-    },
-    {
-      "label": "Lesson, Letter and Echo Formats",
-      "file_type": "concept",
-      "source_file": "README.md",
-      "source_location": "lines 47-62",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_three_email_formats",
-      "community": 3,
-      "norm_label": "lesson, letter and echo formats"
-    },
-    {
-      "label": "Compliance Floor",
-      "file_type": "rationale",
-      "source_file": "docs/index.html",
-      "source_location": "lines 149-162",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "docs_index_compliance_floor",
-      "community": 3,
-      "norm_label": "compliance floor"
-    },
-    {
-      "label": "Attention Before Action",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "lines 16-18",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_attention_before_action",
-      "community": 3,
-      "norm_label": "attention before action"
-    },
-    {
-      "label": "Closed-Loop Lead Architecture",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "lines 64-82",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_closed_loop_architecture",
-      "community": 3,
-      "norm_label": "closed-loop lead architecture"
-    },
-    {
-      "label": "Truthful Pressure",
-      "file_type": "rationale",
-      "source_file": "README.md",
-      "source_location": "lines 151-161",
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "readme_truthful_pressure",
-      "community": 3,
-      "norm_label": "truthful pressure"
+      "id": "docs_implementation_scheduled_sequence_job",
+      "community_name": "Production Implementation"
     }
   ],
   "links": [
@@ -2043,13 +2282,57 @@
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_211218_trace",
+      "target": "graphify_out_memory_query_20260814_211218_trace_q_trace",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L12",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_211218_trace_q_trace",
+      "target": "graphify_out_memory_query_20260814_211218_trace_answer",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L16",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_211218_trace_q_trace",
+      "target": "graphify_out_memory_query_20260814_211218_trace_outcome",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "graphify-out/memory/query_20260814_211218_trace.md",
+      "source_location": "L20",
+      "weight": 1.0,
+      "_origin": "ast",
+      "source": "graphify_out_memory_query_20260814_211218_trace_q_trace",
+      "target": "graphify_out_memory_query_20260814_211218_trace_source_nodes",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
       "source_file": "package.json",
       "source_location": "L12",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_engines"
+      "target": "package_engines",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2058,9 +2341,9 @@
       "source_location": "L15",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_license"
+      "target": "package_license",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2069,9 +2352,9 @@
       "source_location": "L2",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_name"
+      "target": "package_name",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2080,9 +2363,9 @@
       "source_location": "L3",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_version"
+      "target": "package_version",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2091,9 +2374,9 @@
       "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_private"
+      "target": "package_private",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2102,9 +2385,9 @@
       "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_description"
+      "target": "package_description",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2113,9 +2396,9 @@
       "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_type"
+      "target": "package_type",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2124,9 +2407,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_scripts"
+      "target": "package_scripts",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2135,9 +2418,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package_engines",
-      "target": "package_engines_node"
+      "target": "package_engines_node",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2146,9 +2429,9 @@
       "source_location": "L10",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_test"
+      "target": "package_scripts_test",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2157,9 +2440,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_init"
+      "target": "package_scripts_init",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2168,9 +2451,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_validate"
+      "target": "package_scripts_validate",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2179,9 +2462,9 @@
       "source_location": "L17",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_init",
-      "target": "scripts_init_destination"
+      "target": "scripts_init_destination",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2190,9 +2473,9 @@
       "source_location": "L7",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_init",
-      "target": "scripts_init_scriptdir"
+      "target": "scripts_init_scriptdir",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2201,9 +2484,9 @@
       "source_location": "L8",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_init",
-      "target": "scripts_init_root"
+      "target": "scripts_init_root",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2212,9 +2495,9 @@
       "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_init",
-      "target": "scripts_init_source"
+      "target": "scripts_init_source",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2223,9 +2506,9 @@
       "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_install",
-      "target": "scripts_install_sh__entry"
+      "target": "scripts_install_sh__entry",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2234,9 +2517,9 @@
       "source_location": "L13",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_campaigndir"
+      "target": "scripts_validate_campaigndir",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2245,9 +2528,9 @@
       "source_location": "L137",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_validateresends"
+      "target": "scripts_validate_validateresends",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2256,9 +2539,9 @@
       "source_location": "L14",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_errors"
+      "target": "scripts_validate_errors",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2267,9 +2550,9 @@
       "source_location": "L16",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_readjson"
+      "target": "scripts_validate_readjson",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2278,9 +2561,9 @@
       "source_location": "L193",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_finish"
+      "target": "scripts_validate_finish",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2289,9 +2572,9 @@
       "source_location": "L41",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_expected"
+      "target": "scripts_validate_expected",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2300,9 +2583,9 @@
       "source_location": "L54",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_factids"
+      "target": "scripts_validate_factids",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2311,9 +2594,9 @@
       "source_location": "L55",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_banned"
+      "target": "scripts_validate_banned",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2322,9 +2605,9 @@
       "source_location": "L56",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_bannedsubjectwords"
+      "target": "scripts_validate_bannedsubjectwords",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2333,9 +2616,9 @@
       "source_location": "L57",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_requiredpostscripts"
+      "target": "scripts_validate_requiredpostscripts",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2344,9 +2627,9 @@
       "source_location": "L58",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_requirenamepersonalizationfor"
+      "target": "scripts_validate_requirenamepersonalizationfor",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2355,9 +2638,9 @@
       "source_location": "L64",
       "weight": 1.0,
       "_origin": "ast",
-      "confidence_score": 1.0,
       "source": "scripts_validate",
-      "target": "scripts_validate_seen"
+      "target": "scripts_validate_seen",
+      "confidence_score": 1.0
     },
     {
       "relation": "contains",
@@ -2435,6 +2718,116 @@
       "_origin": "semantic",
       "source": "skill_md_resend_to_non_openers",
       "target": "skill_md_drip_9"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "lines 11-20",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "_github_workflows_validate_github_actions_validation",
+      "target": "_github_workflows_validate_campaign_toolkit"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 47-62",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_25_day_sequence",
+      "target": "readme_three_email_formats"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 100-103 and 151-156",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_claim_ledger"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 105-111",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_deterministic_campaign_validator"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 151-161",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_truthful_pressure"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 18 and 47-62",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_25_day_sequence"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 64-82",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_closed_loop_architecture"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 96-103",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_campaign_intake"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 113-134",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_motor_empiricus",
+      "target": "readme_portable_agent_skill"
+    },
+    {
+      "relation": "implements",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 3-20",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_motor_empiricus",
+      "target": "readme_direct_response_email_system"
     },
     {
       "relation": "implements",
@@ -2545,6 +2938,83 @@
       "_origin": "semantic",
       "source": "skill_md_drip_9",
       "target": "skill_md_letter_format"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 16-18",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_direct_response_email_system",
+      "target": "readme_attention_before_action"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 155-156",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_truthful_pressure",
+      "target": "readme_claim_ledger"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 156-157",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_truthful_pressure",
+      "target": "readme_real_opt_out_path"
+    },
+    {
+      "relation": "rationale_for",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 156-161",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_truthful_pressure",
+      "target": "readme_fatigue_gate"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "line 19",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "_github_workflows_validate_campaign_toolkit",
+      "target": "_github_workflows_validate_repository_tests"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "line 20",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "_github_workflows_validate_campaign_toolkit",
+      "target": "_github_workflows_validate_product_site_validation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "lines 16-18",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "_github_workflows_validate_campaign_toolkit",
+      "target": "_github_workflows_validate_node_22"
     },
     {
       "relation": "references",
@@ -3188,6 +3658,160 @@
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 149-155",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_compliance_floor",
+      "target": "docs_index_implementation_guide"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "line 16",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_favicon_motor_empiricus_seal"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 109-147",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_campaign_preflight"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 149-162",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_compliance_floor"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 164-176",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_honest_scope"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 28-46",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_open_source_repository"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 38-69",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_lead_nurture_promise"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 73-87",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_25_day_timeline"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 89-97",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_real_reference_outputs"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/index.html",
+      "source_location": "lines 99-107",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_index_product_site",
+      "target": "docs_index_campaign_contracts"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/robots.txt",
+      "source_location": "lines 1-4",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_robots_search_crawler_policy",
+      "target": "docs_robots_product_sitemap"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "line 22",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_motor_empiricus",
+      "target": "readme_independent_project_boundary"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 165-177",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_motor_empiricus",
+      "target": "readme_honest_scope"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "README.md",
+      "source_location": "lines 24-40",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_motor_empiricus",
+      "target": "readme_cf_gauss_reference_implementation"
+    },
+    {
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
       "source_file": "SKILL.md",
       "source_location": null,
       "weight": 1.0,
@@ -3529,6 +4153,17 @@
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.75,
+      "source_file": "README.md",
+      "source_location": "lines 171-177",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "_github_workflows_validate_repository_tests",
+      "target": "readme_deterministic_campaign_validator"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.75,
       "source_file": "assets/hero.png",
       "source_location": null,
       "weight": 1.0,
@@ -3584,6 +4219,17 @@
       "relation": "conceptually_related_to",
       "confidence": "INFERRED",
       "confidence_score": 0.85,
+      "source_file": ".github/workflows/validate.yml",
+      "source_location": "line 20",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "_github_workflows_validate_product_site_validation",
+      "target": "docs_index_product_site"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
       "source_file": "SECURITY.md",
       "source_location": null,
       "weight": 1.0,
@@ -3614,6 +4260,39 @@
       "target": "skill_md_required_order_checklist"
     },
     {
+      "relation": "semantically_similar_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.85,
+      "source_file": "docs/index.html",
+      "source_location": "lines 109-147",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_deterministic_campaign_validator",
+      "target": "docs_index_campaign_preflight"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/robots.txt",
+      "source_location": "line 4",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_robots_product_sitemap",
+      "target": "docs_index_product_site"
+    },
+    {
+      "relation": "conceptually_related_to",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/index.html",
+      "source_location": "lines 89-95",
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "readme_cf_gauss_reference_implementation",
+      "target": "docs_index_real_reference_outputs"
+    },
+    {
       "relation": "implements",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
@@ -3625,383 +4304,13 @@
       "target": "templates_intake_campaign_intake_template"
     },
     {
-      "relation": "shares_data_with",
+      "relation": "semantically_similar_to",
       "confidence": "INFERRED",
       "confidence_score": 0.95,
-      "source_file": "docs/IMPLEMENTATION.md",
-      "source_location": null,
+      "source_file": "docs/index.html",
+      "source_location": "lines 73-87",
       "weight": 1.0,
       "_origin": "semantic",
-      "source": "docs_implementation_data_model",
-      "target": "docs_architecture_send_claim"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "lines 11-20",
-      "weight": 1.0,
-      "source": "_github_workflows_validate_github_actions_validation",
-      "target": "_github_workflows_validate_campaign_toolkit"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 47-62",
-      "weight": 1.0,
-      "source": "readme_25_day_sequence",
-      "target": "readme_three_email_formats"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 100-103 and 151-156",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_claim_ledger"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 105-111",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_deterministic_campaign_validator"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 151-161",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_truthful_pressure"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 18 and 47-62",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_25_day_sequence"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 64-82",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_closed_loop_architecture"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 96-103",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_campaign_intake"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 113-134",
-      "weight": 1.0,
-      "source": "readme_motor_empiricus",
-      "target": "readme_portable_agent_skill"
-    },
-    {
-      "relation": "implements",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 3-20",
-      "weight": 1.0,
-      "source": "readme_motor_empiricus",
-      "target": "readme_direct_response_email_system"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 16-18",
-      "weight": 1.0,
-      "source": "readme_direct_response_email_system",
-      "target": "readme_attention_before_action"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 155-156",
-      "weight": 1.0,
-      "source": "readme_truthful_pressure",
-      "target": "readme_claim_ledger"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 156-157",
-      "weight": 1.0,
-      "source": "readme_truthful_pressure",
-      "target": "readme_real_opt_out_path"
-    },
-    {
-      "relation": "rationale_for",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 156-161",
-      "weight": 1.0,
-      "source": "readme_truthful_pressure",
-      "target": "readme_fatigue_gate"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "line 19",
-      "weight": 1.0,
-      "source": "_github_workflows_validate_campaign_toolkit",
-      "target": "_github_workflows_validate_repository_tests"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "line 20",
-      "weight": 1.0,
-      "source": "_github_workflows_validate_campaign_toolkit",
-      "target": "_github_workflows_validate_product_site_validation"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "lines 16-18",
-      "weight": 1.0,
-      "source": "_github_workflows_validate_campaign_toolkit",
-      "target": "_github_workflows_validate_node_22"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 149-155",
-      "weight": 1.0,
-      "source": "docs_index_compliance_floor",
-      "target": "docs_index_implementation_guide"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "line 16",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_favicon_motor_empiricus_seal"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 109-147",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_campaign_preflight"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 149-162",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_compliance_floor"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 164-176",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_honest_scope"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 28-46",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_open_source_repository"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 38-69",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_lead_nurture_promise"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 73-87",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_25_day_timeline"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 89-97",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_real_reference_outputs"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/index.html",
-      "source_location": "lines 99-107",
-      "weight": 1.0,
-      "source": "docs_index_product_site",
-      "target": "docs_index_campaign_contracts"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "docs/robots.txt",
-      "source_location": "lines 1-4",
-      "weight": 1.0,
-      "source": "docs_robots_search_crawler_policy",
-      "target": "docs_robots_product_sitemap"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "line 22",
-      "weight": 1.0,
-      "source": "readme_motor_empiricus",
-      "target": "readme_independent_project_boundary"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 165-177",
-      "weight": 1.0,
-      "source": "readme_motor_empiricus",
-      "target": "readme_honest_scope"
-    },
-    {
-      "relation": "references",
-      "confidence": "EXTRACTED",
-      "confidence_score": 1.0,
-      "source_file": "README.md",
-      "source_location": "lines 24-40",
-      "weight": 1.0,
-      "source": "readme_motor_empiricus",
-      "target": "readme_cf_gauss_reference_implementation"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.75,
-      "source_file": "README.md",
-      "source_location": "lines 171-177",
-      "weight": 1.0,
-      "source": "_github_workflows_validate_repository_tests",
-      "target": "readme_deterministic_campaign_validator"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": ".github/workflows/validate.yml",
-      "source_location": "line 20",
-      "weight": 1.0,
-      "source": "_github_workflows_validate_product_site_validation",
-      "target": "docs_index_product_site"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.85,
-      "source_file": "docs/index.html",
-      "source_location": "lines 109-147",
-      "weight": 1.0,
-      "source": "readme_deterministic_campaign_validator",
-      "target": "docs_index_campaign_preflight"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/robots.txt",
-      "source_location": "line 4",
-      "weight": 1.0,
-      "source": "docs_robots_product_sitemap",
-      "target": "docs_index_product_site"
-    },
-    {
-      "relation": "conceptually_related_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/index.html",
-      "source_location": "lines 89-95",
-      "weight": 1.0,
-      "source": "readme_cf_gauss_reference_implementation",
-      "target": "docs_index_real_reference_outputs"
-    },
-    {
-      "relation": "semantically_similar_to",
-      "confidence": "INFERRED",
-      "confidence_score": 0.95,
-      "source_file": "docs/index.html",
-      "source_location": "lines 73-87",
-      "weight": 1.0,
       "source": "readme_25_day_sequence",
       "target": "docs_index_25_day_timeline"
     },
@@ -4012,6 +4321,7 @@
       "source_file": "docs/index.html",
       "source_location": "lines 164-176",
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "readme_honest_scope",
       "target": "docs_index_honest_scope"
     },
@@ -4022,6 +4332,7 @@
       "source_file": "README.md",
       "source_location": "lines 1-22",
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "readme_motor_empiricus",
       "target": "docs_index_product_site"
     },
@@ -4032,8 +4343,20 @@
       "source_file": "docs/index.html",
       "source_location": "lines 149-160",
       "weight": 1.0,
+      "_origin": "semantic",
       "source": "readme_truthful_pressure",
       "target": "docs_index_compliance_floor"
+    },
+    {
+      "relation": "shares_data_with",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "docs/IMPLEMENTATION.md",
+      "source_location": null,
+      "weight": 1.0,
+      "_origin": "semantic",
+      "source": "docs_implementation_data_model",
+      "target": "docs_architecture_send_claim"
     }
   ],
   "hyperedges": [
@@ -4120,5 +4443,5 @@
       "source_file": "README.md"
     }
   ],
-  "built_at_commit": "c1ba4840cccd69d218ee4ebbc842358ced9a938d"
+  "built_at_commit": "91ccaa97c73a5584c59de2d745949018d8b2d809"
 }

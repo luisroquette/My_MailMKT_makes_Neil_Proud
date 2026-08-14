@@ -1,13 +1,18 @@
 # Graph Report - motor-empiricus  (2026-08-14)
 
 ## Corpus Check
-- 8 files · ~109,006 words
+- 23 files · ~109,173 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 150 nodes · 189 edges · 18 communities (11 shown, 7 thin omitted)
+- 155 nodes · 193 edges · 18 communities (11 shown, 7 thin omitted)
 - Extraction: 89% EXTRACTED · 11% INFERRED · 0% AMBIGUOUS · INFERRED: 21 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `91ccaa97`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - Product Site and CI
@@ -46,23 +51,23 @@
   assets/output-weekly-digest.png → docs/IMPLEMENTATION.md
 - `Hero image — three stacked document cards on a connected path` --conceptually_related_to--> `Closed-Loop Lead Architecture`  [INFERRED]
   assets/hero.png → README.md
+- `Deterministic Campaign Validator` --semantically_similar_to--> `Interactive Campaign Preflight`  [INFERRED] [semantically similar]
+  README.md → docs/index.html
 - `Motor Empiricus` --semantically_similar_to--> `Motor Empiricus Product Site`  [INFERRED] [semantically similar]
   README.md → docs/index.html
-- `25-Day Ten-Email Sequence` --semantically_similar_to--> `25-Day Email Timeline`  [INFERRED] [semantically similar]
-  README.md → docs/index.html
-- `Deterministic Campaign Validator` --semantically_similar_to--> `Interactive Campaign Preflight`  [INFERRED] [semantically similar]
+- `Portable Toolkit Scope` --semantically_similar_to--> `Honest Product Scope`  [INFERRED] [semantically similar]
   README.md → docs/index.html
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Motor Empiricus Public Identity** — readme_motor_empiricus, docs_index_product_site, docs_favicon_motor_empiricus_seal, docs_robots_product_sitemap [INFERRED 0.85]
-- **Campaign Integrity Validation** — _github_workflows_validate_campaign_toolkit, readme_deterministic_campaign_validator, docs_index_campaign_preflight, docs_index_compliance_floor [INFERRED 0.85]
-- **Portable Lead-Nurture System** — readme_direct_response_email_system, readme_25_day_sequence, readme_claim_ledger, docs_index_campaign_contracts, docs_index_25_day_timeline [INFERRED 0.95]
-- **Open-tracking dependent lead-gating mechanisms (resend + fatigue gate), introduced together in v1.1.0** — skill_md_resend_to_non_openers, skill_md_fatigue_gate, changelog_md_v1_1_0 [INFERRED 0.75]
-- **Behavior-driven lead segment resolution pattern: intake checklist, capture-time resolution, and post-capture mutation** — skill_md_resegmentation_from_behavior, skill_md_gated_resource_loop, skill_md_required_order_checklist [INFERRED 0.70]
 - **Subject line and CTA anti-spam discipline sharing one banned-words list** — skill_md_subject_line_section, skill_md_cta_copy_section, skill_md_banned_subject_words [EXTRACTED 1.00]
+- **Behavior-driven lead segment resolution pattern: intake checklist, capture-time resolution, and post-capture mutation** — skill_md_resegmentation_from_behavior, skill_md_gated_resource_loop, skill_md_required_order_checklist [INFERRED 0.70]
+- **Open-tracking dependent lead-gating mechanisms (resend + fatigue gate), introduced together in v1.1.0** — skill_md_resend_to_non_openers, skill_md_fatigue_gate, changelog_md_v1_1_0 [INFERRED 0.75]
+- **Campaign Integrity Validation** — _github_workflows_validate_campaign_toolkit, readme_deterministic_campaign_validator, docs_index_campaign_preflight, docs_index_compliance_floor [INFERRED 0.85]
+- **Motor Empiricus Public Identity** — readme_motor_empiricus, docs_index_product_site, docs_favicon_motor_empiricus_seal, docs_robots_product_sitemap [INFERRED 0.85]
+- **Portable Lead-Nurture System** — readme_direct_response_email_system, readme_25_day_sequence, readme_claim_ledger, docs_index_campaign_contracts, docs_index_25_day_timeline [INFERRED 0.95]
 
 ## Communities (18 total, 7 thin omitted)
 
@@ -71,12 +76,12 @@ Cohesion: 0.11
 Nodes (21): Campaign Toolkit Validation Job, GitHub Actions Validation Workflow, Node.js 22 Runtime, Product Site Validation, Repository Test Suite, Motor Empiricus ME Seal, Campaign Intake, Fact Pack and Sequence Contract, Interactive Campaign Preflight (+13 more)
 
 ### Community 1 - "Release and Repository Map"
-Cohesion: 0.16
-Nodes (20): CHANGELOG.md (Motor Empiricus), docs/ARCHITECTURE.md, examples/b2b-ai-training (validator-safe reference campaign), CI: npm test on every push and pull request, docs/IMPLEMENTATION.md, scripts/init.mjs (campaign workspace scaffolder), scripts/install.sh (Claude Code + Codex install destination), templates/sequence.json (+12 more)
+Cohesion: 0.14
+Nodes (21): CHANGELOG.md (Motor Empiricus), scripts/install.sh (Claude Code + Codex install destination), templates/sequence.json, Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline, Version 1.1.1 (2026-08-08) — skill identifier renamed to My_mailmarketing_makes_Neil_Patel_proud; project/repo name unchanged, Motor Empiricus (SKILL.md), Banned spam-trigger words (bannedSubjectWords list), Benefit-over-command CTA rule (+13 more)
 
 ### Community 2 - "Sequence Rules and Lessons"
-Cohesion: 0.16
-Nodes (18): Claim discipline (fact IDs, source URL, access date, scope), drip_0 — Day 0 welcome lesson, teases Big Idea, drip_12 — Day 12 echo answers honest objection + cost of delay, drip_14 — Day 14 lesson teaches how to compare solutions, drip_25 — Day 25 echo re-engages with human response path, drip_3 — Day 3 lesson deepens understanding, drip_5 — Day 5 echo returns via evidence/sourced data, drip_7 — Day 7 lesson gives tool/checklist/scorecard (+10 more)
+Cohesion: 0.13
+Nodes (25): docs/ARCHITECTURE.md, examples/b2b-ai-training (validator-safe reference campaign), CI: npm test on every push and pull request, docs/IMPLEMENTATION.md, scripts/init.mjs (campaign workspace scaffolder), Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI, scripts/validate.mjs (deterministic campaign validator), The Big Idea (real market tension + memorable name + overlooked consequence) (+17 more)
 
 ### Community 3 - "Campaign Narrative and Proof"
 Cohesion: 0.15
@@ -99,8 +104,8 @@ Cohesion: 0.31
 Nodes (8): Weekly digest email screenshot ("O essencial da semana", CF Gauss blog), Activation checklist (DNS, test email, unsubscribe test, controlled failure test), Compliance gate (deterministic checks; LLM cannot self-approve its draft), Data model (leads, email_suppressions, email_log, campaigns tables), Launch campaigns (one active campaign, one thesis, minimum rest period), Production implementation guide, Required email headers (List-Unsubscribe, one-click unsubscribe), Scheduled sequence job (daily run, 11-step pipeline)
 
 ### Community 8 - "Letters and Engagement Gates"
-Cohesion: 0.29
-Nodes (8): The Big Idea (real market tension + memorable name + overlooked consequence), drip_1 — Day 1 letter reveals and names the Big Idea, drip_18 — Day 18 letter makes final truthful call for offer, drip_9 — Day 9 letter presents low-friction offer, Fatigue gate (skip, never cancel, unopened-message check), Letter format, Production requirements, Resend to non-openers rule
+Cohesion: 0.40
+Nodes (4): Answer, Outcome, Q: trace, Source Nodes
 
 ### Community 9 - "Campaign Workspace Initialization"
 Cohesion: 0.40
@@ -111,24 +116,24 @@ Cohesion: 0.50
 Nodes (3): assets, ids, root
 
 ## Knowledge Gaps
-- **58 isolated node(s):** `scriptDir`, `root`, `source`, `destination`, `campaignDir` (+53 more)
+- **61 isolated node(s):** `copyButton`, `validatorLab`, `validationStates`, `name`, `version` (+56 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **7 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI` connect `Release and Repository Map` to `Letters and Engagement Gates`, `Sequence Rules and Lessons`?**
-  _High betweenness centrality (0.035) - this node is a cross-community bridge._
-- **Why does `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` connect `Release and Repository Map` to `Letters and Engagement Gates`, `Sequence Rules and Lessons`?**
+- **Why does `Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI` connect `Sequence Rules and Lessons` to `Release and Repository Map`?**
   _High betweenness centrality (0.032) - this node is a cross-community bridge._
+- **Why does `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` connect `Release and Repository Map` to `Sequence Rules and Lessons`?**
+  _High betweenness centrality (0.030) - this node is a cross-community bridge._
 - **Why does `Motor Empiricus Product Site` connect `Product Site and CI` to `Campaign Narrative and Proof`?**
-  _High betweenness centrality (0.028) - this node is a cross-community bridge._
+  _High betweenness centrality (0.026) - this node is a cross-community bridge._
 - **Are the 2 inferred relationships involving `Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` (e.g. with `Version 1.0.0 (2026-08-07) — portable SKILL.md method, validator, scaffolder, docs, example, CI` and `Version 1.1.1 (2026-08-08) — skill identifier renamed to My_mailmarketing_makes_Neil_Patel_proud; project/repo name unchanged`) actually correct?**
   _`Version 1.1.0 (2026-08-08) — subject-line playbook, resend, re-segmentation, fatigue gate, CTA discipline` has 2 INFERRED edges - model-reasoned connections that need verification._
 - **Are the 3 inferred relationships involving `Motor Empiricus Product Site` (e.g. with `Product Site Validation` and `Motor Empiricus Product Sitemap`) actually correct?**
   _`Motor Empiricus Product Site` has 3 INFERRED edges - model-reasoned connections that need verification._
-- **What connects `scriptDir`, `root`, `source` to the rest of the system?**
-  _58 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **What connects `copyButton`, `validatorLab`, `validationStates` to the rest of the system?**
+  _61 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Product Site and CI` be split into smaller, more focused modules?**
   _Cohesion score 0.10952380952380952 - nodes in this community are weakly interconnected._
