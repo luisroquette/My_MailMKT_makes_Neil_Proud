@@ -18,7 +18,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Libre+Caslon+Display&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="site.css">
+  <link rel="stylesheet" href="sota-validator.css">
   <script defer src="site.js"></script>
+  <script defer src="sota-validator.js"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -104,9 +106,49 @@
       </div>
     </section>
 
+    <section class="preflight" id="preflight">
+      <div class="section-head">
+        <div class="section-number">05 / CAMPAIGN PREFLIGHT</div>
+        <div>
+          <h2>Persuasion gets<br>an integrity check.</h2>
+          <p class="preflight-intro">Compare an unsafe draft with a validator-safe message. This browser model mirrors five checks enforced by the repository before a campaign can pass.</p>
+        </div>
+      </div>
+
+      <div class="validator-lab" data-validator-lab>
+        <div class="validator-bar">
+          <div><span class="validator-light" aria-hidden="true"></span><span>CAMPAIGN PREFLIGHT</span></div>
+          <span>BROWSER MODEL · NO EMAIL IS SENT</span>
+        </div>
+        <div class="validator-tabs" role="tablist" aria-label="Campaign validation state">
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" data-validation-state="draft"><span>01</span> Unsafe draft</button>
+          <button type="button" role="tab" aria-selected="true" tabindex="0" data-validation-state="validated"><span>02</span> Validated sequence</button>
+        </div>
+        <div class="validator-grid">
+          <article class="message-preview" aria-live="polite">
+            <div class="message-meta"><span data-message-day>D+01 · LETTER</span><span data-message-id>DRIP_1</span></div>
+            <p class="message-label">SUBJECT</p>
+            <h3 data-message-subject>The invisible queue</h3>
+            <p class="message-label">BODY EXCERPT</p>
+            <p class="message-copy" data-message-copy>The harder delay to notice is work sitting between two people, waiting for context. We call it the Invisible Queue.</p>
+            <div class="message-cta" data-message-cta>Map one invisible queue <span>HTTPS ↗</span></div>
+            <p class="message-postscript" data-message-postscript>P.S. The next lesson maps the handoff without buying software.</p>
+          </article>
+          <aside class="validation-report" aria-live="polite">
+            <div class="report-head">
+              <div><span>VALIDATION RESULT</span><strong data-validation-verdict>PASS</strong></div>
+              <div class="error-count"><strong data-error-count>0</strong><span>ERRORS</span></div>
+            </div>
+            <div class="check-stack" data-check-stack></div>
+            <p class="report-foot">Five representative checks shown. The CLI also validates cadence, fields, IDs, placeholders and resend rules.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <section class="safety" id="safety">
       <div>
-        <p class="section-number">05 / COMPLIANCE FLOOR</p>
+        <p class="section-number">06 / COMPLIANCE FLOOR</p>
         <h2>Pressure should be truthful—or absent.</h2>
         <p>The toolkit bans fake scarcity, fabricated testimonials, unsupported numbers and guaranteed outcomes. Production still requires your legal review, consent system, suppression list and monitored reply path.</p>
         <a href="https://github.com/luisroquette/motor-empiricus/blob/main/docs/IMPLEMENTATION.md">Read the implementation guide →</a>
@@ -120,7 +162,7 @@
     </section>
 
     <section class="honest">
-      <p class="section-number">06 / HONEST SCOPE</p>
+      <p class="section-number">07 / HONEST SCOPE</p>
       <div class="scope-grid">
         <div><h2>Included</h2><ul><li>Portable agent skill</li><li>Campaign templates</li><li>Working validator</li><li>Implementation contracts</li></ul></div>
         <div><h2>Not included</h2><ul><li>Email delivery service</li><li>Hosted database</li><li>Private production code</li><li>Legal advice</li></ul></div>

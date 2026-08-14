@@ -1,0 +1,29 @@
+.preflight{max-width:1280px;margin:auto;padding:110px 32px;border-top:1px solid var(--ink)}
+.preflight-intro{max-width:620px;margin:30px 0 0;color:var(--muted);font-size:17px;line-height:1.7}
+.validator-lab{margin-top:68px;border:1px solid var(--ink);box-shadow:12px 12px 0 var(--wine);background:#fffdf8}
+.validator-bar{min-height:50px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--ink);font:9px var(--mono);letter-spacing:.08em}
+.validator-bar>div{display:flex;align-items:center;gap:10px}.validator-light{width:8px;height:8px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px rgba(173,38,55,.12)}
+.validator-bar>span{color:var(--muted)}
+.validator-tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--ink)}
+.validator-tabs button{min-height:54px;border:0;background:var(--paper);color:var(--muted);font:500 10px var(--mono);letter-spacing:.04em;text-transform:uppercase;cursor:pointer}
+.validator-tabs button+button{border-left:1px solid var(--ink)}.validator-tabs button span{margin-right:18px;color:var(--red)}
+.validator-tabs button[aria-selected="true"]{background:var(--wine);color:white}.validator-tabs button[aria-selected="true"] span{color:var(--gold)}
+.validator-tabs button:focus-visible{outline:3px solid var(--gold);outline-offset:-4px}
+.validator-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:510px}
+.message-preview{padding:54px 52px;border-right:1px solid var(--ink)}
+.message-meta{display:flex;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--line);font:9px var(--mono);color:var(--red)}
+.message-label{margin:34px 0 10px;font:9px var(--mono);letter-spacing:.08em;color:var(--muted)}
+.message-preview h3{max-width:540px;margin:0;font:400 clamp(38px,4vw,59px)/.98 var(--serif);letter-spacing:-.025em}
+.message-copy{max-width:560px;margin:0;font-size:15px;line-height:1.7;color:var(--muted)}
+.message-cta{display:flex;justify-content:space-between;align-items:center;margin-top:30px;padding:14px 16px;background:var(--ink);color:white;font-size:12px;font-weight:700}
+.message-cta span{font:9px var(--mono);color:var(--gold)}.message-postscript{margin:22px 0 0;font:10px/1.6 var(--mono);color:var(--muted)}
+.validation-report{padding:42px;background:var(--ink);color:white}
+.report-head{display:flex;align-items:flex-start;justify-content:space-between;padding-bottom:28px;border-bottom:1px solid #4d4642}
+.report-head>div:first-child{display:grid;gap:10px}.report-head span{font:9px var(--mono);letter-spacing:.08em;color:#aaa29c}.report-head>div:first-child strong{font:400 37px var(--serif);color:#d7ff3f}
+.error-count{text-align:right}.error-count strong{display:block;font:400 46px/.8 var(--serif);color:#d7ff3f}.error-count span{display:block;margin-top:11px}
+.check-stack{display:grid;gap:0;margin-top:18px}.validation-check{display:grid;grid-template-columns:22px 1fr auto;gap:9px;padding:14px 0;border-bottom:1px solid #3b3532;align-items:center}
+.validation-check i{width:15px;height:15px;display:grid;place-items:center;border-radius:50%;background:#d7ff3f;color:var(--ink);font:normal 9px var(--mono)}
+.validation-check b{font:500 11px var(--sans)}.validation-check span{font:9px var(--mono);color:#d7ff3f}.validation-check.is-error i{background:#ff496a;color:white}.validation-check.is-error span{color:#ff7890}
+.report-foot{margin:22px 0 0;font:9px/1.6 var(--mono);color:#8f8882}
+@media(max-width:800px){.preflight{padding:76px 20px}.validator-lab{margin-top:45px;box-shadow:7px 7px 0 var(--wine)}.validator-bar{align-items:flex-start;flex-direction:column;justify-content:center;gap:7px}.validator-grid{grid-template-columns:1fr}.message-preview{padding:38px 22px;border-right:0;border-bottom:1px solid var(--ink)}.validation-report{padding:34px 22px}.message-preview h3{font-size:44px}.validator-tabs button span{display:block;margin:0 0 5px}.validator-tabs button{min-height:68px}.report-head>div:first-child strong{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.validator-tabs button{transition:none}}
