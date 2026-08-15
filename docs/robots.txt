@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://luisroquette.github.io/motor-empiricus/sitemap.xml
+Sitemap: https://luisroquette.github.io/My_MailMKT_makes_Neil_Proud/sitemap.xml

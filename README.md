@@ -8,7 +8,7 @@
   <a href="./LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-7B2FBE.svg"></a>
   <img alt="No runtime dependencies" src="https://img.shields.io/badge/runtime_dependencies-0-D5A62E.svg">
   <img alt="Claude Code and Codex" src="https://img.shields.io/badge/works_with-Claude_Code_%2B_Codex-17131F.svg">
-  <a href="https://luisroquette.github.io/motor-empiricus/"><img alt="Product site" src="https://img.shields.io/badge/product%20site-live-681D2A.svg"></a>
+  <a href="https://luisroquette.github.io/My_MailMKT_makes_Neil_Proud/"><img alt="Product site" src="https://img.shields.io/badge/product%20site-live-681D2A.svg"></a>
 </p>
 
 ![My_MailMKT_makes_Neil_Proud turns editorial lessons, persuasive letters and follow-ups into one automated sequence](assets/hero.png)
@@ -86,8 +86,8 @@ The key loop is simple: an email points to a resource; an existing subscriber ge
 ### 1. Clone and create a campaign workspace
 
 ```bash
-git clone https://github.com/luisroquette/motor-empiricus.git
-cd motor-empiricus
+git clone https://github.com/luisroquette/My_MailMKT_makes_Neil_Proud.git
+cd My_MailMKT_makes_Neil_Proud
 node scripts/init.mjs campaigns/my-offer
 ```
 

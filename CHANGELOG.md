@@ -16,7 +16,7 @@ This project follows [Semantic Versioning](https://semver.org/).
 
 - The technical skill identifier and installation destination were separated from the repository slug for Claude Code and Codex compatibility.
 
-[1.1.1]: https://github.com/luisroquette/motor-empiricus/releases/tag/v1.1.1
+[1.1.1]: https://github.com/luisroquette/My_MailMKT_makes_Neil_Proud/releases/tag/v1.1.1
 
 ## [1.1.0] - 2026-08-08
 
@@ -39,7 +39,7 @@ This project follows [Semantic Versioning](https://semver.org/).
 - Every new validator check proven RED (violation silently passed) before the fix, then GREEN (violation caught) after — see PR description for the five adversarial fixtures used.
 - `npm test` (golden example campaign) green throughout.
 
-[1.1.0]: https://github.com/luisroquette/motor-empiricus/releases/tag/v1.1.0
+[1.1.0]: https://github.com/luisroquette/My_MailMKT_makes_Neil_Proud/releases/tag/v1.1.0
 
 ## [1.0.0] - 2026-08-07
 
@@ -53,4 +53,4 @@ This project follows [Semantic Versioning](https://semver.org/).
 - `examples/b2b-ai-training/`: complete validator-safe reference campaign.
 - CI: `npm test` on every push and pull request.
 
-[1.0.0]: https://github.com/luisroquette/motor-empiricus/releases/tag/v1.0.0
+[1.0.0]: https://github.com/luisroquette/My_MailMKT_makes_Neil_Proud/releases/tag/v1.0.0
