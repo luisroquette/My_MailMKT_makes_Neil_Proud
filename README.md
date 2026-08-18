@@ -605,7 +605,7 @@ Each finding is a regression test now. The suite can only grow.
 
 Email marketing fails in two ways: too little — leads go cold — and too much — leads unsubscribe. The v1.x content layer solved the first with the 25-day sequence; the v2.0.0 cockpit solves the second with the throttle, the dispatcher and the outbox, and the dashboard makes both visible in one screen. Together they are the engine's actual product: follow-up that earns attention without spending trust.
 
-That is the standard the name sets. An email system that makes Neil proud is not the one that sends the most — it is the one where every send is deliberate, every lead is respected, every CTA is tracked, and the operator can see the whole state in one screen. If a lead ever receives two emails in a day from this engine, the test suite fails. That is not a slogan; it is the suite — and the suite is the guarantee you can run, on your machine, in your CI, forever.
+That is the standard the name sets. An email system that makes Neil proud is not the one that sends the most — it is the one where every send is deliberate, every lead is respected, every CTA is tracked, and the operator can see the whole state in one screen. If a lead ever receives two emails in a day from this engine, the test suite fails. That is not a slogan; it is the suite — and the suite is the guarantee you can run, on your machine, in your CI, forever, on every future change, without asking anyone's permission.
 
 ---
 
