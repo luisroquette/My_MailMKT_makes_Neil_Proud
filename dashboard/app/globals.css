@@ -5,8 +5,10 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* Marca CF Gauss — accent de produto, não neutro do Precision Light */
-  --color-brand: #7b2fbe;
+  /* CF Gauss Visual Standard (memória reference_cfgauss_visual_standard) */
+  --color-brand: #7b2fbe;   /* roxo de marca — CTAs e destaque */
+  --color-ink: #1a1524;     /* texto/fundo escuro do hero (o site real usa este) */
+  --color-lilac: #c9a7ff;   /* eyebrows/kickers — uppercase, letter-spacing largo */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);

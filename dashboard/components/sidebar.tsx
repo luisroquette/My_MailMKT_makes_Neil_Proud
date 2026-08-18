@@ -18,14 +18,14 @@ export const NAV = [
 export function Sidebar() {
   const pathname = usePathname();
   return (
-    <aside className="hidden md:flex w-56 shrink-0 flex-col border-r bg-background">
-      <div className="px-4 py-5 border-b">
-        <p className="flex items-center gap-2 text-sm font-semibold tracking-tight text-foreground">
-          <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-brand" />
-          Mail MKT
+    <aside className="hidden md:flex w-56 shrink-0 flex-col bg-ink text-white">
+      <div className="px-4 py-5 border-b border-white/10">
+        <img src="/logo.png" alt="CF Gauss" className="h-9 w-9 rounded-md" />
+        <p className="mt-3 text-sm font-semibold tracking-tight text-white">Mail MKT</p>
+        <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.11em] text-lilac">
+          Motor de e-mail
         </p>
-        <p className="text-xs text-muted-foreground mt-0.5">Motor de e-mail · demo</p>
-        <Badge variant="outline" className="mt-2 font-mono text-[10px]">
+        <Badge variant="outline" className="mt-2 border-white/20 font-mono text-[10px] text-white">
           v2.0.0
         </Badge>
       </div>
@@ -39,8 +39,8 @@ export function Sidebar() {
               aria-current={ativo ? "page" : undefined}
               className={`block rounded-md px-3 py-2 text-sm ${
                 ativo
-                  ? "bg-primary/10 font-medium text-foreground"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-brand font-medium text-white"
+                  : "text-white/70 hover:bg-white/10 hover:text-white"
               }`}
             >
               {item.rotulo}
@@ -48,7 +48,7 @@ export function Sidebar() {
           );
         })}
       </nav>
-      <div className="px-4 py-3 border-t text-[11px] text-muted-foreground">
+      <div className="px-4 py-3 border-t border-white/10 text-[11px] text-white/60">
         Fidelidade: produção CF Gauss
         <br />
         dados fixos · America/Sao_Paulo
@@ -68,7 +68,7 @@ export function NavMobile() {
   return (
     <div className="md:hidden flex items-center justify-between border-b bg-background px-4 py-3">
       <p className="flex items-center gap-2 text-sm font-semibold">
-        <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-brand" />
+        <img src="/logo.png" alt="CF Gauss" className="h-6 w-6 rounded" />
         Mail MKT
       </p>
       <Sheet open={aberto} onOpenChange={setAberto}>

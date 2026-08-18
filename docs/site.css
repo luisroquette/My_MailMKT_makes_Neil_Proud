@@ -11,6 +11,9 @@
 }
 .v2-banner .eyebrow {
   color: #7B2FBE;
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 11px;
 }
 .v2-banner p {
   font-size: 1rem;
