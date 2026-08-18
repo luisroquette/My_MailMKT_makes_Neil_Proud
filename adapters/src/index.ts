@@ -1,1 +1,1 @@
-// Barrel — populated as tasks land.
+export * from "./memoria/index";
