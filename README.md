@@ -18,6 +18,12 @@
   <img alt="5 motors, 1 throttle" src="https://img.shields.io/badge/5_motors-1_throttle-681D2A.svg">
 </p>
 
+
+<p align="center">
+  <video src="assets/demo.mp4" autoplay muted loop playsinline width="640"></video><br>
+  <sub>The cockpit, animated — the throttle, the clock, the five motors in priority order</sub>
+</p>
+
 > **Independent project:** My_MailMKT_makes_Neil_Proud is not affiliated with, endorsed by, or sponsored by Neil Patel, NP Digital, or their companies. It uses established direct-response publishing patterns, never third-party copy, trademarks, or claims.
 
 ---
