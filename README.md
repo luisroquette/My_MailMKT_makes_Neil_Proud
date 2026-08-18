@@ -32,8 +32,14 @@
 - [Comandos](#comandos)
 - [Características](#características)
 - [A arquitetura do cockpit, em profundidade](#a-arquitetura-do-cockpit-em-profundidade)
+- [O núcleo, porta por porta](#o-núcleo-porta-por-porta)
+- [O runner do mail mkt, passo a passo](#o-runner-do-mail-mkt-passo-a-passo)
 - [A dashboard demo, tela por tela](#a-dashboard-demo-tela-por-tela)
 - [O contrato de fidelidade](#o-contrato-de-fidelidade)
+- [A sequência de 25 dias, em profundidade](#a-sequência-de-25-dias-em-profundidade)
+- [A dashboard e seus três estados](#a-dashboard-e-seus-três-estados)
+- [Por que "porta/adaptador" — e não um port 1:1](#por-que-portaadaptador--e-não-um-port-11)
+- [Roadmap do ecossistema](#roadmap-do-ecossistema)
 - [As decisões que moldaram este repo](#as-decisões-que-moldaram-este-repo)
 - [Em comparação com ferramentas manuais / de agência / comerciais](#em-comparação-com-ferramentas-manuais--de-agência--comerciais)
 - [Casos de uso](#casos-de-uso)
@@ -51,6 +57,8 @@
 - [Colaboradores da comunidade](#colaboradores-da-comunidade)
 - [Licença](#licença)
 - [Contribuindo](#contribuindo)
+- [Lições do port, achado por achado](#lições-do-port-achado-por-achado)
+- [A última palavra](#a-última-palavra)
 - [Autor](#autor)
 
 ---
@@ -207,6 +215,46 @@ The other four ship as contracts and specs; mail_mkt is the complete reference i
 
 ---
 
+## O núcleo, porta por porta
+
+The nucleus is TypeScript with zero runtime dependencies. Every external system is a port — an interface the engine depends on, implemented by adaptors the engine never imports. Reading the ports is reading the architecture.
+
+**`RepositorioDeNurture`** — the data side. `lerLeads` is paginated (the reference PostgREST truncates raw selects at 1000 rows silently — a capped read here means leads beyond the cap silently stop receiving email, so pagination is mandatory, not an optimization). `lerSupressoes` returns the opt-out set and is paginated the same way. `lerLogDeEnvio` reads the send log for the throttle window. `reservarNoLog` inserts the durable reservation and reports `"ok" | "duplicado" | "erro"` — the unique violation is the dedupe that makes a double-send structurally impossible.
+
+**`FilaOutbox`** — the durability side. `reservar` (new reservation, `false` when the key exists — the return value is honored, because discarding it would resend duplicates), `reivindicar` (claim an existing pending row with a lease), `concluir`, `liberar`, `listarPendentes` (for resume and dead-letter), `removerOrfas` (hard-delete never-attempted rows older than an hour), `descartar` (terminal dead-letter state).
+
+**`EnviadorDeEmail`** — the outbound side. One method, `enviar`, returning `"entregue" | "falhaDefinitiva" | "ambiguo"`. The Resend adaptor maps 4xx (except 429) to definitive, 429/5xx/timeouts to ambiguous, and adds List-Unsubscribe + one-click headers to every message — the header extraction handles "Nome <email>" senders, because a broken mailto header is a compliance failure, not a cosmetic one.
+
+**`Relogio`** — the wall clock. `agoraIso()`, `horaLocalHH()` (hour-only, truncated on purpose) and `diaDaSemanaLocal()` — all in `America/Sao_Paulo`. The engine never calls `Date#getHours()`, because the runtime is UTC and the schedule is not.
+
+**`RegistradorDeEventos`** — opens, clicks, conversions. Best-effort by contract: analytics never blocks delivery. The Supabase adaptor writes `nurture_email_events`; the demo records in memory.
+
+The in-memory adaptors implement the same ports with deterministic fixtures and a fixed clock — the test suite and the dashboard demo run on them with nothing external. Swapping adaptors is the entire migration story.
+
+---
+
+## O runner do mail mkt, passo a passo
+
+The complete journey of one campaign occurrence, in the exact order the code executes:
+
+1. **Who is due?** The dispatcher asks the agenda at the top of the hour; the marketing runner filters its campaigns by status, weekday, send hour (hour-truncated) and date bounds — `startDate` in the future means scheduled, `endDate` in the past means done.
+
+2. **Which leads?** All leads load once per round — never per campaign, or ten campaigns would scan the table ten times. The audience filter applies: segments in, sources in, minimum lead age, with unparseable creation dates excluded when a minimum is set.
+
+3. **The copy gate.** The floor runs on the campaign copy before anything is reserved. A rejected line logs its findings and the campaign is skipped — the same deterministic gate the editor runs on save.
+
+4. **Preview, for real.** In dry mode, the runner counts candidates and stops — no tracking writes, no reservations, no sends. A preview that side-effects is not a preview.
+
+5. **One tracking link per occurrence.** The CTA resolves to a `mailmkt-<slug>` tracking link once per occurrence — never per lead, which would be redundant inserts. Body links get per-destination slugs (hash plus destination prefix), so two different article links never collapse into one.
+
+6. **Per lead:** suppress first (opt-outs are checked before anything is reserved), throttle second (unless the campaign is exempt), fuse third (`esgotado` before the reservation, `consumir` only after it succeeds — a duplicate must not burn a token).
+
+7. **Reserve, then send.** The durable log reservation happens before the outbox; a unique violation means the email was already sent and the lead is skipped with `reserva_conflito`. Then the outbox runs reserve → send → complete, and `aplicarEnvio` mutates the shared throttle so the next motor in the round sees this send.
+
+8. **Count only reality.** `enviados` counts real deliveries, never attempts — an attempted candidate the sender rejects does not inflate the number, and the "zero sends with failures" alert fires on the truth.
+
+---
+
 ## A dashboard demo, tela por tela
 
 ![Cockpit hub — KPIs, per-motor blocks, alerts](assets/screenshot-hub.png)
@@ -249,6 +297,67 @@ This repository is a port of a production system. The fidelity contract states, 
 | Copy floor runs on save AND on send | `nucleo/src/piso.ts` + runner |
 
 Each rule has a regression test. A port that changes any of them is a fork, not a port.
+
+---
+
+## A sequência de 25 dias, em profundidade
+
+The sequence is the content layer inherited from v1.1.1 — ten messages across twenty-five days, three formats with three different jobs:
+
+| Dia | Formato | Função |
+|---:|---|---|
+| D+0 | lesson | Welcome and teach something immediately useful. Tease the effect of the Big Idea. |
+| D+1 | letter | Reveal and name the Big Idea. Send the reader to a relevant resource. |
+| D+3 | lesson | Deepen the reader's understanding of the problem. |
+| D+5 | echo | Revisit the thesis through evidence or a sourced fact. |
+| D+7 | lesson | Give the reader a self-service tool, scorecard or checklist. |
+| D+9 | letter | Present the low-friction conversion offer. |
+| D+12 | echo | Answer the honest objection and name the cost of delay. |
+| D+14 | lesson | Teach the reader how to evaluate any provider — including you. |
+| D+18 | letter | Make the final truthful call for the current offer. |
+| D+25 | echo | Ask whether the topic is still relevant and open a human reply path. |
+
+Three formats exist so the list never reads as ten variations of the same sales email. A lesson earns attention; a letter argues; an echo revisits. The mix is the methodology — and the methodology is preserved as data (`motores/src/mail-mkt/sequencia.ts`), so changing the days, formats or copy is a data change, not a fork.
+
+The copy discipline inherited from v1.1.1 is still the law: subjects fall into four angles (direct benefit, real scarcity, social proof, curiosity), personalization uses `{{lead.firstName}}` on the welcome and the re-engagement steps, CTAs state the outcome and never the mechanism, and every number traces to a fact-pack entry. The deterministic floor enforces what the methodology demands.
+
+---
+
+## A dashboard e seus três estados
+
+The cockpit demo demonstrates the three data states as first-class citizens — because a dashboard that cannot show "we do not know" will show "zero" instead, and a zero that is really a failure sends the operator looking at the wrong thing.
+
+**Carregando** — skeletons on the KPI tiles, the motor blocks and the alert panel. The alert panel shows skeletons, never "no alerts", for data that has not arrived: the false "all quiet" is the most expensive loading state in operations.
+
+**Vazio** — the hub renders "Nenhuma rodada registrada ainda" with the next tick time, and the campaigns screen renders "Nenhuma campanha ainda — crie a primeira". Empty states carry the next action.
+
+**Erro** — the hub renders the error card with the contract's own rule printed on it: "Leitura que falha é null — a dashboard degrada, o envio não". The retry button is there because the operator's next action is retry.
+
+The state selector (Dados/Vazio/Erro) exists in the demo on purpose: it is the demonstration of degradation, not debug clutter — every screen documents its production query next to the mock, and the swap from fixtures to queries is the integration work, not a redesign.
+
+---
+
+## Por que "porta/adaptador" — e não um port 1:1
+
+A 1:1 port would have copied the production code with Supabase and Resend hardcoded — faithful, but only runnable against one stack, and the demo would depend on a real database. The port/adaptor design costs a layer of indirection and buys three things:
+
+1. **The demo and the tests run with nothing external.** The in-memory adaptors implement the same ports with deterministic fixtures and a fixed clock — the 107 tests and the dashboard demo are self-contained, forever.
+2. **The guarantees are testable in isolation.** The throttle, the outbox and the gates are pure functions over ports — the suite exercises them without a network, and a regression in any guarantee fails in seconds.
+3. **Migration is swapping adaptors.** Moving the engine to another database, another sender or another clock is an adaptor, not a rewrite — the nucleus never imports a vendor.
+
+The fidelity contract still binds: the Supabase adaptor preserves the pagination, the unique-violation dedupe and the four atomic RPCs; the Resend adaptor preserves the mandatory headers and the error mapping. Fidelity lives in the adaptors; portability lives in the ports.
+
+---
+
+## Roadmap do ecossistema
+
+**Now — consolidation.** The three sibling skills are published and interoperating: the LP produces leads, the email engine nurtures them under the throttle, the tracking layer attributes every CTA.
+
+**Next — the four sibling motors.** mail_mkt is the complete reference implementation; the porting checklist for lancamento, esteira, digest and video_digest is documented, and each new motor follows it the way the reference engine's 16-point checklist prevented silent breakage.
+
+**Then — the unified dashboard.** The cockpit demo's documented queries and the tracking skill's metrics contract meet in one screen: sends per motor, clicks per campaign, leads by source — one place for the whole funnel.
+
+**Later — the knowledge graph.** When the motors, rules and contracts grow, the repository becomes a graph corpus, so "which rule touches which motor" is a query, not a memory.
 
 ---
 
@@ -467,6 +576,30 @@ MIT — see [LICENSE](./LICENSE).
 ## Contribuindo
 
 **Every guarantee fix lands with its regression test in the same commit.** Run `npm test` before opening a PR. Contracts change through discussion in the issue first, code second.
+
+---
+
+## Lições do port, achado por achado
+
+Two whole-branch review rounds ran before the v2.0.0 release. The findings are public because they are the difference between a port and a promise. The criticals, with their fixes:
+
+**Opt-outs were never checked by the runner.** The suppression table existed, the schema promised "checked by every motor", and the grep showed zero call sites. A lead who clicked one-click unsubscribe would keep receiving email on the next occurrence. Fix: suppression checks before any reservation, plus a regression test with a suppressed lead in the seed.
+
+**The outbox had no claim path.** The contract promised reserve → claim → complete, and the schema shipped three of four functions. A process dying between reserve and complete would leave the row in flight forever. Fix: the claim RPC with lease, the resume path with the 20-hour minimum, dead-letters with a terminal state, and the orphan cleanup that runs before the throttle loads.
+
+**Dry mode sent real email.** The preview flag was accepted and ignored — an operator running `?dry=1` to inspect a round would dispatch real sends. Fix: dry is a pure preview — no sends, no tracking writes, no orphan cleanup, no resume — and the regression test asserts zero side effects.
+
+And the importants that shaped the details: body links collapsing into one slug (fixed with per-destination slugs — hash plus prefix, because a 32-bit hash alone collides), the resume path ignoring opt-outs, the fuse burning tokens on duplicate reservations, the database priority silently switching off unlisted motors (the list is an order, never an inclusion filter), and an XSS test that passed without the escape — replaced with a real injection that fails the suite if `escapeHtml` is removed.
+
+Each finding is a regression test now. The suite can only grow.
+
+---
+
+## A última palavra
+
+Email marketing fails in two ways: too little — leads go cold — and too much — leads unsubscribe. The v1.x content layer solved the first with the 25-day sequence; the v2.0.0 cockpit solves the second with the throttle, the dispatcher and the outbox, and the dashboard makes both visible in one screen. Together they are the engine's actual product: follow-up that earns attention without spending trust.
+
+That is the standard the name sets. An email system that makes Neil proud is not the one that sends the most — it is the one where every send is deliberate, every lead is respected, every CTA is tracked, and the operator can see the whole state in one screen. If a lead ever receives two emails in a day from this engine, the test suite fails. That is not a slogan; it is the suite.
 
 ---
 
