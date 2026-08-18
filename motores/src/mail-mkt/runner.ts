@@ -175,8 +175,9 @@ export function criarRunnerMailMkt(opts: {
           continue;
         }
 
-        // Fuse consumed per SEND, after a successful reservation — a
-        // duplicate/error must not burn a token.
+        // Fuse consumed per ATTEMPT, after a successful reservation — it
+        // protects the execution budget, and duplicate/error reservations
+        // must not burn a token.
         if (!ctx.fusivel.consumir()) break;
 
         const html = renderEmail(

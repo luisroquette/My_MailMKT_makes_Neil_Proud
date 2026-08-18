@@ -82,9 +82,10 @@ export function NavMobile() {
                 <Link
                   key={item.href}
                   href={item.href}
+                  onClick={() => setAberto(false)}
                   aria-current={ativo ? "page" : undefined}
                   className={`block rounded-md px-3 py-2 text-sm ${
-                    ativo ? "bg-primary/10 font-medium" : "text-muted-foreground"
+                    ativo ? "bg-brand/15 font-semibold text-brand" : "text-muted-foreground"
                   }`}
                 >
                   {item.rotulo}
