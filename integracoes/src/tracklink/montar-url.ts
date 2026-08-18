@@ -30,7 +30,14 @@ function normalizar(v: string): string {
 }
 
 export function montarSlug(slugDaCampanha: string): string {
-  return `${SLUG_PREFIX}${normalizar(slugDaCampanha)}`.slice(0, SLUG_MAX_LENGTH).replace(/-+$/g, "");
+  const completo = `${SLUG_PREFIX}${normalizar(slugDaCampanha)}`;
+  if (completo.length <= SLUG_MAX_LENGTH) return completo;
+  // Keep the head (campaign identity) AND the tail (unique per-destination
+  // suffix) — truncating only the tail would make distinct destinations
+  // collapse into the same slug again.
+  const cabeca = completo.slice(0, 55);
+  const cauda = completo.slice(-24);
+  return `${cabeca}-${cauda}`.replace(/-+$/g, "");
 }
 
 /** Short FNV-1a hash — port of the reference hashCurto (lib/tracking-links/url.ts). */

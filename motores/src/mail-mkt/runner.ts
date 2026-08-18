@@ -87,6 +87,19 @@ export function criarRunnerMailMkt(opts: {
         continue;
       }
 
+      const alvos = candidatos(campanha, leads, agora);
+      resultado.candidatos += alvos.length;
+
+      // Preview: count candidates, skip everything — dry NEVER sends and
+      // NEVER creates tracking links (zero side effects).
+      if (ctx.dry) {
+        resultado.pulados.push({
+          email: campanha.slug,
+          motivo: `dry:${alvos.length}_candidatos`,
+        });
+        continue;
+      }
+
       // ONE tracking link per occurrence — same destination for every lead
       // of this round.
       const destinoCta = content.ctaUrl.startsWith("http")
@@ -125,18 +138,6 @@ export function criarRunnerMailMkt(opts: {
         }
       }
 
-      const alvos = candidatos(campanha, leads, agora);
-      resultado.candidatos += alvos.length;
-
-      // Preview: count candidates, skip everything — dry NEVER sends.
-      if (ctx.dry) {
-        resultado.pulados.push({
-          email: campanha.slug,
-          motivo: `dry:${alvos.length}_candidatos`,
-        });
-        continue;
-      }
-
       for (const lead of alvos) {
         if (ctx.fusivel.esgotado()) break;
 
@@ -155,9 +156,7 @@ export function criarRunnerMailMkt(opts: {
           }
         }
 
-        // Consume the fuse BEFORE the durable reservation — a reservation
-        // without a send would inflate the log and the throttle.
-        if (!ctx.fusivel.consumir()) break;
+        if (ctx.fusivel.esgotado()) break;
 
         const idempotencyKey = `mail-mkt/${campanha.id}/${lead.id}/${occId}`;
 
@@ -175,6 +174,10 @@ export function criarRunnerMailMkt(opts: {
           resultado.falhas.push({ email, erro: "reserva falhou" });
           continue;
         }
+
+        // Fuse consumed per SEND, after a successful reservation — a
+        // duplicate/error must not burn a token.
+        if (!ctx.fusivel.consumir()) break;
 
         const html = renderEmail(
           content,

@@ -176,8 +176,18 @@ export default function Regras() {
                 setSalvo(false);
                 setRegras({ ...regras, blackoutInicio: e.target.value });
               }}
-              className="mt-1 w-full rounded-md border border-input bg-background px-3 py-1.5 text-sm font-mono"
+              placeholder="HH:MM"
+              aria-invalid={erros.blackoutInicio ? true : undefined}
+              aria-describedby={erros.blackoutInicio ? "erro-blackoutInicio" : undefined}
+              className={`mt-1 w-full rounded-md border px-3 py-1.5 text-sm font-mono ${
+                erros.blackoutInicio ? "border-destructive" : "border-input bg-background"
+              }`}
             />
+            {erros.blackoutInicio ? (
+              <span id="erro-blackoutInicio" className="block text-xs text-destructive">
+                {erros.blackoutInicio}
+              </span>
+            ) : null}
           </label>
           <label className="block text-sm">
             <span className="text-muted-foreground">Blackout — fim</span>
@@ -187,8 +197,18 @@ export default function Regras() {
                 setSalvo(false);
                 setRegras({ ...regras, blackoutFim: e.target.value });
               }}
-              className="mt-1 w-full rounded-md border border-input bg-background px-3 py-1.5 text-sm font-mono"
+              placeholder="HH:MM"
+              aria-invalid={erros.blackoutFim ? true : undefined}
+              aria-describedby={erros.blackoutFim ? "erro-blackoutFim" : undefined}
+              className={`mt-1 w-full rounded-md border px-3 py-1.5 text-sm font-mono ${
+                erros.blackoutFim ? "border-destructive" : "border-input bg-background"
+              }`}
             />
+            {erros.blackoutFim ? (
+              <span id="erro-blackoutFim" className="block text-xs text-destructive">
+                {erros.blackoutFim}
+              </span>
+            ) : null}
           </label>
         </CardContent>
       </Card>

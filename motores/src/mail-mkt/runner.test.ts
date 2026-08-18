@@ -348,6 +348,18 @@ describe("REGRESSÃO lapidação L1", () => {
 
   it("nome de lead com HTML é escapado no e-mail", async () => {
     const { deps } = criarAdaptersMemoria();
+    deps.repo.lerLeads = async () => ({
+      itens: [
+        {
+          id: "x1",
+          email: "x@x.com",
+          name: '<script>alert(1)</script>',
+          createdAt: "2026-08-10T00:00:00-03:00",
+        },
+      ],
+      temMais: false,
+      offset: 0,
+    });
     const htmls: string[] = [];
     deps.enviador.enviar = async (e) => {
       htmls.push(e.html);
@@ -356,8 +368,10 @@ describe("REGRESSÃO lapidação L1", () => {
     const runner = criarRunnerMailMkt(base);
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     await runner(deps, ctx(throttle));
-    expect(htmls.join("")).not.toContain("<img src=x");
-    expect(htmls.join("")).not.toContain("{{lead.firstName}}");
+    // a tag crua NUNCA pode existir no html
+    expect(htmls.join("")).not.toContain("<script>alert(1)</script>");
+    // o escape DEVE estar presente (não é um teste vazio)
+    expect(htmls.join("")).toContain("&lt;script&gt;alert(1)&lt;/script&gt;");
   });
 
   it("copy reprovada no piso nunca sai — campanha pulada no envio", async () => {

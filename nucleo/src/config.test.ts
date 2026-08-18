@@ -17,8 +17,15 @@ describe("mesclarConfig", () => {
     expect(mesclarConfig({ horarios: { mail_mkt: "25:99" } }).horarios.mail_mkt).toBe("10:30");
   });
 
-  it("prioridade fora do enum é descartada", () => {
-    expect(mesclarConfig({ prioridade: ["digest", "lixo"] }).prioridade).toEqual(["digest"]);
+  it("prioridade fora do enum é descartada e os ausentes são anexados", () => {
+    expect(mesclarConfig({ prioridade: ["digest", "lixo"] }).prioridade).toEqual([
+      "digest", "mail_mkt", "lancamento", "esteira", "video_digest",
+    ]);
+  });
+
+  it("REGRESSÃO: prioridade é ordem, não filtro — motores ausentes são anexados", () => {
+    const c = mesclarConfig({ prioridade: ["digest"] });
+    expect(c.prioridade).toEqual(["digest", "mail_mkt", "lancamento", "esteira", "video_digest"]);
   });
 
   it("fusível inválido cai no default", () => {

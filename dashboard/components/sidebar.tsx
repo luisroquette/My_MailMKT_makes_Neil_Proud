@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -59,13 +60,18 @@ export function Sidebar() {
 /** Mobile-only top bar with a Sheet drawer — desktop keeps the fixed sidebar. */
 export function NavMobile() {
   const pathname = usePathname();
+  const [aberto, setAberto] = useState(false);
+  // close the drawer on navigation — the sheet persists across routes
+  useEffect(() => {
+    setAberto(false);
+  }, [pathname]);
   return (
     <div className="md:hidden flex items-center justify-between border-b bg-background px-4 py-3">
       <p className="flex items-center gap-2 text-sm font-semibold">
         <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-brand" />
         Mail MKT
       </p>
-      <Sheet>
+      <Sheet open={aberto} onOpenChange={setAberto}>
         <SheetTrigger className="rounded-md border px-3 py-1.5 text-sm">Menu</SheetTrigger>
         <SheetContent side="left" className="w-64">
           <SheetTitle className="sr-only">Navegação</SheetTitle>

@@ -131,7 +131,9 @@ export function mesclarConfig(parcial: unknown): ConfigNurture {
     minHorasEntreEnvios: inteiroPositivo(t.minHorasEntreEnvios) ?? base.throttle.minHorasEntreEnvios,
   };
 
-  // prioridade: keep only known motors, in the given order, deduped
+  // prioridade: keep only known motors, in the given order, deduped — then
+  // APPEND the unlisted motors. The list is an ORDER, not an inclusion
+  // filter: omitting a motor must never switch it off silently.
   const prioridadeBruta = Array.isArray(p.prioridade) ? p.prioridade : [];
   const vistos = new Set<MotorId>();
   const prioridade: MotorId[] = [];
@@ -142,7 +144,16 @@ export function mesclarConfig(parcial: unknown): ConfigNurture {
       prioridade.push(motor);
     }
   }
-  if (prioridade.length === 0) prioridade.push(...base.prioridade);
+  if (prioridade.length === 0) {
+    prioridade.push(...base.prioridade);
+    for (const motor of base.prioridade) vistos.add(motor);
+  }
+  for (const motor of base.prioridade) {
+    if (!vistos.has(motor)) {
+      vistos.add(motor);
+      prioridade.push(motor);
+    }
+  }
 
   // horarios
   const h = ehObjeto(p.horarios) ? p.horarios : {};

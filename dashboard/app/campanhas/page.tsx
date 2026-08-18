@@ -20,6 +20,12 @@ const STATUS: Record<CampanhaDemo["status"], string> = {
   completed: "Arquivada",
 };
 
+const CADENCIA: Record<CampanhaDemo["cadence"], string> = {
+  hourly: "Horária",
+  daily: "Diária",
+  weekly: "Semanal",
+};
+
 export default function Campanhas() {
   const [campanhas, setCampanhas] = useState(CAMPANHAS_DEMO);
   const [aberto, setAberto] = useState(false);
@@ -141,7 +147,7 @@ export default function Campanhas() {
               <dl className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
                 <div>
                   <dt className="text-xs text-muted-foreground">Cadência</dt>
-                  <dd className="tabular-nums">{c.cadence} · {c.sendHour}</dd>
+                  <dd className="tabular-nums">{CADENCIA[c.cadence]} · {c.sendHour}</dd>
                 </div>
                 <div>
                   <dt className="text-xs text-muted-foreground">Enviados</dt>

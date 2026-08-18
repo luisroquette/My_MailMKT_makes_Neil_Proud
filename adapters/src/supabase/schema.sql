@@ -231,3 +231,14 @@ revoke execute on function public.claim_nurture_email_outbox(text, integer) from
 revoke execute on function public.list_nurture_email_outbox_pending() from public, anon, authenticated;
 revoke execute on function public.remove_nurture_email_outbox_orfas(timestamptz) from public, anon, authenticated;
 revoke execute on function public.discard_nurture_email_outbox(text) from public, anon, authenticated;
+
+-- Explicit grants: the outbox must not depend on default privileges —
+-- outside Supabase (or after create-or-replace by another role) the
+-- functions would silently lose their executor.
+grant execute on function public.reserve_nurture_email_outbox(text, jsonb, text, text[]) to service_role;
+grant execute on function public.complete_nurture_email_outbox(text, text) to service_role;
+grant execute on function public.release_nurture_email_outbox(text, text) to service_role;
+grant execute on function public.claim_nurture_email_outbox(text, integer) to service_role;
+grant execute on function public.list_nurture_email_outbox_pending() to service_role;
+grant execute on function public.remove_nurture_email_outbox_orfas(timestamptz) to service_role;
+grant execute on function public.discard_nurture_email_outbox(text) to service_role;
