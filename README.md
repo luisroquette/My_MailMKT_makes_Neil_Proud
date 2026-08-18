@@ -559,6 +559,12 @@ Capture → nurture → attribution, one contract.
 
 **What is the success bar for this repo?** The name says it: the email marketing makes Neil proud — useful, sequenced, and disciplined. Concretely: no lead ever receives more than one email a day from this system, every CTA is tracked, every opt-out is honored, and the dashboard shows the state in one screen. If any of those fails, the test suite fails.
 
+**How do the blackout windows work?** The config holds `{inicio, fim}` pairs in HH:MM. The dispatcher checks the hour-truncated tick against every window before anything runs — ranges may cross midnight ("22:00" → "06:00"), and a window shorter than one hour is flagged with a warning, because the hour-truncated comparison cannot honor sub-hour windows.
+
+**Why is the priority order fixed in the config?** Because the reference system's order was a business decision — mail marketing before launch before drip before digest before video digest — and business decisions live in the database, merged over defaults. The dispatcher follows the config's order, never a hardcoded constant, so changing the priority is a screen edit, not a deploy.
+
+**What happens when two motors collide on the same tick?** The hour-truncated agenda marks both as due, the dispatcher runs them in priority order, and the shared throttle means the first motor's sends count against the second. The 14-day calendar marks the collision before it happens — the operator sees Tuesday's overlap on Monday.
+
 ---
 
 ## Colaboradores da comunidade
