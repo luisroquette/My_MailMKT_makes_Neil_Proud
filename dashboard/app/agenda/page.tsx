@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import type { MotorId } from "@/data/fixtures";
 
 const MOTORES: { id: MotorId; nome: string; horario: string }[] = [
@@ -27,14 +28,15 @@ export default function Agenda() {
   const [ativos, setAtivos] = useState<Record<number, boolean>>(
     Object.fromEntries(DIAS.map((d) => [d.n, true])),
   );
+  const [salvo, setSalvo] = useState(false);
 
   return (
     <div className="max-w-5xl space-y-4">
       <header>
         <h1 className="text-xl font-semibold tracking-tight">Agenda semanal</h1>
         <p className="text-sm text-muted-foreground mt-1">
-          Dias permitidos por padrão — na produção, isto vive em nurture_config e é
-          editado pela tela, nunca por deploy.
+          Dias permitidos — na produção, isto vive em nurture_config e é editado pela
+          tela, nunca por deploy.
         </p>
       </header>
 
@@ -47,7 +49,10 @@ export default function Agenda() {
             {DIAS.map((d) => (
               <button
                 key={d.n}
-                onClick={() => setAtivos((a) => ({ ...a, [d.n]: !a[d.n] }))}
+                onClick={() => {
+                  setSalvo(false);
+                  setAtivos((a) => ({ ...a, [d.n]: !a[d.n] }));
+                }}
                 className={`rounded-md border px-3 py-1.5 text-sm transition-colors ${
                   ativos[d.n]
                     ? "border-primary bg-primary/10 text-foreground"
@@ -75,6 +80,15 @@ export default function Agenda() {
               </li>
             ))}
           </ul>
+
+          <div className="flex items-center gap-3">
+            <Button onClick={() => setSalvo(true)}>Salvar dias</Button>
+            {salvo ? (
+              <Badge variant="outline" className="text-[10px]">
+                Salvo (demo — nada gravado)
+              </Badge>
+            ) : null}
+          </div>
         </CardContent>
       </Card>
     </div>

@@ -34,6 +34,8 @@ export function criarEnviadorResend(opts: OpcoesDoResend): EnviadorDeEmail {
   return {
     async enviar(e: EmailParaEnviar): Promise<ResultadoEnvio> {
       const unsubscribeUrl = `${opts.siteUrl}/unsubscribe?token=${opts.tokenDeDescadastro(e.to)}`;
+      // mailto: needs a bare address — "Nome <email@x.com>" breaks the header.
+      const emailDeResposta = (opts.replyTo ?? opts.from).match(/<([^>]+)>/)?.[1] ?? (opts.replyTo ?? opts.from).trim();
       try {
         const r = await opts.cliente.emails.send({
           from: opts.from,
@@ -42,7 +44,7 @@ export function criarEnviadorResend(opts: OpcoesDoResend): EnviadorDeEmail {
           subject: e.subject,
           html: e.html,
           headers: {
-            "List-Unsubscribe": `<mailto:${opts.replyTo ?? opts.from}?subject=unsubscribe>, <${unsubscribeUrl}>`,
+            "List-Unsubscribe": `<mailto:${emailDeResposta}?subject=unsubscribe>, <${unsubscribeUrl}>`,
             "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
           },
         });

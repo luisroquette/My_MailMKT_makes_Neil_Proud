@@ -4,9 +4,9 @@ import type {
   ResultadoDaRodada,
   RunnerDeMotor,
 } from "@mymailmkt/nucleo";
-import { enviarComOutbox, podeReceber, aplicarEnvio } from "@mymailmkt/nucleo";
+import { enviarComOutbox, podeReceber, aplicarEnvio, avaliarCopy } from "@mymailmkt/nucleo";
 import type { IntegracaoDeTracking } from "@mymailmkt/integracoes";
-import { embrulharLinksDoHtml, hashCurto } from "@mymailmkt/integracoes";
+import { embrulharLinksDoHtml, hashCurtoDestino } from "@mymailmkt/integracoes";
 import { estaAtivaNaHora, ocorrenciaId, candidatos, type CampanhaDeMarketing } from "./cadencia";
 
 /**
@@ -66,12 +66,26 @@ export function criarRunnerMailMkt(opts: {
     // EVERY motor must check it before reserving anything.
     const supressoes = await deps.repo.lerSupressoes();
 
+    // Leads loaded ONCE per round — N campaigns must not re-scan the table N times.
+    const leads = await lerTodosOsLeads(deps);
+
     for (const campanha of campanhas) {
       const occId = ocorrenciaId(campanha, hora, diaLocalISO);
       const emailType = `mail_mkt_${campanha.slug}_${occId}`;
 
       const content = await opts.lerConteudo(emailType);
       if (!content) continue;
+
+      // Copy floor on SEND: a rejected line falls back to the seed and logs —
+      // it never ships. Same deterministic gate the editor runs on save.
+      const piso = avaliarCopy({ subject: content.subject, corpo: content.corpo });
+      if (!piso.aprovado) {
+        deps.log("[mail-mkt] copy reprovada no piso — campanha pulada", {
+          campanha: campanha.slug,
+          achados: piso.achados,
+        });
+        continue;
+      }
 
       // ONE tracking link per occurrence — same destination for every lead
       // of this round.
@@ -101,7 +115,7 @@ export function criarRunnerMailMkt(opts: {
           // Slug único por destino (hash) — dois hrefs distintos NUNCA
           // colapsam no mesmo tracking link.
           const trackada = await opts.tracking.obterOuCriarLink({
-            campanhaSlug: `${campanha.slug}-corpo-${hashCurto(url)}`,
+            campanhaSlug: `${campanha.slug}-corpo-${hashCurtoDestino(url)}`,
             campanhaNome: campanha.name,
             destino: url,
           });
@@ -111,8 +125,6 @@ export function criarRunnerMailMkt(opts: {
         }
       }
 
-      // Leads: paginated read, one page at a time (never raw selects).
-      const leads = await lerTodosOsLeads(deps);
       const alvos = candidatos(campanha, leads, agora);
       resultado.candidatos += alvos.length;
 
@@ -143,6 +155,10 @@ export function criarRunnerMailMkt(opts: {
           }
         }
 
+        // Consume the fuse BEFORE the durable reservation — a reservation
+        // without a send would inflate the log and the throttle.
+        if (!ctx.fusivel.consumir()) break;
+
         const idempotencyKey = `mail-mkt/${campanha.id}/${lead.id}/${occId}`;
 
         const reserva = await deps.repo.reservarNoLog({
@@ -167,11 +183,11 @@ export function criarRunnerMailMkt(opts: {
           mapaDoCorpo,
           opts.montarUrlDescadastro(email),
         );
-        if (!ctx.fusivel.consumir()) break;
-
         const saida = await enviarComOutbox(deps, {
           to: email,
-          subject: content.subject.replace("{{lead.nome}}", lead.name.trim().split(/\s+/)[0] ?? ""),
+          subject: content.subject
+            .replaceAll("{{lead.firstName}}", lead.name.trim().split(/\s+/)[0] ?? "")
+            .replaceAll("{{lead.nome}}", lead.name.trim().split(/\s+/)[0] ?? ""),
           html,
           emailType,
           idempotencyKey,
@@ -205,9 +221,10 @@ async function lerTodosOsLeads(deps: DependenciasDoNucleo) {
 /** Collect unique hrefs from raw copy (may contain HTML anchors). */
 function coletarHrefs(html: string): string[] {
   const hrefs = new Set<string>();
-  const re = /<a\s+[^>]*href="([^"]*)"[^>]*>/gi;
+  const re = /<a\b[^>]*href=(?:"([^"]*)"|'([^']*)')/gi;
   for (const m of html.matchAll(re)) {
-    const url = m[1];
+    const url = (m[1] ?? m[2] ?? "").trim();
+    if (!url) continue;
     if (!/^mailto:/i.test(url) && !/\/unsubscribe/i.test(url)) hrefs.add(url);
   }
   return [...hrefs];
@@ -220,19 +237,33 @@ function renderEmail(
   mapaDoCorpo: Map<string, string>,
   urlDescadastro: string,
 ): string {
+  // Subject, lead name and hrefs come from untrusted sources (admin editor,
+  // LP forms) — escape them. The body remains authorial HTML by contract.
+  const subject = escapeHtml(content.subject);
+  const nomeSeguro = escapeHtml(nome);
+  const ctaSeguro = escapeHtml(ctaUrl);
+  const descadastroSeguro = escapeHtml(urlDescadastro);
   // Every promotional href of the body goes through the tracklink mapping;
   // unsubscribe/mailto anchors are exempt by contract.
   const corpoRastreado = embrulharLinksDoHtml(
-    content.corpo.replace("{{lead.nome}}", nome),
+    content.corpo.replaceAll("{{lead.firstName}}", nomeSeguro).replaceAll("{{lead.nome}}", nomeSeguro),
     (url) => mapaDoCorpo.get(url) ?? url,
   );
   return `
 <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;color:#17131F;">
-  <h1 style="font:700 22px/1.3 Arial,sans-serif;color:#7B2FBE;">${content.subject}</h1>
+  <h1 style="font:700 22px/1.3 Arial,sans-serif;color:#7B2FBE;">${subject}</h1>
   <p style="font:15px/1.6 Arial,sans-serif;">${corpoRastreado}</p>
-  <a href="${ctaUrl}" style="display:inline-block;background:#7B2FBE;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;">Quero participar</a>
+  <a href="${ctaSeguro}" style="display:inline-block;background:#7B2FBE;color:#fff;padding:12px 24px;border-radius:8px;text-decoration:none;">Quero participar</a>
   <p style="margin-top:24px;font:12px/1.5 Arial,sans-serif;color:#6b6478;">
-    <a href="${urlDescadastro}" style="color:#6b6478;">Descadastrar</a>
+    <a href="${descadastroSeguro}" style="color:#6b6478;">Descadastrar</a>
   </p>
 </div>`;
+}
+
+function escapeHtml(v: string): string {
+  return v
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
 }

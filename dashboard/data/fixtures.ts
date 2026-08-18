@@ -56,13 +56,6 @@ export const RESUMO_DO_DIA: ResumoDoDia = {
   fusivel: { usado: 6, limite: 100 },
 };
 
-export const AGENDA_DE_HOJE: { hora: string; motor: MotorId }[] = [
-  { hora: "10:00", motor: "mail_mkt" },
-  { hora: "10:00", motor: "esteira" },
-  { hora: "11:00", motor: "digest" },
-  { hora: "20:00", motor: "video_digest" },
-];
-
 // --- T18: calendar, rules, agenda, campaigns, copy ---
 
 export interface MarcacaoDoCalendario {
@@ -78,9 +71,12 @@ const DIAS_14 = Array.from({ length: 14 }, (_, i) => {
   return d.toISOString().slice(0, 10);
 });
 
+// Horários AGENDADOS (fiéis aos defaults): mail_mkt 10:30 e esteira 10:00
+// COLIDEM no mesmo tique de hora cheia (10) — é a colisão real do
+// truncamento, a mesma que o dispatcher resolve por prioridade.
 export const CALENDARIO_14_DIAS: MarcacaoDoCalendario[] = DIAS_14.flatMap((diaISO, i) => {
   const marcacoes: MarcacaoDoCalendario[] = [];
-  if (i % 2 === 0) marcacoes.push({ diaISO, hora: "10:00", motor: "mail_mkt", colide: false });
+  if (i % 2 === 0) marcacoes.push({ diaISO, hora: "10:30", motor: "mail_mkt", colide: true });
   if (i % 2 === 0) marcacoes.push({ diaISO, hora: "10:00", motor: "esteira", colide: true });
   if (i % 3 === 0) marcacoes.push({ diaISO, hora: "11:00", motor: "digest", colide: false });
   return marcacoes;
@@ -135,7 +131,7 @@ export const CAMPANHAS_DEMO: CampanhaDemo[] = [
   },
   {
     id: "c3",
-    slug: "lançamento-anterior",
+    slug: "lancamento-anterior",
     name: "Lançamento anterior",
     offerName: "Curso antigo",
     offerUrl: "https://exemplo.com.br/curso-antigo",

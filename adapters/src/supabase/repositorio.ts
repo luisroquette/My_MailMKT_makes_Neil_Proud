@@ -39,6 +39,7 @@ export interface ClienteSupabase {
 export function criarAdapterSupabase(client: ClienteSupabase): {
   repo: RepositorioDeNurture;
   fila: FilaOutbox;
+  eventos: import("@mymailmkt/nucleo").RegistradorDeEventos;
 } {
   const repo: RepositorioDeNurture = {
     async lerLeads({ offset, limite }) {
@@ -50,23 +51,36 @@ export function criarAdapterSupabase(client: ClienteSupabase): {
     },
 
     async lerSupressoes() {
-      const { data, error } = await client.from("nurture_suppressions").select("email").range(0, 999);
-      if (error || !data) return new Set<string>();
-      return new Set((data as { email: string }[]).map((l) => l.email.toLowerCase()));
+      // Paginated — a capped read would silently stop honoring opt-outs
+      // from the 1001st suppression onward (LGPD).
+      const emails = new Set<string>();
+      for (let offset = 0; ; offset += 1000) {
+        const { data, error } = await client
+          .from("nurture_suppressions")
+          .select("email")
+          .range(offset, offset + 999);
+        if (error || !data || data.length === 0) break;
+        for (const l of data as { email: string }[]) emails.add(l.email.toLowerCase());
+        if (data.length < 1000) break;
+      }
+      return emails;
     },
 
     async lerLogDeEnvio({ desde }) {
-      const { data, error } = await client
-        .from("nurture_email_log")
-        .select("*")
-        .gte("sent_at", desde)
-        .range(0, 9999);
-      if (error || !data) return [];
-      return (data as { to_email: string; email_type: string; sent_at: string }[]).map((l) => ({
-        email: l.to_email,
-        emailType: l.email_type,
-        sentAt: l.sent_at,
-      }));
+      // Paginated — a capped read would leave the throttle state incomplete
+      // and the system would send MORE, silently.
+      const linhas: { to_email: string; email_type: string; sent_at: string }[] = [];
+      for (let offset = 0; ; offset += 1000) {
+        const { data, error } = await client
+          .from("nurture_email_log")
+          .select("*")
+          .gte("sent_at", desde)
+          .range(offset, offset + 999);
+        if (error || !data || data.length === 0) break;
+        linhas.push(...(data as { to_email: string; email_type: string; sent_at: string }[]));
+        if (data.length < 1000) break;
+      }
+      return linhas.map((l) => ({ email: l.to_email, emailType: l.email_type, sentAt: l.sent_at }));
     },
 
     async reservarNoLog(r: ReservaLog) {
@@ -142,5 +156,21 @@ export function criarAdapterSupabase(client: ClienteSupabase): {
     },
   };
 
-  return { repo, fila };
+  const eventos: import("@mymailmkt/nucleo").RegistradorDeEventos = {
+    async registrar(ev) {
+      // Best-effort: analytics never blocks delivery.
+      try {
+        await client.from("nurture_email_events").insert({
+          email: ev.email,
+          email_type: ev.emailType,
+          ...(ev.tipo === "abertura" ? { opened_at: ev.em } : {}),
+          ...(ev.tipo === "clique" ? { clicked_at: ev.em, last_click_url: ev.url } : {}),
+        });
+      } catch {
+        // swallow — analytics is observability, not delivery
+      }
+    },
+  };
+
+  return { repo, fila, eventos };
 }

@@ -1,6 +1,5 @@
 import type { DependenciasDoNucleo } from "./contratos";
 import type { ConfigNurture, MotorId } from "./config";
-import { PRIORIDADE_DOS_MOTORES } from "./config";
 import { alvosDaHora, agendaPadraoDe } from "./agenda";
 import { carregarEstadoThrottle, type EstadoThrottle } from "./throttle";
 import { PRAZO_DE_LOOP_MS, limparReservasOrfas, retomarEmailsPendentes } from "./outbox";
@@ -66,6 +65,14 @@ export async function rodarDispatcher(
     deps.log("[dispatcher] dia fora dos dias permitidos", { dia });
     return { resultados: [] };
   }
+  const subHorario = config.janelas.blackout.filter(
+    (b) => b.inicio.slice(0, 2) === b.fim.slice(0, 2),
+  );
+  if (subHorario.length > 0) {
+    deps.log("[dispatcher] aviso: janela de blackout menor que 1h é ignorada pelo truncamento", {
+      janelas: subHorario,
+    });
+  }
   if (estaEmBlackout(hora, config.janelas.blackout)) {
     deps.log("[dispatcher] blackout ativo", { hora });
     return { resultados: [] };
@@ -87,16 +94,21 @@ export async function rodarDispatcher(
   let devidos = alvosDaHora(agenda, hora, dia);
 
   if (opts?.motor) devidos = devidos.filter((m) => m === opts.motor);
-  // reorder by global priority (alvosDaHora preserves agenda order, which
-  // may differ from PRIORIDADE_DOS_MOTORES)
-  const ordenados = PRIORIDADE_DOS_MOTORES.filter((m) => devidos.includes(m));
+  // reorder by the DATABASE priority (config.prioridade, editable by screen)
+  // — never by a hardcoded constant, or a custom priority would reorder the
+  // agenda but not the execution order.
+  const ordenados = config.prioridade.filter((m) => devidos.includes(m));
 
   // One shared throttle state loaded once per round — the second motor sees
   // what the first served. (Callers must clean orphan reservations BEFORE
   // this — see the reference: load-after-clean, never the reverse.)
-  // Fetch a 168h window; carregarEstadoThrottle trims to the effective
-  // window (max(24h, minHorasEntreEnvios)) in memory.
-  const desde = new Date(new Date(agora).getTime() - 168 * 60 * 60 * 1000).toISOString();
+  // Fetch exactly the effective window — max(24h, minHorasEntreEnvios);
+  // fetching more (e.g. a fixed 7 days) multiplies the read for nothing.
+  const janelaMs = Math.max(
+    24 * 60 * 60 * 1000,
+    config.throttle.minHorasEntreEnvios * 60 * 60 * 1000,
+  );
+  const desde = new Date(new Date(agora).getTime() - janelaMs).toISOString();
   const logDeEnvio = await deps.repo.lerLogDeEnvio({ desde });
   const throttle = carregarEstadoThrottle(logDeEnvio, config.throttle, agora);
 

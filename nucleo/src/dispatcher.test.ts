@@ -109,6 +109,23 @@ describe("rodarDispatcher", () => {
     expect(ordem).toEqual(["mail_mkt", "esteira"]);
   });
 
+  it("REGRESSÃO: prioridade do config (banco) vence a ordem da agenda", async () => {
+    const ordem: string[] = [];
+    const motores = {
+      mail_mkt: runnerFake("mail_mkt", ordem),
+      lancamento: runnerFake("lancamento", ordem),
+      esteira: runnerFake("esteira", ordem),
+      digest: runnerFake("digest", ordem),
+      video_digest: runnerFake("video_digest", ordem),
+    } as Record<MotorId, RunnerDeMotor>;
+    const config: ConfigNurture = {
+      ...configComTodosNaHora(),
+      prioridade: ["digest", "esteira", "mail_mkt", "lancamento", "video_digest"],
+    };
+    await rodarDispatcher(deps(), config, motores);
+    expect(ordem).toEqual(["digest", "esteira", "mail_mkt", "lancamento", "video_digest"]);
+  });
+
   it("PRAZO_DE_LOOP_MS é 240s (abaixo do maxDuration 300s)", () => {
     expect(PRAZO_DE_LOOP_MS).toBe(240_000);
   });

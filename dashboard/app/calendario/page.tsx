@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CALENDARIO_14_DIAS, type MotorId } from "@/data/fixtures";
+import { formatarDia } from "@/data/formatos";
 
 const NOME: Record<MotorId, string> = {
   mail_mkt: "Mail MKT",
@@ -49,7 +50,7 @@ export default function Calendario() {
                 <tbody>
                   {CALENDARIO_14_DIAS.map((m) => (
                     <tr key={`${m.diaISO}-${m.hora}-${m.motor}`} className="border-b last:border-0">
-                      <td className="py-2 pr-4 tabular-nums">{m.diaISO}</td>
+                      <td className="py-2 pr-4 tabular-nums">{formatarDia(m.diaISO)}</td>
                       <td className="py-2 pr-4 tabular-nums font-mono text-xs">{m.hora}</td>
                       <td className="py-2 pr-4">{NOME[m.motor]}</td>
                       <td className="py-2">

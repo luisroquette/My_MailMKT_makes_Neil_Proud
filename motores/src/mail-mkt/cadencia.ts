@@ -51,9 +51,10 @@ export function estaAtivaNaHora(
   diaLocalISO: string,
 ): boolean {
   if (c.status !== "active") return false;
+  if (c.startDate > diaLocalISO) return false; // scheduled future start
+  if (c.endDate && c.endDate < diaLocalISO) return false;
   if (!c.weekdays.includes(diaDaSemana)) return false;
   if (c.sendHour.slice(0, 2) !== horaLocal.slice(0, 2)) return false;
-  if (c.endDate && c.endDate < diaLocalISO) return false;
   return true;
 }
 

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Kpi } from "@/components/kpi";
 import { BlocoMotor } from "@/components/bloco-motor";
 import { PainelDeAlertas } from "@/components/alertas";
+import { formatarDataHora } from "@/data/formatos";
 import {
   ALERTAS,
   BLOCOS_DOS_MOTORES,
@@ -37,7 +38,7 @@ export default function Hub() {
             O que precisa de mim hoje
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Última rodada do dispatcher: {AGORA_FIXA} · America/Sao_Paulo
+            Última rodada do dispatcher: {formatarDataHora(AGORA_FIXA)} · America/Sao_Paulo
           </p>
         </div>
         <Tabs value={estado} onValueChange={(v) => setEstado(v as EstadoDemo)}>
@@ -125,7 +126,7 @@ export default function Hub() {
           </section>
 
           <section className="max-w-md">
-            <PainelDeAlertas alertas={carregando ? [] : ALERTAS} />
+            <PainelDeAlertas alertas={carregando ? null : ALERTAS} />
           </section>
         </>
       )}

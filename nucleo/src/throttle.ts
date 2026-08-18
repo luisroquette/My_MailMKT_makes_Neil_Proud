@@ -18,6 +18,14 @@ import type { RegrasThrottle } from "./config";
 
 const TIMEZONE = "America/Sao_Paulo";
 
+// Module-scoped formatter — one per process, not per check (hundreds per round).
+const FORMATADOR_DIA_LOCAL = new Intl.DateTimeFormat("en-CA", {
+  timeZone: TIMEZONE,
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit",
+});
+
 export interface EstadoThrottle {
   /** email (normalized lowercase) -> ISO send timestamps within the window. */
   enviadosPorEmail: Map<string, string[]>;
@@ -25,12 +33,7 @@ export interface EstadoThrottle {
 
 /** Local calendar day (YYYY-MM-DD) of an ISO instant in America/Sao_Paulo. */
 function diaLocal(iso: string): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: TIMEZONE,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(iso));
+  return FORMATADOR_DIA_LOCAL.format(new Date(iso));
 }
 
 export function carregarEstadoThrottle(

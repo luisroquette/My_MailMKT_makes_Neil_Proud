@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { BlocoDoMotor } from "@/data/fixtures";
+import { formatarDataHora } from "@/data/formatos";
 
 export function BlocoMotor({ bloco }: { bloco: BlocoDoMotor | null }) {
   if (!bloco) {
@@ -51,7 +52,7 @@ export function BlocoMotor({ bloco }: { bloco: BlocoDoMotor | null }) {
         )}
         <p className="mt-2 text-[11px] text-muted-foreground">
           Prioridade {bloco.prioridade} ·{" "}
-          {bloco.ultimaRodada?.executadoEm ?? "sem registro de rodada"}
+          {bloco.ultimaRodada ? formatarDataHora(bloco.ultimaRodada.executadoEm) : "sem registro de rodada"}
         </p>
       </CardContent>
     </Card>

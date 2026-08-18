@@ -65,6 +65,9 @@ const expected = [
   ["drip_25", 25, "echo"],
 ];
 
+if (rules.subjectMaxCharacters === undefined) {
+  errors.push("compliance-rules.json: subjectMaxCharacters ausente — checagem de tamanho não pode desligar silenciosamente");
+}
 const factIds = new Set((factPack.facts ?? []).map((fact) => fact.id));
 const banned = (rules.bannedPhrases ?? []).map((phrase) => phrase.toLocaleLowerCase());
 const bannedSubjectWords = (rules.bannedSubjectWords ?? []).map((word) => word.toLocaleLowerCase());

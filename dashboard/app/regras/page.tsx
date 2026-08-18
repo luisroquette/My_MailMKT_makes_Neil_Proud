@@ -35,16 +35,19 @@ export default function Regras() {
   const [regras, setRegras] = useState(DEFAULTS);
   const [salvo, setSalvo] = useState(false);
 
-  const invalidos = [
-    !Number.isInteger(regras.maxPorLeadPorDia) || regras.maxPorLeadPorDia < 1,
-    !Number.isInteger(regras.minHorasEntreEnvios) || regras.minHorasEntreEnvios < 1,
-    !ehHoraValida(regras.mailMkt),
-    !ehHoraValida(regras.esteira),
-    !ehHoraValida(regras.digest),
-    !ehHoraValida(regras.blackoutInicio),
-    !ehHoraValida(regras.blackoutFim),
-    !Number.isInteger(regras.fusivel) || regras.fusivel < 1,
-  ].filter(Boolean).length;
+  const erros: Record<string, string> = {};
+  if (!Number.isInteger(regras.maxPorLeadPorDia) || regras.maxPorLeadPorDia < 1)
+    erros.maxPorLeadPorDia = "Informe um inteiro ≥ 1";
+  if (!Number.isInteger(regras.minHorasEntreEnvios) || regras.minHorasEntreEnvios < 1)
+    erros.minHorasEntreEnvios = "Informe um inteiro ≥ 1";
+  if (!ehHoraValida(regras.mailMkt)) erros.mailMkt = "Formato HH:MM (ex.: 10:30)";
+  if (!ehHoraValida(regras.esteira)) erros.esteira = "Formato HH:MM (ex.: 10:00)";
+  if (!ehHoraValida(regras.digest)) erros.digest = "Formato HH:MM (ex.: 11:00)";
+  if (!ehHoraValida(regras.blackoutInicio)) erros.blackoutInicio = "Formato HH:MM";
+  if (!ehHoraValida(regras.blackoutFim)) erros.blackoutFim = "Formato HH:MM";
+  if (!Number.isInteger(regras.fusivel) || regras.fusivel < 1)
+    erros.fusivel = "Informe um inteiro ≥ 1";
+  const invalidos = Object.keys(erros).length;
 
   return (
     <div className="max-w-2xl space-y-4">
@@ -70,8 +73,15 @@ export default function Regras() {
                 setSalvo(false);
                 setRegras({ ...regras, maxPorLeadPorDia: Number(e.target.value) });
               }}
+              aria-invalid={erros.maxPorLeadPorDia ? true : undefined}
+              aria-describedby={erros.maxPorLeadPorDia ? "erro-maxPorLeadPorDia" : undefined}
               className="mt-1 w-32 rounded-md border border-input bg-background px-3 py-1.5 text-sm"
             />
+            {erros.maxPorLeadPorDia ? (
+              <span id="erro-maxPorLeadPorDia" className="block text-xs text-destructive">
+                {erros.maxPorLeadPorDia}
+              </span>
+            ) : null}
           </label>
           <label className="block text-sm">
             <span className="text-muted-foreground">Intervalo mínimo entre envios (horas)</span>
@@ -83,8 +93,15 @@ export default function Regras() {
                 setSalvo(false);
                 setRegras({ ...regras, minHorasEntreEnvios: Number(e.target.value) });
               }}
+              aria-invalid={erros.minHorasEntreEnvios ? true : undefined}
+              aria-describedby={erros.minHorasEntreEnvios ? "erro-minHorasEntreEnvios" : undefined}
               className="mt-1 w-32 rounded-md border border-input bg-background px-3 py-1.5 text-sm"
             />
+            {erros.minHorasEntreEnvios ? (
+              <span id="erro-minHorasEntreEnvios" className="block text-xs text-destructive">
+                {erros.minHorasEntreEnvios}
+              </span>
+            ) : null}
           </label>
         </CardContent>
       </Card>
@@ -109,10 +126,18 @@ export default function Regras() {
                   setSalvo(false);
                   setRegras({ ...regras, [chave]: e.target.value });
                 }}
+                placeholder="HH:MM"
+                aria-invalid={erros[chave] ? true : undefined}
+                aria-describedby={erros[chave] ? `erro-${chave}` : undefined}
                 className={`mt-1 w-full rounded-md border px-3 py-1.5 text-sm font-mono ${
-                  ehHoraValida(regras[chave]) ? "border-input bg-background" : "border-destructive"
+                  erros[chave] ? "border-destructive" : "border-input bg-background"
                 }`}
               />
+              {erros[chave] ? (
+                <span id={`erro-${chave}`} className="block text-xs text-destructive">
+                  {erros[chave]}
+                </span>
+              ) : null}
             </label>
           ))}
         </CardContent>
@@ -133,8 +158,15 @@ export default function Regras() {
                 setSalvo(false);
                 setRegras({ ...regras, fusivel: Number(e.target.value) });
               }}
+              aria-invalid={erros.fusivel ? true : undefined}
+              aria-describedby={erros.fusivel ? "erro-fusivel" : undefined}
               className="mt-1 w-full rounded-md border border-input bg-background px-3 py-1.5 text-sm"
             />
+            {erros.fusivel ? (
+              <span id="erro-fusivel" className="block text-xs text-destructive">
+                {erros.fusivel}
+              </span>
+            ) : null}
           </label>
           <label className="block text-sm">
             <span className="text-muted-foreground">Blackout — início</span>

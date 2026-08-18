@@ -2,3 +2,20 @@
 @media(max-width:800px){nav{height:64px;padding:0 20px}.brand{gap:7px;font-size:11px}.seal{width:32px;height:32px;font-size:9px}.nav-links>a:not(.nav-button){display:none}.hero{padding:58px 20px 32px}.hero-grid{grid-template-columns:1fr;gap:30px}.hero h1{font-size:clamp(61px,17vw,80px)}.lede{font-size:17px}.actions{align-items:flex-start;flex-direction:column;gap:12px}.letter-stage{height:470px;overflow:hidden}.letter{width:300px;height:400px;right:26px;padding:28px}.subject{font-size:37px;margin:54px 0 24px}.letter>p:not(.subject){font-size:12px}.signature{margin-top:25px}.hero-strip{overflow:hidden;white-space:nowrap}.problem,.sequence,.proof,.system,.safety,.honest{padding:76px 20px}.problem,.section-head,.safety,.honest{grid-template-columns:1fr;gap:35px}.problem>div:last-child{grid-template-columns:1fr;gap:20px}.problem h2,.section-head h2,.safety h2{font-size:54px}.timeline{grid-template-columns:1fr 1fr}.inboxes{grid-template-columns:1fr}.inboxes figure>div{height:500px}.system-grid{grid-template-columns:1fr 1fr}.system-grid article{border-bottom:1px solid var(--ink)}.system-grid article:nth-child(2n){border-right:0}.system-grid article:nth-child(n+3){border-bottom:0}.scope-grid{grid-template-columns:1fr}.scope-grid>div+div{border-left:0;border-top:1px solid var(--ink)}.final-cta{padding:80px 20px}.final-cta h2{font-size:58px}footer{padding:30px 20px;align-items:flex-start;flex-direction:column;gap:20px}}
 @media(max-width:480px){.timeline{grid-template-columns:1fr}.timeline article{min-height:150px}.timeline span{margin-bottom:22px}.system-grid{grid-template-columns:1fr}.system-grid article,.system-grid article:nth-child(n+3){min-height:220px;border-right:0;border-bottom:1px solid var(--ink)}.system-grid article:last-child{border-bottom:0}.nav-links .nav-button{font-size:0}.nav-button::after{content:'↗';font-size:15px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* v2.0.0 banner (My_MailMKT cockpit) */
+.v2-banner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 32px 8px;
+}
+.v2-banner .eyebrow {
+  color: #7B2FBE;
+}
+.v2-banner p {
+  font-size: 1rem;
+  max-width: 36rem;
+}
+.v2-banner a {
+  color: #7B2FBE;
+}

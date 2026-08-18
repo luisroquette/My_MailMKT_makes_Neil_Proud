@@ -13,7 +13,7 @@ import { COPY_DEMO, TERMOS_BANIDOS_DEMO } from "@/data/fixtures";
  */
 function avaliar(subject: string, corpo: string): string[] {
   const achados: string[] = [];
-  if (!subject.trim()) achados.push("subject vazio");
+  if (!subject.trim()) achados.push("assunto vazio");
   const texto = (subject + "\n" + corpo).toLowerCase();
   for (const termo of TERMOS_BANIDOS_DEMO) {
     if (texto.includes(termo)) achados.push(termo);
@@ -50,7 +50,7 @@ export default function EditorDeCopy() {
         </CardHeader>
         <CardContent className="p-4 pt-0 space-y-4">
           <label className="block text-sm">
-            <span className="text-muted-foreground">Subject</span>
+            <span className="text-muted-foreground">Assunto</span>
             <input
               value={subject}
               onChange={(e) => {

@@ -15,9 +15,10 @@ select
 
 /** Hub — one block per motor: last dispatch run. Read failure = null, never 0. */
 export const QUERY_ULTIMA_RODADA_POR_MOTOR = `
-select motor, horario_alvo, resultado, executado_em
+-- last run PER MOTOR (the hub renders one block per motor)
+select distinct on (motor) motor, horario_alvo, resultado, executado_em
 from public.nurture_dispatch_runs
-where executado_em = (select max(executado_em) from public.nurture_dispatch_runs);
+order by motor, executado_em desc;
 `;
 
 /** Hub — alerts. The two zero-send checks are SEPARATE in the reference. */
@@ -30,10 +31,16 @@ where (resultado->>'enviados')::int = 0 and (resultado->>'falhas')::int > 0;
 select 'campanha_zero' as tipo, slug
 from public.nurture_marketing_campaigns c
 where c.status = 'active' and c.sent_occurrences = 0;
--- outbox dead-letter (stuck > 23h)
+-- outbox dead-letter: attempted rows stuck > 23h OR never-attempted rows
+-- reserved > 23h ago (the OR matters — a NULL last_attempt_at must not
+-- escape the check silently)
 select 'dead_letter' as tipo, idempotency_key
 from public.nurture_email_outbox
-where sent_at is null and last_attempt_at < now() - interval '23 hours';
+where sent_at is null
+  and (
+    last_attempt_at < now() - interval '23 hours'
+    or (last_attempt_at is null and reserved_at < now() - interval '23 hours')
+  );
 `;
 
 /** Calendar — 14-day collision view (agenda entries per day/hour). */
@@ -44,7 +51,7 @@ where singleton = true;
 `;
 
 /** Rules — the singleton merged over CONFIG_PADRAO via mesclarConfig. */
-export const QUERY_REGRAIS = `
+export const QUERY_REGRAS = `
 select dados from public.nurture_config where singleton = true;
 `;
 

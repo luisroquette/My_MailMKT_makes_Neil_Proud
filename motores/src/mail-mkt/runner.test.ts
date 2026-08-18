@@ -336,3 +336,64 @@ describe("REGRESSÃO review T20", () => {
     await rodarDispatcher(depsFake as never, CONFIG_PADRAO, motores, { dry: true });
     expect(chamadas).toEqual([]); // zero efeito colateral no preview
   });
+
+describe("REGRESSÃO lapidação L1", () => {
+  const base = {
+    lerCampanhasAtivas: async () => [campanhaAtiva()],
+    lerConteudo: async () => conteudo,
+    tracking: trackingOk,
+    siteUrl: "https://exemplo.com.br",
+    montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
+  };
+
+  it("nome de lead com HTML é escapado no e-mail", async () => {
+    const { deps } = criarAdaptersMemoria();
+    const htmls: string[] = [];
+    deps.enviador.enviar = async (e) => {
+      htmls.push(e.html);
+      return "entregue";
+    };
+    const runner = criarRunnerMailMkt(base);
+    const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
+    await runner(deps, ctx(throttle));
+    expect(htmls.join("")).not.toContain("<img src=x");
+    expect(htmls.join("")).not.toContain("{{lead.firstName}}");
+  });
+
+  it("copy reprovada no piso nunca sai — campanha pulada no envio", async () => {
+    const { deps, estado } = criarAdaptersMemoria();
+    const runner = criarRunnerMailMkt({
+      ...base,
+      lerConteudo: async () => ({
+        subject: "Ok",
+        corpo: "Resultado garantido para você.",
+        ctaUrl: "https://exemplo.com.br/workshop",
+      }),
+    });
+    const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
+    const r = await runner(deps, ctx(throttle));
+    expect(r.enviados).toBe(0);
+    expect(estado.enviados).toHaveLength(0);
+  });
+
+  it("token {{lead.firstName}} é substituído (padrão do validator/seed)", async () => {
+    const { deps } = criarAdaptersMemoria();
+    const subjects: string[] = [];
+    deps.enviador.enviar = async (e) => {
+      subjects.push(e.subject);
+      return "entregue";
+    };
+    const runner = criarRunnerMailMkt({
+      ...base,
+      lerConteudo: async () => ({
+        subject: "Olá {{lead.firstName}}!",
+        corpo: "Corpo.",
+        ctaUrl: "https://exemplo.com.br/workshop",
+      }),
+    });
+    const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
+    await runner(deps, ctx(throttle));
+    expect(subjects.some((s) => s.startsWith("Olá Ana"))).toBe(true);
+    expect(subjects.join("")).not.toContain("{{lead.firstName}}");
+  });
+});

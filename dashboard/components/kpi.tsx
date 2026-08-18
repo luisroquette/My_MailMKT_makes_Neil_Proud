@@ -30,7 +30,7 @@ export function Kpi({ dados }: { dados: KpiDados | null }) {
           {dados.delta ? (
             <span
               className={`text-xs font-medium tabular-nums ${
-                dados.deltaDirecao === "down" ? "text-destructive" : "text-emerald-600"
+                dados.deltaDirecao === "down" ? "text-destructive" : "text-emerald-700 dark:text-emerald-400"
               }`}
             >
               {dados.deltaDirecao === "down" ? "▼" : "▲"} {dados.delta}

@@ -1,21 +1,28 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { Alerta } from "@/data/fixtures";
 
 const ROTULO: Record<Alerta["tipo"], string> = {
-  motor_zero_falhas: "Motor zerado",
+  motor_zero_falhas: "Motor com falhas",
   campanha_zero: "Campanha zerada",
   dead_letter: "Dead-letter",
 };
 
-export function PainelDeAlertas({ alertas }: { alertas: Alerta[] }) {
+/** null = loading (never show "no alerts" for data that has not arrived). */
+export function PainelDeAlertas({ alertas }: { alertas: Alerta[] | null }) {
   return (
     <Card>
       <CardHeader className="p-4 pb-2">
         <CardTitle className="text-sm font-semibold">Alertas</CardTitle>
       </CardHeader>
       <CardContent className="p-4 pt-0">
-        {alertas.length === 0 ? (
+        {alertas === null ? (
+          <div className="space-y-2">
+            <Skeleton className="h-4 w-full" />
+            <Skeleton className="h-4 w-2/3" />
+          </div>
+        ) : alertas.length === 0 ? (
           <p className="text-sm text-muted-foreground">Nenhum alerta ativo.</p>
         ) : (
           <ul className="space-y-2">

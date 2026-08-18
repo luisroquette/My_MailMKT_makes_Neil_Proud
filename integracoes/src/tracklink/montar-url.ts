@@ -33,8 +33,7 @@ export function montarSlug(slugDaCampanha: string): string {
   return `${SLUG_PREFIX}${normalizar(slugDaCampanha)}`.slice(0, SLUG_MAX_LENGTH).replace(/-+$/g, "");
 }
 
-/** Short FNV-1a hash — port of the reference hashCurto (lib/tracking-links/url.ts),
- *  used to make slugs unique per destination (body links must not collapse). */
+/** Short FNV-1a hash — port of the reference hashCurto (lib/tracking-links/url.ts). */
 export function hashCurto(value: string): string {
   let hash = 2166136261;
   for (let index = 0; index < value.length; index += 1) {
@@ -42,6 +41,13 @@ export function hashCurto(value: string): string {
     hash = Math.imul(hash, 16777619);
   }
   return (hash >>> 0).toString(36);
+}
+
+/** Slug-safe unique id per destination: hash + first chars of the normalized
+ *  URL. Hash alone collides (32-bit birthday ~77k); the prefix makes two
+ *  distinct body URLs collapse only on hash AND prefix equality. */
+export function hashCurtoDestino(url: string): string {
+  return `${hashCurto(url)}-${normalizar(url).slice(0, 8)}`;
 }
 
 export function montarUtmCampaign(slugDaCampanha: string): string {
@@ -75,11 +81,15 @@ export function montarUrlComUtms(
  * which are operational, not promotional.
  */
 export function embrulharLinksDoHtml(html: string, mapeamento: (url: string) => string): string {
-  return html.replace(/<a\s+[^>]*href="([^"]*)"[^>]*>/gi, (tag, href: string) => {
-    const cru = href;
+  // href com aspas duplas OU simples, com ou sem espaço antes do atributo —
+  // um href que o regex não alcança sai SEM tracking silenciosamente.
+  return html.replace(/<a\b[^>]*href=(?:"([^"]*)"|'([^']*)')/gi, (tag, dupla?: string, simples?: string) => {
+    const cru = (dupla ?? simples ?? "").trim();
+    if (!cru) return tag;
     if (/^mailto:/i.test(cru)) return tag;
     if (/\/unsubscribe/i.test(cru)) return tag;
     const novo = mapeamento(cru);
-    return tag.replace(href, novo);
+    // function form: `novo` may contain $ patterns — never as replacement string
+    return tag.replace(cru, () => novo);
   });
 }

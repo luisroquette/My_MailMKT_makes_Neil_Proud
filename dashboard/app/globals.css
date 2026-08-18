@@ -5,6 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Marca CF Gauss — accent de produto, não neutro do Precision Light */
+  --color-brand: #7b2fbe;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);

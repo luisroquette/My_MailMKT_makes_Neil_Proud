@@ -22,6 +22,34 @@ const STATUS: Record<CampanhaDemo["status"], string> = {
 
 export default function Campanhas() {
   const [campanhas, setCampanhas] = useState(CAMPANHAS_DEMO);
+  const [aberto, setAberto] = useState(false);
+  const [nome, setNome] = useState("");
+  const [url, setUrl] = useState("");
+
+  function criar() {
+    if (!nome.trim() || !/^https:\/\//.test(url.trim())) return;
+    setCampanhas((cs) => [
+      ...cs,
+      {
+        id: `nova-${cs.length + 1}`,
+        slug: nome.trim().toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        name: nome.trim(),
+        offerName: nome.trim(),
+        offerUrl: url.trim(),
+        status: "paused" as const,
+        cadence: "daily" as const,
+        weekdays: [0, 1, 2, 3, 4, 5, 6],
+        sendHour: "10:30",
+        intervalDays: 1,
+        audienceFilter: null,
+        throttleExempt: false,
+        sentOccurrences: 0,
+      },
+    ]);
+    setNome("");
+    setUrl("");
+    setAberto(false);
+  }
 
   // Archive = status 'completed' — NEVER delete (fidelity).
   function arquivar(id: string) {
@@ -39,7 +67,7 @@ export default function Campanhas() {
             Arquivar vira status completed — o histórico nunca é apagado.
           </p>
         </div>
-        <Dialog>
+        <Dialog open={aberto} onOpenChange={setAberto}>
           <DialogTrigger className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground">
             Nova campanha
           </DialogTrigger>
@@ -55,6 +83,8 @@ export default function Campanhas() {
               <label className="block">
                 <span className="text-muted-foreground">Nome</span>
                 <input
+                  value={nome}
+                  onChange={(e) => setNome(e.target.value)}
                   className="mt-1 w-full rounded-md border border-input bg-background px-3 py-1.5"
                   placeholder="Marketing 4.0"
                 />
@@ -62,16 +92,32 @@ export default function Campanhas() {
               <label className="block">
                 <span className="text-muted-foreground">URL da oferta (https)</span>
                 <input
+                  value={url}
+                  onChange={(e) => setUrl(e.target.value)}
                   className="mt-1 w-full rounded-md border border-input bg-background px-3 py-1.5 font-mono text-xs"
                   placeholder="https://exemplo.com.br/workshop"
                 />
               </label>
+              <Button
+                onClick={criar}
+                disabled={!nome.trim() || !/^https:\/\//.test(url.trim())}
+                className="w-full"
+              >
+                Criar campanha (demo)
+              </Button>
             </div>
           </DialogContent>
         </Dialog>
       </header>
 
       <div className="space-y-3">
+        {campanhas.length === 0 ? (
+          <Card>
+            <CardContent className="p-8 text-center text-sm text-muted-foreground">
+              Nenhuma campanha ainda — crie a primeira.
+            </CardContent>
+          </Card>
+        ) : null}
         {campanhas.map((c) => (
           <Card key={c.id}>
             <CardHeader className="p-4 pb-2">

@@ -34,6 +34,7 @@ export interface EstadoInterno {
     liberadas: string[];
     descartadas: string[];
     argumentos: Map<string, EmailParaEnviar>;
+    tentativas: Map<string, string>;
   };
   enviados: string[];
   eventos: { tipo: string; email: string; em: string }[];
@@ -87,7 +88,7 @@ export function criarAdaptersMemoria(seed?: Seed): {
     leads: [...(s.leads ?? [])],
     logDeEnvio: [...(s.logDeEnvio ?? [])],
     supressoes: new Set(s.supressoes ?? []),
-    fila: { reservadas: [], concluidas: [], liberadas: [], descartadas: [], argumentos: new Map() },
+    fila: { reservadas: [], concluidas: [], liberadas: [], descartadas: [], argumentos: new Map(), tentativas: new Map() },
     enviados: [],
     eventos: [],
   };
@@ -136,6 +137,7 @@ export function criarAdaptersMemoria(seed?: Seed): {
       }
       // liberadas podem ser reivindicadas (retry amanhã) — a política de
       // intervalo mínimo vive no núcleo (RETRY_MINIMO_MS).
+      estado.fila.tentativas.set(k, AGORA_FIXA);
       const arg = estado.fila.argumentos.get(k);
       return arg ?? null;
     },
@@ -158,7 +160,7 @@ export function criarAdaptersMemoria(seed?: Seed): {
             to: "", subject: "", html: "", emailType: "desconhecido", idempotencyKey: k,
           },
           criadoEm: AGORA_FIXA,
-          ultimaTentativaEm: estado.fila.liberadas.includes(k) ? AGORA_FIXA : null,
+          ultimaTentativaEm: estado.fila.tentativas.get(k) ?? null,
         }));
     },
     async removerOrfas(maisVelhasQue: string) {

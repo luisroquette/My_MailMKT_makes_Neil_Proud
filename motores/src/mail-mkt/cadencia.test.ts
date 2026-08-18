@@ -61,6 +61,11 @@ describe("estaAtivaNaHora", () => {
   it("endDate no passado não ativa", () => {
     expect(estaAtivaNaHora(campanha({ endDate: "2026-08-17" }), "10", 2, "2026-08-18")).toBe(false);
   });
+
+  it("REGRESSÃO: startDate no futuro não ativa (agendamento)", () => {
+    expect(estaAtivaNaHora(campanha({ startDate: "2026-08-20" }), "10", 2, "2026-08-18")).toBe(false);
+    expect(estaAtivaNaHora(campanha({ startDate: "2026-08-18" }), "10", 2, "2026-08-18")).toBe(true);
+  });
 });
 
 describe("ocorrenciaId", () => {

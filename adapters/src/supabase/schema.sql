@@ -220,3 +220,14 @@ begin
      set dead_letter_at = now()
    where idempotency_key = p_idempotency_key;
 end $$;
+
+-- CRITICAL: security-definer functions in `public` are callable via
+-- PostgREST by `anon` by default and bypass RLS. Revoke from every role
+-- except the ones the service explicitly grants.
+revoke execute on function public.reserve_nurture_email_outbox(text, jsonb, text, text[]) from public, anon, authenticated;
+revoke execute on function public.complete_nurture_email_outbox(text, text) from public, anon, authenticated;
+revoke execute on function public.release_nurture_email_outbox(text, text) from public, anon, authenticated;
+revoke execute on function public.claim_nurture_email_outbox(text, integer) from public, anon, authenticated;
+revoke execute on function public.list_nurture_email_outbox_pending() from public, anon, authenticated;
+revoke execute on function public.remove_nurture_email_outbox_orfas(timestamptz) from public, anon, authenticated;
+revoke execute on function public.discard_nurture_email_outbox(text) from public, anon, authenticated;
