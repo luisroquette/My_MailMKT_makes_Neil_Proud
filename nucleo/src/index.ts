@@ -4,3 +4,4 @@ export * from "./throttle";
 export * from "./agenda";
 export * from "./outbox";
 export * from "./dispatcher";
+export * from "./piso";
