@@ -33,6 +33,17 @@ export function montarSlug(slugDaCampanha: string): string {
   return `${SLUG_PREFIX}${normalizar(slugDaCampanha)}`.slice(0, SLUG_MAX_LENGTH).replace(/-+$/g, "");
 }
 
+/** Short FNV-1a hash — port of the reference hashCurto (lib/tracking-links/url.ts),
+ *  used to make slugs unique per destination (body links must not collapse). */
+export function hashCurto(value: string): string {
+  let hash = 2166136261;
+  for (let index = 0; index < value.length; index += 1) {
+    hash ^= value.charCodeAt(index);
+    hash = Math.imul(hash, 16777619);
+  }
+  return (hash >>> 0).toString(36);
+}
+
 export function montarUtmCampaign(slugDaCampanha: string): string {
   return `${CAMPAIGN_PREFIX}${normalizar(slugDaCampanha)}`.slice(0, UTM_CAMPAIGN_MAX_LENGTH);
 }

@@ -107,10 +107,12 @@ export interface FilaOutbox {
   reivindicar(idempotencyKey: string): Promise<EmailParaEnviar | null>;
   concluir(idempotencyKey: string): Promise<void>;
   liberar(idempotencyKey: string): Promise<void>;
-  /** Pending rows: reserved, not completed. */
+  /** Pending rows: reserved, not completed, not discarded. */
   listarPendentes(): Promise<PendenciaDaFila[]>;
   /** Hard-delete rows reserved more than `maisVelhasQue` ago, never attempted. */
   removerOrfas(maisVelhasQue: string): Promise<number>;
+  /** Terminal state for dead-letter: never relisted, never resent. */
+  descartar(idempotencyKey: string): Promise<void>;
 }
 
 export interface EnviadorDeEmail {

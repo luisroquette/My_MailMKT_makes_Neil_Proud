@@ -135,6 +135,11 @@ export function criarAdapterSupabase(client: ClienteSupabase): {
       });
       return typeof data === "number" ? data : 0;
     },
+    async descartar(idempotencyKey) {
+      await client.rpc("discard_nurture_email_outbox", {
+        p_idempotency_key: idempotencyKey,
+      });
+    },
   };
 
   return { repo, fila };

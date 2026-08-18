@@ -24,6 +24,7 @@ function deps(): DependenciasDoNucleo {
     liberar: async () => {},
     listarPendentes: async () => [],
     removerOrfas: async () => 0,
+    descartar: async () => {},
   };
   return {
     repo,

@@ -71,12 +71,17 @@ export async function rodarDispatcher(
     return { resultados: [] };
   }
 
-  // Clean orphan reservations BEFORE loading the throttle state — inverting
-  // this order makes an abandoned reservation block a legitimate lead.
-  await limparReservasOrfas(deps, agora);
+  // Dry is a pure preview: NO side effects — it must not touch orphan
+  // cleanup (hard deletes) nor resume pending rows (real sends).
+  if (opts?.dry !== true) {
+    // Clean orphan reservations BEFORE loading the throttle state —
+    // inverting this order makes an abandoned reservation block a
+    // legitimate lead.
+    await limparReservasOrfas(deps, agora);
 
-  // Resume pending outbox rows (claim/lease), dead-letter past 23h.
-  await retomarEmailsPendentes(deps, agora);
+    // Resume pending outbox rows (claim/lease), dead-letter past 23h.
+    await retomarEmailsPendentes(deps, agora);
+  }
 
   const agenda = config.agenda ?? agendaPadraoDe(config);
   let devidos = alvosDaHora(agenda, hora, dia);

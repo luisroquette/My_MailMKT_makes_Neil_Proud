@@ -6,7 +6,7 @@ import type {
 } from "@mymailmkt/nucleo";
 import { enviarComOutbox, podeReceber, aplicarEnvio } from "@mymailmkt/nucleo";
 import type { IntegracaoDeTracking } from "@mymailmkt/integracoes";
-import { embrulharLinksDoHtml } from "@mymailmkt/integracoes";
+import { embrulharLinksDoHtml, hashCurto } from "@mymailmkt/integracoes";
 import { estaAtivaNaHora, ocorrenciaId, candidatos, type CampanhaDeMarketing } from "./cadencia";
 
 /**
@@ -98,11 +98,12 @@ export function criarRunnerMailMkt(opts: {
       const mapaDoCorpo = new Map<string, string>();
       for (const url of urlsDoCorpo) {
         try {
+          // Slug único por destino (hash) — dois hrefs distintos NUNCA
+          // colapsam no mesmo tracking link.
           const trackada = await opts.tracking.obterOuCriarLink({
-            campanhaSlug: campanha.slug,
+            campanhaSlug: `${campanha.slug}-corpo-${hashCurto(url)}`,
             campanhaNome: campanha.name,
             destino: url,
-            motor: "corpo",
           });
           mapaDoCorpo.set(url, trackada);
         } catch {

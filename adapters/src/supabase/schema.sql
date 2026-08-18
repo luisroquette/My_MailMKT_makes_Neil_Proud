@@ -53,7 +53,8 @@ create table if not exists public.nurture_email_outbox (
   resend_id text,
   last_error text,
   attempt_token text,
-  lease_until timestamptz
+  lease_until timestamptz,
+  dead_letter_at timestamptz
 );
 
 -- Open/click events (reference: nurture_email_events).
@@ -182,6 +183,7 @@ begin
          last_attempt_at = now()
    where idempotency_key = p_idempotency_key
      and sent_at is null
+     and dead_letter_at is null
      and (lease_until is null or lease_until < now())
      returning email_args into v_email_args;
   return v_email_args;
@@ -195,7 +197,7 @@ returns table (
 ) language sql security definer set search_path = public as $$
   select o.idempotency_key, o.email_args, o.created_at, o.last_attempt_at
     from public.nurture_email_outbox o
-   where o.sent_at is null
+   where o.sent_at is null and o.dead_letter_at is null
 $$;
 
 -- Hard-delete orphan rows: reserved, never attempted, older than the cut.
@@ -208,3 +210,13 @@ create or replace function public.remove_nurture_email_outbox_orfas(
      returning 1
   ) select count(*)::integer from removidas
 $$;
+
+-- Terminal state for dead-letter rows: never relisted, never resent.
+create or replace function public.discard_nurture_email_outbox(
+  p_idempotency_key text
+) returns void language plpgsql security definer set search_path = public as $$
+begin
+  update public.nurture_email_outbox
+     set dead_letter_at = now()
+   where idempotency_key = p_idempotency_key;
+end $$;

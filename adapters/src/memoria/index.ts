@@ -32,6 +32,7 @@ export interface EstadoInterno {
     reservadas: string[];
     concluidas: string[];
     liberadas: string[];
+    descartadas: string[];
     argumentos: Map<string, EmailParaEnviar>;
   };
   enviados: string[];
@@ -86,7 +87,7 @@ export function criarAdaptersMemoria(seed?: Seed): {
     leads: [...(s.leads ?? [])],
     logDeEnvio: [...(s.logDeEnvio ?? [])],
     supressoes: new Set(s.supressoes ?? []),
-    fila: { reservadas: [], concluidas: [], liberadas: [], argumentos: new Map() },
+    fila: { reservadas: [], concluidas: [], liberadas: [], descartadas: [], argumentos: new Map() },
     enviados: [],
     eventos: [],
   };
@@ -127,7 +128,14 @@ export function criarAdaptersMemoria(seed?: Seed): {
     },
     async reivindicar(k: string) {
       if (!estado.fila.reservadas.includes(k)) return null;
-      if (estado.fila.concluidas.includes(k) || estado.fila.liberadas.includes(k)) return null;
+      if (
+        estado.fila.concluidas.includes(k) ||
+        estado.fila.descartadas.includes(k)
+      ) {
+        return null;
+      }
+      // liberadas podem ser reivindicadas (retry amanhã) — a política de
+      // intervalo mínimo vive no núcleo (RETRY_MINIMO_MS).
       const arg = estado.fila.argumentos.get(k);
       return arg ?? null;
     },
@@ -139,7 +147,11 @@ export function criarAdaptersMemoria(seed?: Seed): {
     },
     async listarPendentes() {
       return estado.fila.reservadas
-        .filter((k) => !estado.fila.concluidas.includes(k))
+        .filter(
+          (k) =>
+            !estado.fila.concluidas.includes(k) &&
+            !estado.fila.descartadas.includes(k),
+        )
         .map((k) => ({
           idempotencyKey: k,
           email: estado.fila.argumentos.get(k) ?? {
@@ -156,6 +168,9 @@ export function criarAdaptersMemoria(seed?: Seed): {
         (k) => estado.fila.concluidas.includes(k) || estado.fila.liberadas.includes(k),
       );
       return antes - estado.fila.reservadas.length;
+    },
+    async descartar(k: string) {
+      estado.fila.descartadas.push(k);
     },
   };
 

@@ -47,7 +47,8 @@ const conteudo: ConteudoDeEmail = {
 };
 
 const trackingOk: IntegracaoDeTracking = {
-  obterOuCriarLink: vi.fn(async () => "https://t.exemplo.com/mailmkt-marketing-4-0"),
+  obterOuCriarLink: vi.fn(async (opts: { campanhaSlug: string }) =>
+    `https://t.exemplo.com/${opts.campanhaSlug}`),
   registrarAbertura: vi.fn(async () => {}),
   registrarClique: vi.fn(async () => {}),
 };
@@ -264,6 +265,11 @@ describe("REGRESSÃO review T20", () => {
     const urlsPedidas = chamadas.map((c) => (c[0] as { destino: string }).destino);
     expect(urlsPedidas).toContain("https://exemplo.com.br/artigo-a");
     expect(urlsPedidas).toContain("https://exemplo.com.br/artigo-b");
+    // o que importa: as URLs trackadas entregues são DISTINTAS entre si
+    const trackadasNoHtml = new Set(
+      [...html.matchAll(/https:\/\/t\.exemplo\.com\/([^"\s]+)/g)].map((m) => m[0]),
+    );
+    expect(trackadasNoHtml.size).toBeGreaterThanOrEqual(2);
   });
 
   it("blackout e dia proibido zeram a rodada no dispatcher", async () => {
@@ -301,3 +307,32 @@ describe("REGRESSÃO review T20", () => {
     expect(espiao).not.toHaveBeenCalled();
   });
 });
+
+  it("dry do dispatcher NÃO toca retomada nem limpeza de órfãos", async () => {
+    const { rodarDispatcher } = await import("@mymailmkt/nucleo");
+    const chamadas: string[] = [];
+    const depsFake = {
+      repo: {
+        lerLeads: async () => ({ itens: [], temMais: false, offset: 0 }),
+        lerSupressoes: async () => new Set<string>(),
+        lerLogDeEnvio: async () => [],
+        reservarNoLog: async () => "ok" as const,
+      },
+      fila: {
+        reservar: async () => true,
+        reivindicar: async () => null,
+        concluir: async () => {},
+        liberar: async () => {},
+        listarPendentes: async () => { chamadas.push("listarPendentes"); return []; },
+        removerOrfas: async () => { chamadas.push("removerOrfas"); return 0; },
+        descartar: async () => {},
+      },
+      enviador: { enviar: vi.fn() },
+      eventos: { registrar: vi.fn() },
+      relogio: { agoraIso: () => AGORA, horaLocalHH: () => "10", diaDaSemanaLocal: () => 2 },
+      log: () => {},
+    };
+    const motores = { mail_mkt: vi.fn(async () => ({ motor: "mail_mkt" as const, candidatos: 0, enviados: 0, pulados: [], falhas: [] })) } as never;
+    await rodarDispatcher(depsFake as never, CONFIG_PADRAO, motores, { dry: true });
+    expect(chamadas).toEqual([]); // zero efeito colateral no preview
+  });

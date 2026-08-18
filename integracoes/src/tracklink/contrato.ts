@@ -32,6 +32,8 @@ export interface OpcoesDeTracking {
     destinoRastreado: string;
     nome: string;
   }) => Promise<{ ok: true } | { ok: false; codigo?: string }>;
+  /** Best-effort destination refresh on reuse (offer changed). Failure is fine. */
+  atualizarLink: (slug: string, destino: string, destinoRastreado: string) => Promise<void>;
 }
 
 /**
@@ -68,7 +70,15 @@ export function criarIntegracaoDeTracking(
           });
           return destino;
         }
-        // ok OR 23505 (reuse): the tracked link exists and is the CTA.
+        // 23505 (reuse): refresh the destination in case the offer changed —
+        // best effort, a refresh failure must not degrade the tracked URL.
+        if (!r.ok) {
+          try {
+            await opts.atualizarLink(slug, destino, destinoRastreado);
+          } catch {
+            log("[tracklink] refresh do destino falhou — segue com o destino registrado", { slug });
+          }
+        }
       } catch (erro) {
         log("[tracklink] persistência falhou — envio segue com URL crua", {
           slug,

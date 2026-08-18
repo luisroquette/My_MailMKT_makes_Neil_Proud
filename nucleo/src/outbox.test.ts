@@ -33,6 +33,7 @@ function fakeFila(): FilaOutbox & { reservas: string[]; concluidas: string[]; li
     async removerOrfas() {
       return 0;
     },
+    async descartar() {},
     async reservar(e) {
       this.reservas.push(e.idempotencyKey);
       return true;
@@ -110,9 +111,11 @@ describe("REGRESSÃO review T20 — retomada e dead-letter", () => {
         },
       ]),
       removerOrfas: vi.fn(async () => 0),
+      descartar: vi.fn(async () => {}),
     };
     const enviador = { enviar: vi.fn(async () => "entregue" as const) };
-    const depsFake = { fila, enviador, log, repo: {} as never, eventos: {} as never, relogio: {} as never };
+    const repoFake = { lerSupressoes: vi.fn(async () => new Set<string>()) };
+    const depsFake = { fila, enviador, log, repo: repoFake as never, eventos: {} as never, relogio: {} as never };
     const { retomadas, deadLetters } = await retomarEmailsPendentes(depsFake, AGORA);
     expect(retomadas).toBe(1);
     expect(deadLetters).toBe(0);
@@ -135,12 +138,14 @@ describe("REGRESSÃO review T20 — retomada e dead-letter", () => {
         },
       ]),
       removerOrfas: vi.fn(async () => 0),
+      descartar: vi.fn(async () => {}),
     };
     const enviador = { enviar: vi.fn(async () => "entregue" as const) };
     const mensagens: unknown[] = [];
+    const repoFake = { lerSupressoes: vi.fn(async () => new Set<string>()) };
     const depsFake = {
       fila, enviador, log: (m: string, meta?: unknown) => mensagens.push([m, meta]),
-      repo: {} as never, eventos: {} as never, relogio: {} as never,
+      repo: repoFake as never, eventos: {} as never, relogio: {} as never,
     };
     const { retomadas, deadLetters } = await retomarEmailsPendentes(depsFake, AGORA);
     expect(retomadas).toBe(0);
@@ -158,8 +163,10 @@ describe("REGRESSÃO review T20 — retomada e dead-letter", () => {
       liberar: vi.fn(async () => {}),
       listarPendentes: vi.fn(async () => []),
       removerOrfas: vi.fn(async () => 2),
+      descartar: vi.fn(async () => {}),
     };
-    const depsFake = { fila, enviador: { enviar: vi.fn() }, log, repo: {} as never, eventos: {} as never, relogio: {} as never };
+    const repoFake = { lerSupressoes: vi.fn(async () => new Set<string>()) };
+    const depsFake = { fila, enviador: { enviar: vi.fn() }, log, repo: repoFake as never, eventos: {} as never, relogio: {} as never };
     const removidas = await limparReservasOrfas(depsFake, AGORA);
     expect(removidas).toBe(2);
     // AGORA (10:00 BRT = 13:00Z) - 1h

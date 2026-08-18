@@ -81,28 +81,49 @@ export async function limparReservasOrfas(deps: DependenciasDoNucleo, agoraIso: 
   return removidas;
 }
 
+/** Minimum interval before a released row may be retried ("retry tomorrow"). */
+export const RETRY_MINIMO_MS = 20 * 60 * 60 * 1000;
+
 /**
- * Resume pending outbox rows: rows younger than 23h are claimed (lease) and
- * retried through the same state machine; older rows are dead-lettered with
- * an alert and never retried. Deterministic policy, no I/O beyond the ports.
+ * Resume pending outbox rows. Deterministic policy, no I/O beyond the ports:
+ *
+ * - older than 23h → dead-letter: alert + discard (terminal state, never
+ *   relisted, never resent);
+ * - last attempt less than 20h ago → skip (released rows are NOT resent in
+ *   the same day — a transient definitive failure must not loop);
+ * - suppressed email (opt-out between rounds) → release, never send;
+ * - otherwise claim (lease) and run the same state machine.
  */
 export async function retomarEmailsPendentes(
   deps: DependenciasDoNucleo,
   agoraIso: string,
 ): Promise<{ retomadas: number; deadLetters: number }> {
   const pendentes = await deps.fila.listarPendentes();
+  const supressoes = await deps.repo.lerSupressoes();
+  const agora = new Date(agoraIso).getTime();
   let retomadas = 0;
   let deadLetters = 0;
 
   for (const p of pendentes) {
-    const idadeMs = new Date(agoraIso).getTime() - new Date(p.criadoEm).getTime();
+    const idadeMs = agora - new Date(p.criadoEm).getTime();
     if (idadeMs >= DEAD_LETTER_MS) {
       deadLetters += 1;
       deps.log("[alerta] outbox dead-letter (>23h)", { idempotencyKey: p.idempotencyKey });
+      await deps.fila.descartar(p.idempotencyKey);
       continue;
+    }
+    if (p.ultimaTentativaEm) {
+      const desdeTentativa = agora - new Date(p.ultimaTentativaEm).getTime();
+      if (desdeTentativa < RETRY_MINIMO_MS) continue; // retry amanhã, não hoje
     }
     const reivindicado = await deps.fila.reivindicar(p.idempotencyKey);
     if (!reivindicado) continue;
+
+    if (supressoes.has(reivindicado.to.trim().toLowerCase())) {
+      await deps.fila.liberar(p.idempotencyKey);
+      deps.log("[outbox] retomada pulada por opt-out", { idempotencyKey: p.idempotencyKey });
+      continue;
+    }
 
     const resultado = await deps.enviador.enviar(reivindicado);
     if (resultado === "entregue") {
