@@ -4,13 +4,25 @@
   "private": true,
   "description": "Portable direct-response email system with templates and deterministic campaign validation.",
   "type": "module",
+  "workspaces": [
+    "nucleo",
+    "motores",
+    "integracoes",
+    "adapters"
+  ],
   "scripts": {
     "init": "node scripts/init.mjs",
     "validate": "node scripts/validate.mjs",
-    "test": "node scripts/validate.mjs examples/b2b-ai-training"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.0",
+    "vite-tsconfig-paths": "^6.1.1",
+    "vitest": "^2.1.0"
   },
   "license": "MIT"
 }

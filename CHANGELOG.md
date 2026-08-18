@@ -4,7 +4,20 @@ All notable changes to My_MailMKT_makes_Neil_Proud are recorded here.
 
 This project follows [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## [2.0.0] - 2026-08-18
+
+### Added
+
+- `nucleo/` — throttle compartilhado (1 e-mail/lead/dia, 20h), dispatcher por prioridade,
+  outbox durável (reserve/claim/complete/release, lease 5min, dead-letter 23h), config com
+  fallback, agenda por dia/hora com fuso America/Sao_Paulo, fusível e prazo de loop.
+- `motores/mail-mkt/` — cadência real por campanha (send_hour, interval_days, weekdays,
+  audience_filter, throttle_exempt), sequência de 25 dias como camada de conteúdo.
+- `integracoes/tracklink/` — todo CTA sai com tracking link (`mailmkt-<slug>`) + eventos.
+- `integracoes/lp/` — contrato de intake de leads.
+- `adapters/supabase` e `adapters/resend` — fiéis ao motor real da CF Gauss.
+- `adapters/memoria` — demo roda sem serviços externos.
+- `dashboard/` — demo standalone (hub, calendário 14 dias, regras, agenda, campanhas, copy).
 
 ### Changed
 
