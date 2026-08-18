@@ -1,154 +1,72 @@
 ---
 name: my-mailmkt-makes-neil-proud
-description: Design and audit compliant direct-response email systems with a 10-message lesson, letter and echo sequence; named Big Ideas; sourced claims; gated resources; and low-friction conversion offers. Use when building lead nurture, lifecycle email, launch campaigns, lead magnets, gift pages or editorial sales sequences.
+description: Build and operate a portable direct-response email system — 25-day lesson/letter/echo sequence, deterministic campaign validation, shared throttle (1 email/lead/day), single dispatcher, durable outbox, and a cockpit dashboard. Use when building lead nurture, lifecycle email, launch campaigns, lead magnets, or marketing automation that must not spam.
 ---
 
 # My_MailMKT_makes_Neil_Proud
 
-Build a direct-response publishing system that earns attention before asking for action.
+A portable direct-response email system that earns attention before asking for action — content (the 25-day sequence), control (throttle, dispatcher, outbox) and operations (dashboard), ported from a production system that stopped a lead from receiving three emails in one hour.
 
-## Required order
+## The operating cycle (5 stages)
 
-Do not write campaign copy until these inputs are explicit:
+Run the stages in order. Every stage has a deterministic validator; nothing ships past a failed gate.
 
-1. Product, price range and sales cycle.
-2. Two to six lead segments that can be resolved from real captured data.
-3. One low-friction conversion offer per segment.
-4. One useful standalone resource per segment.
-5. The final conversion channel: reply, booking, form or checkout.
-6. A fact pack with source URL, access date and allowed wording.
-7. The legal and ethical floor for the niche.
-8. Sender domain, monitored reply-to, consent and unsubscribe mechanics.
+1. **Intake** — leads enter from an LP (see `integracoes/lp/contrato.ts`): name + WhatsApp + email, source, page, UTMs. Normalization is defensive — input is untrusted, invalid fields drop, never throw.
+2. **Briefing** — before any copy: product, segments, one low-friction offer per segment, one useful resource per segment, conversion channel, fact pack (source URL + access date), the legal floor, sender domain + unsubscribe mechanics. If any item is unknown, ASK. Do not invent.
+3. **Copy + validation** — write the campaign copy, then run `npm run validate` (see `scripts/validate.mjs`). The copy floor (`nucleo/src/piso.ts`) runs on SAVE and on SEND; a rejected line falls back to the seed and logs — it never ships.
+4. **Send** — ONE dispatcher (`nucleo/src/dispatcher.ts`) asks the agenda who is due, runs motors in priority order with ONE shared throttle, reserves the durable log, sends through the outbox. Fail closed on ambiguity: never resend.
+5. **Health** — the dashboard (see `dashboard/`) shows the last round per motor, the 14-day collision calendar, rules, campaigns and the copy editor. A read that fails is `null`, never `0`.
 
-If any item is unknown, ask for it. Do not invent it.
+## The fidelity contract (never break)
 
-## The 10-message cadence
+| Rule | Where it lives |
+|---|---|
+| 1 email/lead/day + 20h minimum interval, shared across ALL motors in one round | `nucleo/src/throttle.ts` |
+| ONE cron; priority `mail_mkt > lancamento > esteira > digest > video_digest` | `nucleo/src/dispatcher.ts` |
+| Hour-only comparison, truncated on purpose — a `:00` tick reaches `:30` defaults | `nucleo/src/agenda.ts` |
+| Rules in the database, merged over `CONFIG_PADRAO`; invalid falls back, never throws | `nucleo/src/config.ts` |
+| Durable outbox: reserve → send → complete; ambiguous = fail closed | `nucleo/src/outbox.ts` |
+| Timezone `America/Sao_Paulo` always; never `Date#getHours()` | `nucleo/src/throttle.ts` |
+| Every CTA is a tracking link `mailmkt-<slug>` with UTMs; analytics never blocks delivery | `integracoes/src/tracklink/` |
+| List-Unsubscribe + one-click on EVERY message | `adapters/src/resend/` |
+| Archive = status `completed`, never delete | `dashboard/app/campanhas/` |
+| Campaign idempotency key carries the occurrence id, never `next_send_on` | `motores/src/mail-mkt/runner.ts` |
 
-| Step | Day | Format | Purpose |
-|---|---:|---|---|
-| `drip_0` | 0 | lesson | Welcome, teach, tease the effect of the Big Idea. |
-| `drip_1` | 1 | letter | Reveal and name the Big Idea. |
-| `drip_3` | 3 | lesson | Deepen understanding. |
-| `drip_5` | 5 | echo | Return through evidence or sourced data. |
-| `drip_7` | 7 | lesson | Give a tool, checklist or scorecard. |
-| `drip_9` | 9 | letter | Present the low-friction offer. |
-| `drip_12` | 12 | echo | Answer an honest objection and the cost of delay. |
-| `drip_14` | 14 | lesson | Teach how to compare solutions, including yours. |
-| `drip_18` | 18 | letter | Make the final truthful call for the offer. |
-| `drip_25` | 25 | echo | Re-engage with a simple human response path. |
+## The 25-day sequence (content layer)
 
-## Subject line
+Data of record: `motores/src/mail-mkt/sequencia.ts`. Steps: D+0 lesson (welcome), D+1 letter (Big Idea), D+3 lesson, D+5 echo, D+7 lesson (tool), D+9 letter (offer), D+12 echo (objection), D+14 lesson (how to evaluate any provider), D+18 letter (final call), D+25 echo (re-engage). Three formats with three different jobs — never ten variations of the same sales email.
 
-The subject is the first thing a lead judges — most spam reports cite the subject line alone. Every subject falls into one of four proven angles; pick the one the step actually earns, never fabricate the angle:
+## Copy discipline (v1.1.1 methodology, still the law)
 
-- **Direct benefit.** State what opening delivers. No trick, no ambiguity.
-- **Scarcity or urgency.** Only when the constraint is real — never fabricate a deadline or limited slot.
-- **Social proof or case.** A concrete, sourced result works better than a claim about the product.
-- **Curiosity.** Withhold one detail on purpose. Never withhold information the reader needs to consent or convert safely.
+- **Subjects**: four angles — direct benefit, real scarcity/urgency (never fabricated), social proof/case, curiosity. Personalize `{{lead.firstName}}` on the welcome and final re-engagement steps. Never use spam-trigger words.
+- **CTA**: state what the reader gets, not the mechanical action. "Manage more projects in less time", not "Download Now".
+- **Facts**: every number references a fact-pack entry; the validator fails a number with no fact id.
+- **Floor**: `TERMOS_BANIDOS` in `nucleo/src/piso.ts` — banned terms reject the copy deterministically.
 
-Personalize the subject with the reader's name on the steps where first impression compounds: the welcome step and the final re-engagement step, at minimum. Use the token `{{lead.firstName}}` — do not hardcode a name. When checking subject length against the project's mobile character limit, count the token as a short rendered name (a representative sample name), not the literal token text.
+## Repository map
 
-Never use a spam-trigger word in a subject line: generic urgency ("urgent", "act now", "until today"), generic free-offer bait ("free", "no cost" used as the hook itself), or a command with no benefit ("click here"). Keep the project's `bannedSubjectWords` list current for the language and market.
-
-## CTA copy
-
-State what the reader gets, not the mechanical action. "Click here" and "download now" describe the click, not the reader's outcome — replace them with the actual benefit the click delivers: `Manage more projects in less time`, not `Download Now`; `See what's slowing your queue`, not `Click Here`.
-
-`bannedSubjectWords` applies to `ctaLabel` too, for the same reason it applies to the subject: a generic command reads as filler at best and a spam signal at worst.
-
-## Formats
-
-### Lesson
-
-- Teach one usable idea.
-- Keep selling out of the body.
-- Use one practical CTA.
-- End by accurately previewing the next message.
-
-### Letter
-
-- Argue one thesis or one offer.
-- Open with the reader's name.
-- Establish two observable facts before the thesis.
-- Name the thesis in plain language.
-- Answer one honest objection.
-- Explain the real risk reversal.
-- Use one CTA and one P.S. that points to the next message.
-
-### Echo
-
-- Revisit the same thesis through a genuinely new angle.
-- Use evidence, an objection, or a final truthful call.
-- Never resend the letter in shorter form.
-
-## Resend to non-openers
-
-Do not resend every step. Pick the one or two steps where a missed open costs the most — typically the Big Idea reveal or the low-friction offer — and resend once, 5 to 7 days later, only to leads who never opened the original.
-
-- Reformulate the subject. Never resend the same subject, and never resend a shortened copy of the letter.
-- Reuse the body, CTA and postscript unchanged. The resend is a second chance at the inbox, not a second argument.
-- One resend per step, ever. A lead who ignores the resend too moves on in the sequence normally.
-- This depends on your provider reporting opens. If it doesn't, skip resends rather than guessing.
-
-## The Big Idea
-
-Create one memorable, defensible thesis per segment. It should name a structural tension in the reader's market. It should not be a product slogan.
-
-Useful formula:
-
-```text
-real market tension + memorable name + overlooked consequence for this reader
+```
+nucleo/        channel-agnostic engine (throttle, dispatcher, outbox, config, agenda, floor)
+motores/       the 5 motors — mail-mkt fully ported; esteira/digest/lancamento/video-digest as contracts
+integracoes/   tracklink (every CTA tracked) + lp (lead intake)
+adapters/      supabase (faithful) · resend (faithful) · memoria (demo runs with nothing external)
+dashboard/     standalone demo (Next.js + shadcn): hub, calendar, rules, agenda, campaigns, copy
+scripts/       validate.mjs — deterministic campaign validator (v1.1.1 + marketing contract)
+docs/          implementation guide, product site, single-entry route reference
 ```
 
-Reject a Big Idea if it depends on an unsupported forecast, fake urgency, a fabricated customer story or a guaranteed outcome.
+## Quick start
 
-## Claim discipline
+```bash
+npm install          # workspaces + vitest
+npm test             # deterministic suite, zero external services
+cd dashboard && npm install && npm run dev   # demo at localhost:3000
+npm run validate -- examples/b2b-ai-training  # deterministic campaign validation
+```
 
-- Every external number must reference a fact ID.
-- Every fact ID must include the exact claim, qualifier, source URL and access date.
-- Preserve scope: country, population, tariff, period and study conditions.
-- State foreign-study context when relevant.
-- Use conditional language for outcomes that depend on implementation.
-- Never invent testimonials, counters, deadlines, stock levels or availability.
+## Porting to a real product
 
-## Gated resource loop
-
-The email links to a useful standalone resource.
-
-- Known subscriber with a valid server-side token: open the resource.
-- Organic visitor: show the promise and capture form, then issue the token server-side.
-- Successful capture: resolve the lead segment and enter the correct sequence.
-- Locked content must not be sent to the browser in a hidden component or payload.
-
-## Re-segmentation from behavior
-
-The segment resolved at intake is the default, not a permanent label. A lead who clicks a CTA that was explicitly built to signal a different segment (a product-specific resource, a segment-tagged link) may move to that segment mid-sequence.
-
-- Only a tagged click moves a lead. Never re-segment from a soft signal — a generic click, time on page, or a guess.
-- Re-segmentation never restarts the sequence. The day clock keeps counting from the original enrollment.
-- Everything sent before the move stays as sent. Only what has not gone out yet renders under the new segment's Big Idea and facts.
-
-## Production requirements
-
-- Verified sender domain.
-- Monitored reply-to.
-- One-click unsubscribe and `List-Unsubscribe` headers.
-- Suppression list checked before every send.
-- Idempotent send log written before the provider call and released only on retryable failure.
-- A fatigue gate: skip (never cancel) the next due send for a lead whose last few messages all went unopened; log the skip, do not alert on it, and never gate a re-engagement echo.
-- Batch limits, visible failures and scheduled-job authentication.
-- Test email and full email-to-resource flow before activation.
-
-## Final audit
-
-Before approving a sequence, verify:
-
-- Ten unique steps at the intended days.
-- One format and one job per step.
-- Subject lines fit the mobile limit selected by the project.
-- Every number resolves to the fact pack.
-- One HTTPS CTA per message.
-- P.S. chain matches the actual next message.
-- No fabricated proof, fake scarcity or banned claim.
-- Consent, unsubscribe and suppression are implemented.
-- The resource is useful even if the lead never buys.
+1. Create the tables: `adapters/src/supabase/schema.sql` (portable — no hardcoded hosts).
+2. Wire the adapters: `criarAdapterSupabase(client)` + `criarEnviadorResend({ cliente, ... })`.
+3. One cron calls `rodarDispatcher` — the single-entry route reference is in `docs/ROTA-DE-REFERENCIA.md`. Never one route per motor.
+4. Point the dashboard queries at the contracts in `dashboard/src/data/contratos.ts`.

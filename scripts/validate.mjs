@@ -13,6 +13,14 @@ if (!requested) {
 const campaignDir = path.resolve(process.cwd(), requested);
 const errors = [];
 
+const TERMOS_BANIDOS = [
+  "garantido", "garantida", "garantia de retorno", "sem risco", "lucro certo",
+  "renda garantida", "certeza de resultado", "domine em", "dobre seu salário",
+  "aumento de salário", "emprego garantido",
+];
+
+const RE_HORA = /^\d{2}:\d{2}$/;
+
 async function readJson(filename) {
   const file = path.join(campaignDir, filename);
   try {
@@ -28,6 +36,12 @@ const [sequence, rules, factPack] = await Promise.all([
   readJson("compliance-rules.json"),
   readJson("fact-pack.json"),
 ]);
+
+// v2.0.0 — marketing campaign contract (optional campaign.json in the
+// directory). Deterministic: same input, same verdict. Fields follow
+// motores/src/mail-mkt/cadencia.ts (CampanhaDeMarketing) and the copy floor
+// follows nucleo/src/piso.ts (TERMOS_BANIDOS port).
+await validarCampanhaDeMarketing();
 
 try {
   const intake = await readFile(path.join(campaignDir, "intake.md"), "utf8");
@@ -188,6 +202,59 @@ function validateResends() {
       errors.push(`${prefix}.subject: must include ${personalizationToken} for this step`);
     }
   });
+}
+
+function ehHoraValida(v) {
+  if (typeof v !== "string" || !RE_HORA.test(v)) return false;
+  const [h, m] = v.split(":").map(Number);
+  return h >= 0 && h <= 23 && m >= 0 && m <= 59;
+}
+
+async function validarCampanhaDeMarketing() {
+  const file = path.join(campaignDir, "campaign.json");
+  let campanha;
+  try {
+    campanha = JSON.parse(await readFile(file, "utf8"));
+  } catch {
+    return; // campaign.json is optional — v1.1.1 directories stay valid
+  }
+
+  const camposObrigatorios = ["slug", "name", "offerName", "offerUrl", "status", "cadence", "sendHour"];
+  for (const campo of camposObrigatorios) {
+    if (typeof campanha[campo] !== "string" || campanha[campo].trim() === "") {
+      errors.push(`campaign.json: campo obrigatório ausente ou vazio: ${campo}`);
+    }
+  }
+  if (campanha.status && !["active", "paused", "completed"].includes(campanha.status)) {
+    errors.push(`campaign.json: status inválido "${campanha.status}" (active|paused|completed)`);
+  }
+  if (campanha.cadence && !["hourly", "daily", "weekly"].includes(campanha.cadence)) {
+    errors.push(`campaign.json: cadence inválida "${campanha.cadence}" (hourly|daily|weekly)`);
+  }
+  if (campanha.offerUrl && !/^https:\/\//.test(campanha.offerUrl)) {
+    errors.push(`campaign.json: offerUrl deve começar com https://`);
+  }
+  if (campanha.sendHour && !ehHoraValida(campanha.sendHour)) {
+    errors.push(`campaign.json: sendHour inválido "${campanha.sendHour}" (esperado HH:MM)`);
+  }
+  if (campanha.weekdays !== undefined) {
+    const ok = Array.isArray(campanha.weekdays)
+      && campanha.weekdays.every((d) => Number.isInteger(d) && d >= 0 && d <= 6);
+    if (!ok) errors.push("campaign.json: weekdays deve ser array de inteiros 0-6");
+  }
+  if (campanha.intervalDays !== undefined
+      && (!Number.isInteger(campanha.intervalDays) || campanha.intervalDays < 1)) {
+    errors.push("campaign.json: intervalDays deve ser inteiro >= 1");
+  }
+
+  // Copy floor — same gate that runs on save AND send in the engine.
+  const subject = typeof campanha.copy?.subject === "string" ? campanha.copy.subject : "";
+  const corpo = typeof campanha.copy?.corpo === "string" ? campanha.copy.corpo : "";
+  if (subject.trim() === "") errors.push("campaign.json: copy.subject vazio");
+  const texto = `${subject}\n${corpo}`.toLowerCase();
+  for (const termo of TERMOS_BANIDOS) {
+    if (texto.includes(termo)) errors.push(`campaign.json: copy contém termo banido "${termo}"`);
+  }
 }
 
 function finish() {
