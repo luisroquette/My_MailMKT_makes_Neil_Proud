@@ -38,29 +38,22 @@ export interface CampanhaDeMarketing {
   } | null;
 }
 
-/** Local calendar day (YYYY-MM-DD) in America/Sao_Paulo. */
-function diaLocal(iso: string): string {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: "America/Sao_Paulo",
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date(iso));
-}
-
 /**
  * Hour-only comparison, truncated on purpose: a ":00" tick reaches
- * ":30"/":45" defaults (same fidelity contract as the agenda).
+ * ":30"/":45" defaults (same fidelity contract as the agenda). Pure: the
+ * local day comes from the caller (Relogio port) — never from the real
+ * clock, so tests are deterministic at day boundaries.
  */
 export function estaAtivaNaHora(
   c: CampanhaDeMarketing,
   horaLocal: string,
   diaDaSemana: number,
+  diaLocalISO: string,
 ): boolean {
   if (c.status !== "active") return false;
   if (!c.weekdays.includes(diaDaSemana)) return false;
   if (c.sendHour.slice(0, 2) !== horaLocal.slice(0, 2)) return false;
-  if (c.endDate && c.endDate < diaLocal(new Date().toISOString())) return false;
+  if (c.endDate && c.endDate < diaLocalISO) return false;
   return true;
 }
 

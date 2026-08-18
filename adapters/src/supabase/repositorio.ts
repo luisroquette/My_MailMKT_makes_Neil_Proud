@@ -30,7 +30,10 @@ export interface ClienteSupabase {
       then<T>(onfulfilled?: (v: { data: unknown | null; error: { code?: string; message: string } | null }) => T): Promise<T>;
     };
   };
-  rpc(nome: string, args: Record<string, unknown>): Promise<{ error: { message: string } | null }>;
+  rpc(
+    nome: string,
+    args: Record<string, unknown>,
+  ): Promise<{ data?: unknown; error: { message: string } | null }>;
 }
 
 export function criarAdapterSupabase(client: ClienteSupabase): {
@@ -81,13 +84,23 @@ export function criarAdapterSupabase(client: ClienteSupabase): {
 
   const fila: FilaOutbox = {
     async reservar(e) {
-      const { error } = await client.rpc("reserve_nurture_email_outbox", {
+      // The RPC returns the INSERT "found" boolean: false = key already
+      // exists (never resend). Discarding it would send duplicates.
+      const { data, error } = await client.rpc("reserve_nurture_email_outbox", {
         p_idempotency_key: e.idempotencyKey,
         p_email_args: e,
         p_source: "nurture",
         p_source_ids: [],
       });
-      return !error;
+      if (error) return false;
+      return data !== false;
+    },
+    async reivindicar(idempotencyKey) {
+      const { data, error } = await client.rpc("claim_nurture_email_outbox", {
+        p_idempotency_key: idempotencyKey,
+      });
+      if (error || !data) return null;
+      return data as unknown as import("@mymailmkt/nucleo").EmailParaEnviar;
     },
     async concluir(idempotencyKey) {
       await client.rpc("complete_nurture_email_outbox", {
@@ -100,6 +113,27 @@ export function criarAdapterSupabase(client: ClienteSupabase): {
         p_idempotency_key: idempotencyKey,
         p_last_error: "falha definitiva — liberado para retry",
       });
+    },
+    async listarPendentes() {
+      const { data, error } = await client.rpc("list_nurture_email_outbox_pending", {});
+      if (error || !Array.isArray(data)) return [];
+      return (data as {
+        idempotency_key: string;
+        email_args: unknown;
+        created_at: string;
+        last_attempt_at: string | null;
+      }[]).map((l) => ({
+        idempotencyKey: l.idempotency_key,
+        email: l.email_args as unknown as import("@mymailmkt/nucleo").EmailParaEnviar,
+        criadoEm: l.created_at,
+        ultimaTentativaEm: l.last_attempt_at,
+      }));
+    },
+    async removerOrfas(maisVelhasQue) {
+      const { data } = await client.rpc("remove_nurture_email_outbox_orfas", {
+        p_older_than: maisVelhasQue,
+      });
+      return typeof data === "number" ? data : 0;
     },
   };
 

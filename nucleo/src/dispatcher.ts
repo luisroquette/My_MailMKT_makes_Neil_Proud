@@ -3,7 +3,8 @@ import type { ConfigNurture, MotorId } from "./config";
 import { PRIORIDADE_DOS_MOTORES } from "./config";
 import { alvosDaHora, agendaPadraoDe } from "./agenda";
 import { carregarEstadoThrottle, type EstadoThrottle } from "./throttle";
-import { PRAZO_DE_LOOP_MS } from "./outbox";
+import { PRAZO_DE_LOOP_MS, limparReservasOrfas, retomarEmailsPendentes } from "./outbox";
+import { estaEmBlackout, diaPermitido } from "./regras";
 
 export { PRAZO_DE_LOOP_MS };
 
@@ -20,6 +21,8 @@ export interface ContextoDoMotor {
   throttle: EstadoThrottle;
   horarioAlvo: string;
   fusivel: { esgotado(): boolean; consumir(): boolean };
+  /** Preview mode: runners count candidates and skip — NEVER send. */
+  dry: boolean;
 }
 
 export type RunnerDeMotor = (
@@ -57,6 +60,23 @@ export async function rodarDispatcher(
   const agora = deps.relogio.agoraIso();
   const hora = deps.relogio.horaLocalHH();
   const dia = deps.relogio.diaDaSemanaLocal();
+
+  // Operational windows from the database MUST actually stop sends.
+  if (!diaPermitido(dia, config.janelas.diasPermitidos)) {
+    deps.log("[dispatcher] dia fora dos dias permitidos", { dia });
+    return { resultados: [] };
+  }
+  if (estaEmBlackout(hora, config.janelas.blackout)) {
+    deps.log("[dispatcher] blackout ativo", { hora });
+    return { resultados: [] };
+  }
+
+  // Clean orphan reservations BEFORE loading the throttle state — inverting
+  // this order makes an abandoned reservation block a legitimate lead.
+  await limparReservasOrfas(deps, agora);
+
+  // Resume pending outbox rows (claim/lease), dead-letter past 23h.
+  await retomarEmailsPendentes(deps, agora);
 
   const agenda = config.agenda ?? agendaPadraoDe(config);
   let devidos = alvosDaHora(agenda, hora, dia);
@@ -104,6 +124,7 @@ export async function rodarDispatcher(
       throttle,
       horarioAlvo: hora,
       fusivel,
+      dry: opts?.dry === true,
     });
     resultados.push(resultado);
 

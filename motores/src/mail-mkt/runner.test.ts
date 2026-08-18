@@ -58,6 +58,7 @@ function ctx(throttle: EstadoThrottle) {
     throttle,
     horarioAlvo: "10",
     fusivel: { esgotado: () => false, consumir: () => true },
+    dry: false,
   };
 }
 
@@ -69,6 +70,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     const r = await runner(deps, ctx(throttle));
@@ -90,6 +92,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle(estado.logDeEnvio, CONFIG_PADRAO.throttle, AGORA);
     const r = await runner(deps, ctx(throttle));
@@ -109,6 +112,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle(estado.logDeEnvio, CONFIG_PADRAO.throttle, AGORA);
     const r = await runner(deps, ctx(throttle));
@@ -129,6 +133,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingRuim,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     const r = await runner(deps, ctx(throttle));
@@ -142,6 +147,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     await runner(deps, ctx(throttle));
@@ -161,6 +167,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     const r = await runner(deps, ctx(throttle));
@@ -179,6 +186,7 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     await runner(deps, ctx(throttle));
@@ -197,11 +205,99 @@ describe("runner mail mkt", () => {
       lerConteudo: async () => conteudo,
       tracking: trackingOk,
       siteUrl: "https://exemplo.com.br",
+      montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
     });
     const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
     const r = await runner(deps, ctx(throttle));
     expect(r.enviados).toBe(1);
     expect(r.falhas).toHaveLength(2);
     deps.enviador.enviar = original;
+  });
+});
+
+describe("REGRESSÃO review T20", () => {
+  const base = {
+    lerCampanhasAtivas: async () => [campanhaAtiva()],
+    lerConteudo: async () => conteudo,
+    tracking: trackingOk,
+    siteUrl: "https://exemplo.com.br",
+    montarUrlDescadastro: (email: string) => `https://exemplo.com.br/unsubscribe?token=${email}`,
+  };
+
+  it("lead suprimido (opt-out) é pulado com motivo suprimido — LGPD", async () => {
+    const { deps, estado } = criarAdaptersMemoria();
+    estado.supressoes = new Set(["ana@empresa.com.br"]);
+    const runner = criarRunnerMailMkt(base);
+    const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
+    const r = await runner(deps, ctx(throttle));
+    expect(r.enviados).toBe(2);
+    expect(r.pulados.find((p) => p.email === "ana@empresa.com.br")?.motivo).toBe("suprimido");
+  });
+
+  it("dry conta candidatos e NUNCA envia", async () => {
+    const { deps, estado } = criarAdaptersMemoria();
+    const runner = criarRunnerMailMkt(base);
+    const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
+    const r = await runner(deps, { ...ctx(throttle), dry: true });
+    expect(r.enviados).toBe(0);
+    expect(estado.enviados).toHaveLength(0);
+    expect(r.pulados[0]?.motivo).toBe("dry:3_candidatos");
+  });
+
+  it("links do corpo passam pelo tracking e o descadastro leva token real", async () => {
+    const { deps } = criarAdaptersMemoria();
+    const conteudoComLinks: ConteudoDeEmail = {
+      subject: "S",
+      corpo: '<p>Leia <a href="https://exemplo.com.br/artigo-a">aqui</a> e <a href="https://exemplo.com.br/artigo-b">aqui</a>.</p>',
+      ctaUrl: "https://exemplo.com.br/workshop",
+    };
+    const enviador = { enviar: vi.fn(async (e: { html: string }) => { htmls.push(e.html); return "entregue" as const; }) };
+    const htmls: string[] = [];
+    const runner = criarRunnerMailMkt({ ...base, lerConteudo: async () => conteudoComLinks });
+    deps.enviador.enviar = enviador.enviar as never;
+    const throttle = carregarEstadoThrottle([], CONFIG_PADRAO.throttle, AGORA);
+    await runner(deps, ctx(throttle));
+    const html = htmls[0]!;
+    expect(html).toContain("https://exemplo.com.br/unsubscribe?token=ana@empresa.com.br");
+    // corpo embrulhado: o tracking foi chamado para cada URL única do corpo
+    const chamadas = (trackingOk.obterOuCriarLink as ReturnType<typeof vi.fn>).mock.calls;
+    const urlsPedidas = chamadas.map((c) => (c[0] as { destino: string }).destino);
+    expect(urlsPedidas).toContain("https://exemplo.com.br/artigo-a");
+    expect(urlsPedidas).toContain("https://exemplo.com.br/artigo-b");
+  });
+
+  it("blackout e dia proibido zeram a rodada no dispatcher", async () => {
+    const { rodarDispatcher } = await import("@mymailmkt/nucleo");
+    const depsFake = {
+      repo: {
+        lerLeads: async () => ({ itens: [], temMais: false, offset: 0 }),
+        lerSupressoes: async () => new Set<string>(),
+        lerLogDeEnvio: async () => [],
+        reservarNoLog: async () => "ok" as const,
+      },
+      fila: {
+        reservar: async () => true,
+        reivindicar: async () => null,
+        concluir: async () => {},
+        liberar: async () => {},
+        listarPendentes: async () => [],
+        removerOrfas: async () => 0,
+      },
+      enviador: { enviar: vi.fn() },
+      eventos: { registrar: vi.fn() },
+      relogio: { agoraIso: () => AGORA, horaLocalHH: () => "23", diaDaSemanaLocal: () => 2 },
+      log: () => {},
+    };
+    const espiao = vi.fn(async () => ({ motor: "mail_mkt" as const, candidatos: 0, enviados: 0, pulados: [], falhas: [] }));
+    const motores = { mail_mkt: espiao } as never;
+    const configComBlackout = { ...CONFIG_PADRAO, janelas: { ...CONFIG_PADRAO.janelas, blackout: [{ inicio: "22:00", fim: "06:00" }] } };
+    const r = await rodarDispatcher(depsFake as never, configComBlackout, motores);
+    expect(r.resultados).toEqual([]);
+    expect(espiao).not.toHaveBeenCalled();
+
+    const configDiaProibido = { ...CONFIG_PADRAO, janelas: { ...CONFIG_PADRAO.janelas, diasPermitidos: [1] } };
+    const r2 = await rodarDispatcher(depsFake as never, configDiaProibido, motores);
+    expect(r2.resultados).toEqual([]);
+    expect(espiao).not.toHaveBeenCalled();
   });
 });

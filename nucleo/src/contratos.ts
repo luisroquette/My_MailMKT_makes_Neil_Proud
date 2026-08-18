@@ -91,10 +91,26 @@ export interface RepositorioDeNurture {
   reservarNoLog(r: ReservaLog): Promise<ResultadoReserva>;
 }
 
+export interface PendenciaDaFila {
+  idempotencyKey: string;
+  email: EmailParaEnviar;
+  /** ISO of the first reservation. */
+  criadoEm: string;
+  /** ISO of the last attempt, or null if never attempted. */
+  ultimaTentativaEm: string | null;
+}
+
 export interface FilaOutbox {
+  /** New reservation. false = the idempotency key already exists (never resend). */
   reservar(e: EmailParaEnviar): Promise<boolean>;
+  /** Claim an EXISTING pending row with a lease (retry path). null = not claimable. */
+  reivindicar(idempotencyKey: string): Promise<EmailParaEnviar | null>;
   concluir(idempotencyKey: string): Promise<void>;
   liberar(idempotencyKey: string): Promise<void>;
+  /** Pending rows: reserved, not completed. */
+  listarPendentes(): Promise<PendenciaDaFila[]>;
+  /** Hard-delete rows reserved more than `maisVelhasQue` ago, never attempted. */
+  removerOrfas(maisVelhasQue: string): Promise<number>;
 }
 
 export interface EnviadorDeEmail {

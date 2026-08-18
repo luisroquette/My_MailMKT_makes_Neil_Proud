@@ -1,4 +1,4 @@
-import type { EnviadorDeEmail, FilaOutbox, EmailParaEnviar } from "./contratos";
+import type { EnviadorDeEmail, FilaOutbox, EmailParaEnviar, DependenciasDoNucleo } from "./contratos";
 
 /**
  * Durable outbox protocol — the guarantee that an email is delivered exactly
@@ -62,4 +62,57 @@ export async function enviarComOutbox(
     idempotencyKey: e.idempotencyKey,
   });
   return { resultado: "reagendado", detalhe: "resultado ambíguo — reserva preservada" };
+}
+
+/** Orphan cleanup window: reserved, never attempted, older than 1h. */
+export const ORFAO_MS = 60 * 60 * 1000;
+
+/**
+ * Hard-delete orphan outbox rows (reserved > 1h ago, never attempted).
+ * MUST run BEFORE the throttle state is loaded — inverting the order makes
+ * an abandoned reservation block a legitimate lead across all motors.
+ */
+export async function limparReservasOrfas(deps: DependenciasDoNucleo, agoraIso: string): Promise<number> {
+  const corte = new Date(new Date(agoraIso).getTime() - ORFAO_MS).toISOString();
+  const removidas = await deps.fila.removerOrfas(corte);
+  if (removidas > 0) {
+    deps.log("[outbox] reservas órfãs removidas", { removidas });
+  }
+  return removidas;
+}
+
+/**
+ * Resume pending outbox rows: rows younger than 23h are claimed (lease) and
+ * retried through the same state machine; older rows are dead-lettered with
+ * an alert and never retried. Deterministic policy, no I/O beyond the ports.
+ */
+export async function retomarEmailsPendentes(
+  deps: DependenciasDoNucleo,
+  agoraIso: string,
+): Promise<{ retomadas: number; deadLetters: number }> {
+  const pendentes = await deps.fila.listarPendentes();
+  let retomadas = 0;
+  let deadLetters = 0;
+
+  for (const p of pendentes) {
+    const idadeMs = new Date(agoraIso).getTime() - new Date(p.criadoEm).getTime();
+    if (idadeMs >= DEAD_LETTER_MS) {
+      deadLetters += 1;
+      deps.log("[alerta] outbox dead-letter (>23h)", { idempotencyKey: p.idempotencyKey });
+      continue;
+    }
+    const reivindicado = await deps.fila.reivindicar(p.idempotencyKey);
+    if (!reivindicado) continue;
+
+    const resultado = await deps.enviador.enviar(reivindicado);
+    if (resultado === "entregue") {
+      await deps.fila.concluir(p.idempotencyKey);
+      retomadas += 1;
+    } else if (resultado === "falhaDefinitiva") {
+      await deps.fila.liberar(p.idempotencyKey);
+    }
+    // ambiguous: fail closed, reservation preserved, next round tries again.
+  }
+
+  return { retomadas, deadLetters };
 }

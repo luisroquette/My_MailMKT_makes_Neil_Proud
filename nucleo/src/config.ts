@@ -166,13 +166,16 @@ export function mesclarConfig(parcial: unknown): ConfigNurture {
       ? p.timezone.trim()
       : base.timezone;
 
-  // janelas
+  // janelas — a fully-invalid array falls back to the default, never to an
+  // empty list (an empty list would silently switch off every day).
   const j = ehObjeto(p.janelas) ? p.janelas : {};
-  const diasPermitidos = Array.isArray(j.diasPermitidos)
+  const diasPermitidosFiltrados = Array.isArray(j.diasPermitidos)
     ? (j.diasPermitidos.filter(
         (d): d is number => typeof d === "number" && Number.isInteger(d) && d >= 0 && d <= 6,
       ))
     : base.janelas.diasPermitidos;
+  const diasPermitidos =
+    diasPermitidosFiltrados.length > 0 ? diasPermitidosFiltrados : base.janelas.diasPermitidos;
   const blackout = Array.isArray(j.blackout)
     ? (j.blackout as unknown[]).filter(
         (b): b is JanelaDeBlackout => ehObjeto(b) && ehHoraValida(b.inicio) && ehHoraValida(b.fim),

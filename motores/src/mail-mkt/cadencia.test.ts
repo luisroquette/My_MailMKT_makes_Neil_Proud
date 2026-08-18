@@ -40,26 +40,26 @@ const lead = (parcial: Partial<LeadNurture> = {}): LeadNurture => ({
 
 describe("estaAtivaNaHora", () => {
   it("sendHour :30 é alcançado pelo tique de hora cheia (truncado)", () => {
-    expect(estaAtivaNaHora(campanha({ sendHour: "10:30" }), "10", 2)).toBe(true);
+    expect(estaAtivaNaHora(campanha({ sendHour: "10:30" }), "10", 2, "2026-08-18")).toBe(true);
   });
 
   it("hora diferente não ativa", () => {
-    expect(estaAtivaNaHora(campanha({ sendHour: "10:30" }), "11", 2)).toBe(false);
+    expect(estaAtivaNaHora(campanha({ sendHour: "10:30" }), "11", 2, "2026-08-18")).toBe(false);
   });
 
   it("weekdays filtra", () => {
     const c = campanha({ sendHour: "10:30", weekdays: [1] });
-    expect(estaAtivaNaHora(c, "10", 1)).toBe(true);
-    expect(estaAtivaNaHora(c, "10", 2)).toBe(false);
+    expect(estaAtivaNaHora(c, "10", 1, "2026-08-18")).toBe(true);
+    expect(estaAtivaNaHora(c, "10", 2, "2026-08-18")).toBe(false);
   });
 
   it("status não-active nunca ativa", () => {
-    expect(estaAtivaNaHora(campanha({ status: "paused" }), "10", 2)).toBe(false);
-    expect(estaAtivaNaHora(campanha({ status: "completed" }), "10", 2)).toBe(false);
+    expect(estaAtivaNaHora(campanha({ status: "paused" }), "10", 2, "2026-08-18")).toBe(false);
+    expect(estaAtivaNaHora(campanha({ status: "completed" }), "10", 2, "2026-08-18")).toBe(false);
   });
 
   it("endDate no passado não ativa", () => {
-    expect(estaAtivaNaHora(campanha({ endDate: "2026-08-17" }), "10", 2)).toBe(false);
+    expect(estaAtivaNaHora(campanha({ endDate: "2026-08-17" }), "10", 2, "2026-08-18")).toBe(false);
   });
 });
 

@@ -17,9 +17,17 @@ function deps(): DependenciasDoNucleo {
     lerLogDeEnvio: async () => [],
     reservarNoLog: async () => "ok",
   };
+  const fila: FilaOutbox = {
+    reservar: async () => true,
+    reivindicar: async () => null,
+    concluir: async () => {},
+    liberar: async () => {},
+    listarPendentes: async () => [],
+    removerOrfas: async () => 0,
+  };
   return {
     repo,
-    fila: {} as FilaOutbox,
+    fila,
     enviador: {} as EnviadorDeEmail,
     eventos: {} as RegistradorDeEventos,
     relogio,
@@ -27,25 +35,15 @@ function deps(): DependenciasDoNucleo {
   };
 }
 
-function runnerFake(nome: MotorId, enviados: string[], compartilhado?: { viuThrottle: boolean }) {
-  const runner: RunnerDeMotor = async (d, ctx) => {
+function runnerFake(nome: MotorId, enviados: string[]) {
+  const runner: RunnerDeMotor = async () => {
     const resultado: ResultadoDaRodada = {
       motor: nome,
       candidatos: 1,
-      enviados: 0,
+      enviados: 1,
       pulados: [],
       falhas: [],
     };
-    // simula um envio pro lead compartilhado
-    if (compartilhado) {
-      // o 1º runner envia; o 2º deve ver o throttle atualizado e pular
-      const permitido = d.repo; // placeholder — real logic em runner real
-      void permitido;
-      resultado.enviados = 1;
-      compartilhado.viuThrottle = true;
-    } else {
-      resultado.enviados = 1;
-    }
     enviados.push(nome);
     return resultado;
   };

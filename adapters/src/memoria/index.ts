@@ -28,7 +28,12 @@ export interface EstadoInterno {
   leads: LeadNurture[];
   logDeEnvio: LinhaLogDeEnvio[];
   supressoes: Set<string>;
-  fila: { reservadas: string[]; concluidas: string[]; liberadas: string[] };
+  fila: {
+    reservadas: string[];
+    concluidas: string[];
+    liberadas: string[];
+    argumentos: Map<string, EmailParaEnviar>;
+  };
   enviados: string[];
   eventos: { tipo: string; email: string; em: string }[];
 }
@@ -81,7 +86,7 @@ export function criarAdaptersMemoria(seed?: Seed): {
     leads: [...(s.leads ?? [])],
     logDeEnvio: [...(s.logDeEnvio ?? [])],
     supressoes: new Set(s.supressoes ?? []),
-    fila: { reservadas: [], concluidas: [], liberadas: [] },
+    fila: { reservadas: [], concluidas: [], liberadas: [], argumentos: new Map() },
     enviados: [],
     eventos: [],
   };
@@ -117,13 +122,40 @@ export function criarAdaptersMemoria(seed?: Seed): {
     async reservar(e: EmailParaEnviar) {
       if (estado.fila.reservadas.includes(e.idempotencyKey)) return false;
       estado.fila.reservadas.push(e.idempotencyKey);
+      estado.fila.argumentos.set(e.idempotencyKey, e);
       return true;
+    },
+    async reivindicar(k: string) {
+      if (!estado.fila.reservadas.includes(k)) return null;
+      if (estado.fila.concluidas.includes(k) || estado.fila.liberadas.includes(k)) return null;
+      const arg = estado.fila.argumentos.get(k);
+      return arg ?? null;
     },
     async concluir(k: string) {
       estado.fila.concluidas.push(k);
     },
     async liberar(k: string) {
       estado.fila.liberadas.push(k);
+    },
+    async listarPendentes() {
+      return estado.fila.reservadas
+        .filter((k) => !estado.fila.concluidas.includes(k))
+        .map((k) => ({
+          idempotencyKey: k,
+          email: estado.fila.argumentos.get(k) ?? {
+            to: "", subject: "", html: "", emailType: "desconhecido", idempotencyKey: k,
+          },
+          criadoEm: AGORA_FIXA,
+          ultimaTentativaEm: estado.fila.liberadas.includes(k) ? AGORA_FIXA : null,
+        }));
+    },
+    async removerOrfas(maisVelhasQue: string) {
+      void maisVelhasQue;
+      const antes = estado.fila.reservadas.length;
+      estado.fila.reservadas = estado.fila.reservadas.filter(
+        (k) => estado.fila.concluidas.includes(k) || estado.fila.liberadas.includes(k),
+      );
+      return antes - estado.fila.reservadas.length;
     },
   };
 

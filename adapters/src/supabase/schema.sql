@@ -168,3 +168,43 @@ begin
      set last_attempt_at = now(), last_error = p_last_error, lease_until = null
    where idempotency_key = p_idempotency_key;
 end $$;
+
+-- Claim an existing pending row with a lease (the retry path). The row stays
+-- in the table — retry re-claims it, never re-inserts. Returns email_args or
+-- null when not claimable (completed, leased, or already sent).
+create or replace function public.claim_nurture_email_outbox(
+  p_idempotency_key text, p_lease_minutes int default 5
+) returns jsonb language plpgsql security definer set search_path = public as $$
+declare v_email_args jsonb;
+begin
+  update public.nurture_email_outbox
+     set lease_until = now() + (p_lease_minutes || ' minutes')::interval,
+         last_attempt_at = now()
+   where idempotency_key = p_idempotency_key
+     and sent_at is null
+     and (lease_until is null or lease_until < now())
+     returning email_args into v_email_args;
+  return v_email_args;
+end $$;
+
+-- Pending rows (reserved, not completed) — feeds resume and dead-letter.
+create or replace function public.list_nurture_email_outbox_pending()
+returns table (
+  idempotency_key text, email_args jsonb,
+  created_at timestamptz, last_attempt_at timestamptz
+) language sql security definer set search_path = public as $$
+  select o.idempotency_key, o.email_args, o.created_at, o.last_attempt_at
+    from public.nurture_email_outbox o
+   where o.sent_at is null
+$$;
+
+-- Hard-delete orphan rows: reserved, never attempted, older than the cut.
+create or replace function public.remove_nurture_email_outbox_orfas(
+  p_older_than timestamptz
+) returns integer language sql security definer set search_path = public as $$
+  with removidas as (
+    delete from public.nurture_email_outbox
+     where reserved_at < p_older_than and last_attempt_at is null and sent_at is null
+     returning 1
+  ) select count(*)::integer from removidas
+$$;

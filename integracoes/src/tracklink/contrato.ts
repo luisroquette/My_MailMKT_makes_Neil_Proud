@@ -31,13 +31,15 @@ export interface OpcoesDeTracking {
     destino: string;
     destinoRastreado: string;
     nome: string;
-  }) => Promise<void>;
+  }) => Promise<{ ok: true } | { ok: false; codigo?: string }>;
 }
 
 /**
  * Reference implementation against the Supabase tracking_links table shape.
- * Idempotent by slug: first call creates, later calls reuse and only update
- * the destination if the offer changed (unique-violation 23505 → update).
+ * Idempotent by slug: the first call creates; later calls REUSE the existing
+ * link — a unique violation (23505) is the NORMAL reuse path and must keep
+ * the tracked URL, not degrade to the raw destination. Only a real error
+ * degrades (analytics never blocks delivery).
  */
 export function criarIntegracaoDeTracking(
   opts: OpcoesDeTracking,
@@ -53,12 +55,20 @@ export function criarIntegracaoDeTracking(
         campaign: utmCampaign,
       });
       try {
-        await opts.salvarLink({
+        const r = await opts.salvarLink({
           slug,
           destino,
           destinoRastreado,
           nome: `Mail Mkt · ${campanhaNome}`.slice(0, 100),
         });
+        if (!r.ok && r.codigo !== "23505") {
+          log("[tracklink] persistência falhou — envio segue com URL crua", {
+            slug,
+            codigo: r.codigo,
+          });
+          return destino;
+        }
+        // ok OR 23505 (reuse): the tracked link exists and is the CTA.
       } catch (erro) {
         log("[tracklink] persistência falhou — envio segue com URL crua", {
           slug,
