@@ -20,7 +20,7 @@ export function Sidebar() {
   return (
     <aside className="hidden md:flex w-56 shrink-0 flex-col bg-ink text-white">
       <div className="px-4 py-5 border-b border-white/10">
-        <img src="/logo.png" alt="CF Gauss" className="h-9 w-9 rounded-md" />
+        <img src="/logo.png" alt="Logo" className="h-9 w-9 rounded-md" />
         <p className="mt-3 text-sm font-semibold tracking-tight text-white">Mail MKT</p>
         <p className="mt-1 text-[11px] font-semibold uppercase tracking-[0.11em] text-lilac">
           Motor de e-mail
@@ -49,7 +49,7 @@ export function Sidebar() {
         })}
       </nav>
       <div className="px-4 py-3 border-t border-white/10 text-[11px] text-white/60">
-        Fidelidade: produção CF Gauss
+        Fidelidade: produção de referência
         <br />
         dados fixos · America/Sao_Paulo
       </div>
@@ -68,7 +68,7 @@ export function NavMobile() {
   return (
     <div className="md:hidden flex items-center justify-between border-b bg-background px-4 py-3">
       <p className="flex items-center gap-2 text-sm font-semibold">
-        <img src="/logo.png" alt="CF Gauss" className="h-6 w-6 rounded" />
+        <img src="/logo.png" alt="Logo" className="h-6 w-6 rounded" />
         Mail MKT
       </p>
       <Sheet open={aberto} onOpenChange={setAberto}>

@@ -1,7 +1,7 @@
 /**
  * Tracklink integration — pure URL builders.
  *
- * Fidelity contract (CF Gauss reference, `lib/tracking-links/mailmkt.ts`):
+ * Fidelity contract (reference production system, `lib/tracking-links/mailmkt.ts`):
  * every marketing CTA passes through the tracking-links system before going
  * into an email. Slug and utm_campaign follow the fixed pattern
  * `mailmkt-<slug>` / `mailmkt_<slug>`, so every campaign shows up in the

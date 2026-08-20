@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  /* CF Gauss Visual Standard (memória reference_cfgauss_visual_standard) */
+  /* Visual Standard (memória reference_cfgauss_visual_standard) */
   --color-brand: #7b2fbe;   /* roxo de marca — CTAs e destaque */
   --color-ink: #1a1524;     /* texto/fundo escuro do hero (o site real usa este) */
   --color-lilac: #c9a7ff;   /* eyebrows/kickers — uppercase, letter-spacing largo */

@@ -1,7 +1,7 @@
 /**
  * The 25-day sequence — the content layer inherited from My_MailMKT v1.1.1.
  *
- * Ported from the v1.1.1 SKILL.md sequence table (the reference CF Gauss
+ * Ported from the v1.1.1 SKILL.md sequence table (the reference reference production
  * drip uses the same D+0..D+25 anchors). Each format has a different job,
  * so the list never receives ten variations of the same sales email.
  */

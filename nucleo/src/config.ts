@@ -1,7 +1,7 @@
 /**
  * Nurture configuration with safe merge.
  *
- * Fidelity contract (from the CF Gauss reference, 17-18/08/2026): rules live
+ * Fidelity contract (from the reference production system, 17-18/08/2026): rules live
  * in the database (`nurture_config` singleton jsonb) and are merged over
  * `CONFIG_PADRAO`. An absent table changes nothing and logs; an invalid value
  * falls back to the default per field — merge NEVER throws.

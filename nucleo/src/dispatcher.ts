@@ -43,7 +43,7 @@ export interface ResultadoDoDispatcher {
 /**
  * Single dispatch point — the "one cron" of the reference system.
  *
- * Fidelity contract (CF Gauss, `nurture-dispatcher`, "0 * * * *"): one tick
+ * Fidelity contract (reference production, `nurture-dispatcher`, "0 * * * *"): one tick
  * asks the database-backed agenda "who is due at this hour", then runs the
  * due motors in PRIORITY order sharing ONE throttle state, ONE shared fuse
  * and ONE hard loop budget (240s < the 300s platform maxDuration). Alerts

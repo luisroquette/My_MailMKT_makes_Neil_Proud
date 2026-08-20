@@ -37,10 +37,10 @@ describe("normalizarLead", () => {
     const r = normalizarLead({
       nome: "A",
       origem: "lp",
-      utms: { source: "cfgauss", medium: "referral", campaign: "lp-treinamento" },
+      utms: { source: "owner-slug", medium: "referral", campaign: "lp-treinamento" },
     });
     expect(r.utms).toEqual({
-      source: "cfgauss",
+      source: "owner-slug",
       medium: "referral",
       campaign: "lp-treinamento",
     });

@@ -3,7 +3,7 @@ import type { RegrasThrottle } from "./config";
 
 /**
  * Shared fatigue throttle — the single point that limits how many emails a
- * lead receives. The CF Gauss incident of 17/08/2026 happened because five
+ * lead receives. The the production incident of 17/08/2026 happened because five
  * independent runners had five independent throttle states and one lead got
  * three emails in one hour. Fidelity contract:
  *

@@ -1,4 +1,4 @@
--- My_MailMKT v2.0.0 — Supabase schema (portable port of the CF Gauss
+-- My_MailMKT v2.0.0 — Supabase schema (portable port of the reference production
 -- reference migrations). Differences from the reference are intentional and
 -- documented inline; the fidelity-critical constraints (dedupe UNIQUE,
 -- outbox idempotency PK, singleton config) are preserved exactly.
@@ -80,7 +80,7 @@ values (true, '{}'::jsonb)
 on conflict (singleton) do nothing;
 
 -- Marketing campaigns (reference: mail_marketing_campaigns.sql).
--- NOTE: the reference CHECKs offer_url against ^https://cfgauss\.com\.br/.
+-- NOTE: the reference CHECKs offer_url against the production host pattern\.com\.br/.
 -- The portable port validates against ALLOWED_DOMAINS at the application
 -- layer (see adapters/supabase/README note) instead of hardcoding a host.
 create table if not exists public.nurture_marketing_campaigns (

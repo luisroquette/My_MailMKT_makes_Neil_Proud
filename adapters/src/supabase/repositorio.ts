@@ -6,7 +6,7 @@ import type {
 } from "@mymailmkt/nucleo";
 
 /**
- * Supabase adapter — faithful to the CF Gauss reference:
+ * Supabase adapter — faithful to the reference production system:
  *
  * - `lerLeads` is paginated via range() — PostgREST silently truncates raw
  *   selects at 1000 rows, so `.select()` without range is forbidden;

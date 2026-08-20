@@ -3,7 +3,7 @@ import type { ConfigNurture, AgendaEntrada, MotorId } from "./config";
 /**
  * Weekly agenda — which motor is due at which hour.
  *
- * Fidelity contract (CF Gauss reference): the dispatcher ticks at the top of
+ * Fidelity contract (reference production system): the dispatcher ticks at the top of
  * the hour ("0 * * * *") and compares by HOUR-ONLY, truncated on purpose —
  * defaults like 09:30 / 10:30 / 20:45 must be reachable by a ":00" tick.
  * A replica that compares exact HH:MM (or ticks at a different minute) would

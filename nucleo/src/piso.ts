@@ -1,7 +1,7 @@
 /**
  * Copy floor — deterministic anti-sensationalism gate.
  *
- * Fidelity contract (CF Gauss reference, lib/nurture/piso.ts): the banned
+ * Fidelity contract (reference production system, lib/nurture/piso.ts): the banned
  * list is the SINGLE source of truth; the gate runs on BOTH save and send.
  * A line that fails or is malformed falls back to the repo seed and logs —
  * it never ships. Deterministic: same input, same verdict, always.

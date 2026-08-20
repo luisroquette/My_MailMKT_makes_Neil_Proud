@@ -1,7 +1,7 @@
 import type { LeadNurture } from "@mymailmkt/nucleo";
 
 /**
- * Real marketing-campaign cadence — the fields the CF Gauss reference stores
+ * Real marketing-campaign cadence — the fields the reference production system stores
  * per campaign (nurture_marketing_campaigns) and edits by screen, never by
  * deploy: send_hour, interval_days, weekdays, audience_filter, throttle_exempt.
  */

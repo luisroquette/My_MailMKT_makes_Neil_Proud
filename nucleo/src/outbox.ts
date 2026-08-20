@@ -4,7 +4,7 @@ import type { EnviadorDeEmail, FilaOutbox, EmailParaEnviar, DependenciasDoNucleo
  * Durable outbox protocol — the guarantee that an email is delivered exactly
  * once even if the process dies mid-send.
  *
- * Fidelity contract (CF Gauss reference, `nurture_email_outbox` + 4 atomic
+ * Fidelity contract (reference production system, `nurture_email_outbox` + 4 atomic
  * RPCs): reserve → claim (lease 5min) → send → complete. Definitive failure
  * releases the reservation (retry tomorrow); AMBIGUOUS results (timeout, 5xx,
  * idempotency 409) fail CLOSED — the reservation is preserved and the email
